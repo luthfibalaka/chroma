@@ -1,12 +1,12 @@
 [project]
-name = "chromadb-deterministic"
-version = "0.5.5.post3"
+name = "chromadb_deterministic"
+version = "0.5.5.post1"
 
 authors = [
   { name = "Jeff Huber", email = "jeff@trychroma.com" },
   { name = "Anton Troynikov", email = "anton@trychroma.com" },
 ]
-description = "Chroma."
+description = "Chroma with deterministic behavior."
 readme = "README.md"
 requires-python = ">=3.8"
 classifiers = [
@@ -59,25 +59,25 @@ asyncio_mode = "auto"
 ignore_errors = false
 
 [[tool.mypy.overrides]]
-module = ["chromadb.proto.*"]
+module = ["chromadb_deterministic.proto.*"]
 ignore_errors = true
 
 [project.scripts]
-chroma = "chromadb.cli.cli:app"
+chromadb-deterministic = "chromadb_deterministic.cli.cli:app"
 
 [project.urls]
-"Homepage" = "https://github.com/chroma-core/chroma"
-"Bug Tracker" = "https://github.com/chroma-core/chroma/issues"
+"Homepage" = "https://github.com/luthfibalaka/chroma"
+"Bug Tracker" = "https://github.com/luthfibalaka/chroma/issues"
 
 [build-system]
 requires = ["setuptools>=61.0", "setuptools_scm[toml]>=6.2"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools_scm]
-local_scheme = "no-local-version"
+local_scheme = "node-and-date"
 
 [tool.setuptools]
-packages = ["chromadb"]
+packages = ["chromadb_deterministic"]
 
 [tool.setuptools.package-data]
-chromadb = ["*.yml"]
+chromadb_deterministic = ["*.yml"]
