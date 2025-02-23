@@ -2,13 +2,13 @@ import os
 import pytest
 from unittest.mock import patch, MagicMock
 
-import chromadb
-from chromadb.db.impl.sqlite import SqliteDB
-from chromadb.config import System, Settings
+import chromadb_deterministic
+from chromadb_deterministic.db.impl.sqlite import SqliteDB
+from chromadb_deterministic.config import System, Settings
 
 
 @pytest.mark.parametrize("migrations_hash_algorithm", [None, "md5", "sha256"])
-@patch("chromadb.api.fastapi.FastAPI")
+@patch("chromadb_deterministic.api.fastapi.FastAPI")
 @patch.dict(os.environ, {}, clear=True)
 def test_settings_valid_hash_algorithm(
     api_mock: MagicMock, migrations_hash_algorithm: str
@@ -18,20 +18,20 @@ def test_settings_valid_hash_algorithm(
     with that value
     """
     if migrations_hash_algorithm:
-        settings = chromadb.config.Settings(
-            chroma_api_impl="chromadb.api.fastapi.FastAPI",
+        settings = chromadb_deterministic.config.Settings(
+            chroma_api_impl="chromadb_deterministic.api.fastapi.FastAPI",
             is_persistent=True,
             persist_directory="./foo",
             migrations_hash_algorithm=migrations_hash_algorithm,
         )
     else:
-        settings = chromadb.config.Settings(
-            chroma_api_impl="chromadb.api.fastapi.FastAPI",
+        settings = chromadb_deterministic.config.Settings(
+            chroma_api_impl="chromadb_deterministic.api.fastapi.FastAPI",
             is_persistent=True,
             persist_directory="./foo",
         )
 
-    client = chromadb.Client(settings)
+    client = chromadb_deterministic.Client(settings)
 
     # Check that the mock was called
     assert api_mock.called
@@ -53,7 +53,7 @@ def test_settings_valid_hash_algorithm(
     client.clear_system_cache()
 
 
-@patch("chromadb.api.fastapi.FastAPI")
+@patch("chromadb_deterministic.api.fastapi.FastAPI")
 @patch.dict(os.environ, {}, clear=True)
 def test_settings_invalid_hash_algorithm(mock: MagicMock) -> None:
     """
@@ -61,20 +61,20 @@ def test_settings_invalid_hash_algorithm(mock: MagicMock) -> None:
     is not called
     """
     with pytest.raises(Exception):
-        settings = chromadb.config.Settings(
-            chroma_api_impl="chromadb.api.fastapi.FastAPI",
+        settings = chromadb_deterministic.config.Settings(
+            chroma_api_impl="chromadb_deterministic.api.fastapi.FastAPI",
             migrations_hash_algorithm="invalid_hash_alg",
             persist_directory="./foo",
         )
 
-        chromadb.Client(settings)
+        chromadb_deterministic.Client(settings)
 
     assert not mock.called
 
 
 @pytest.mark.parametrize("migrations_hash_algorithm", ["md5", "sha256"])
-@patch("chromadb.db.migrations.verify_migration_sequence")
-@patch("chromadb.db.migrations.hashlib")
+@patch("chromadb_deterministic.db.migrations.verify_migration_sequence")
+@patch("chromadb_deterministic.db.migrations.hashlib")
 @patch.dict(os.environ, {}, clear=True)
 def test_hashlib_alg(
     hashlib_mock: MagicMock,

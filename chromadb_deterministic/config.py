@@ -26,7 +26,7 @@ if not in_pydantic_v2:
 # The thin client will have a flag to control which implementations to use
 is_thin_client = False
 try:
-    from chromadb.is_thin_client import is_thin_client  # type: ignore
+    from chromadb_deterministic.is_thin_client import is_thin_client  # type: ignore
 except ImportError:
     is_thin_client = False
 
@@ -55,10 +55,10 @@ _legacy_config_values = {
     "clickhouse",
     "local",
     "rest",
-    "chromadb.db.duckdb.DuckDB",
-    "chromadb.db.duckdb.PersistentDuckDB",
-    "chromadb.db.clickhouse.Clickhouse",
-    "chromadb.api.local.LocalAPI",
+    "chromadb_deterministic.db.duckdb.DuckDB",
+    "chromadb_deterministic.db.duckdb.PersistentDuckDB",
+    "chromadb_deterministic.db.clickhouse.Clickhouse",
+    "chromadb_deterministic.api.local.LocalAPI",
 }
 
 
@@ -69,21 +69,21 @@ _abstract_type_keys: Dict[str, str] = {
     # TODO: Don't use concrete types here to avoid circular deps. Strings are
     #       fine for right here!
     # NOTE: this is to support legacy api construction. Use ServerAPI instead
-    "chromadb.api.API": "chroma_api_impl",
-    "chromadb.api.ServerAPI": "chroma_api_impl",
-    "chromadb.api.async_api.AsyncServerAPI": "chroma_api_impl",
-    "chromadb.auth.ClientAuthProvider": "chroma_client_auth_provider",
-    "chromadb.auth.ServerAuthenticationProvider": "chroma_server_authn_provider",
-    "chromadb.auth.ServerAuthorizationProvider": "chroma_server_authz_provider",
-    "chromadb.db.system.SysDB": "chroma_sysdb_impl",
-    "chromadb.ingest.Consumer": "chroma_consumer_impl",
-    "chromadb.ingest.Producer": "chroma_producer_impl",
-    "chromadb.quota.QuotaProvider": "chroma_quota_provider_impl",
-    "chromadb.rate_limiting.RateLimitingProvider": "chroma_rate_limiting_provider_impl",
-    "chromadb.segment.SegmentManager": "chroma_segment_manager_impl",
-    "chromadb.segment.distributed.SegmentDirectory": "chroma_segment_directory_impl",
-    "chromadb.segment.distributed.MemberlistProvider": "chroma_memberlist_provider_impl",
-    "chromadb.telemetry.product.ProductTelemetryClient": "chroma_product_telemetry_impl",
+    "chromadb_deterministic.api.API": "chroma_api_impl",
+    "chromadb_deterministic.api.ServerAPI": "chroma_api_impl",
+    "chromadb_deterministic.api.async_api.AsyncServerAPI": "chroma_api_impl",
+    "chromadb_deterministic.auth.ClientAuthProvider": "chroma_client_auth_provider",
+    "chromadb_deterministic.auth.ServerAuthenticationProvider": "chroma_server_authn_provider",
+    "chromadb_deterministic.auth.ServerAuthorizationProvider": "chroma_server_authz_provider",
+    "chromadb_deterministic.db.system.SysDB": "chroma_sysdb_impl",
+    "chromadb_deterministic.ingest.Consumer": "chroma_consumer_impl",
+    "chromadb_deterministic.ingest.Producer": "chroma_producer_impl",
+    "chromadb_deterministic.quota.QuotaProvider": "chroma_quota_provider_impl",
+    "chromadb_deterministic.rate_limiting.RateLimitingProvider": "chroma_rate_limiting_provider_impl",
+    "chromadb_deterministic.segment.SegmentManager": "chroma_segment_manager_impl",
+    "chromadb_deterministic.segment.distributed.SegmentDirectory": "chroma_segment_directory_impl",
+    "chromadb_deterministic.segment.distributed.MemberlistProvider": "chroma_memberlist_provider_impl",
+    "chromadb_deterministic.telemetry.product.ProductTelemetryClient": "chroma_product_telemetry_impl",
 }
 
 DEFAULT_TENANT = "default_tenant"
@@ -97,8 +97,8 @@ class Settings(BaseSettings):  # type: ignore
 
     environment: str = ""
 
-    # Can be "chromadb.api.segment.SegmentAPI" or "chromadb.api.fastapi.FastAPI"
-    chroma_api_impl: str = "chromadb.api.segment.SegmentAPI"
+    # Can be "chromadb_deterministic.api.segment.Sechromadb_deterministic" or "chromadb_deterministic.api.fastapi.FastAPI"
+    chroma_api_impl: str = "chromadb_deterministic.api.segment.SegmentAPI"
 
     @validator("chroma_server_nofile", pre=True, always=True, allow_reuse=True)
     def empty_str_to_none(cls, v: str) -> Optional[str]:
@@ -150,7 +150,7 @@ class Settings(BaseSettings):  # type: ignore
     # Client auth{n,z}
     # ================
 
-    # The provider for client auth. See chromadb/auth/__init__.py
+    # The provider for client auth. See chromadb_deterministic/auth/__init__.py
     chroma_client_auth_provider: Optional[str] = None
     # If needed by the provider (e.g. BasicAuthClientProvider),
     # the credentials to use.
@@ -166,7 +166,7 @@ class Settings(BaseSettings):  # type: ignore
         "/api/v1/version": ["GET"],
     }
     # Overwrite singleton tenant and database access from the auth provider
-    # if applicable. See chromadb/server/fastapi/__init__.py's
+    # if applicable. See chromadb_deterministic/server/fastapi/__init__.py's
     # authenticate_and_authorize_or_raise method.
     chroma_overwrite_singleton_tenant_database_access_from_auth: bool = False
 
@@ -192,14 +192,14 @@ class Settings(BaseSettings):  # type: ignore
     # Telemetry
     # =========
 
-    chroma_product_telemetry_impl: str = "chromadb.telemetry.product.posthog.Posthog"
+    chroma_product_telemetry_impl: str = "chromadb_deterministic.telemetry.product.posthog.Posthog"
     # Required for backwards compatibility
     chroma_telemetry_impl: str = chroma_product_telemetry_impl
 
     anonymized_telemetry: bool = False
 
     chroma_otel_collection_endpoint: Optional[str] = ""
-    chroma_otel_service_name: Optional[str] = "chromadb"
+    chroma_otel_service_name: Optional[str] = "chromadb_deterministic"
     chroma_otel_collection_headers: Dict[str, str] = {}
     chroma_otel_granularity: Optional[str] = None
 
@@ -216,20 +216,20 @@ class Settings(BaseSettings):  # type: ignore
     # Distributed Chroma
     # ==================
 
-    chroma_segment_directory_impl: str = "chromadb.segment.impl.distributed.segment_directory.RendezvousHashSegmentDirectory"
-    chroma_memberlist_provider_impl: str = "chromadb.segment.impl.distributed.segment_directory.CustomResourceMemberlistProvider"
+    chroma_segment_directory_impl: str = "chromadb_deterministic.segment.impl.distributed.segment_directory.RendezvousHashSegmentDirectory"
+    chroma_memberlist_provider_impl: str = "chromadb_deterministic.segment.impl.distributed.segment_directory.CustomResourceMemberlistProvider"
     worker_memberlist_name: str = "query-service-memberlist"
 
     chroma_coordinator_host = "localhost"
     # TODO this is the sysdb port. Should probably rename it.
     chroma_server_grpc_port: Optional[int] = None
-    chroma_sysdb_impl: str = "chromadb.db.impl.sqlite.SqliteDB"
+    chroma_sysdb_impl: str = "chromadb_deterministic.db.impl.sqlite.SqliteDB"
 
-    chroma_producer_impl: str = "chromadb.db.impl.sqlite.SqliteDB"
-    chroma_consumer_impl: str = "chromadb.db.impl.sqlite.SqliteDB"
+    chroma_producer_impl: str = "chromadb_deterministic.db.impl.sqlite.SqliteDB"
+    chroma_consumer_impl: str = "chromadb_deterministic.db.impl.sqlite.SqliteDB"
 
     chroma_segment_manager_impl: str = (
-        "chromadb.segment.impl.manager.local.LocalSegmentManager"
+        "chromadb_deterministic.segment.impl.manager.local.LocalSegmentManager"
     )
 
     chroma_logservice_host = "localhost"
@@ -251,7 +251,7 @@ class Settings(BaseSettings):  # type: ignore
 
     chroma_db_impl: Optional[str] = None
     chroma_collection_assignment_policy_impl: str = (
-        "chromadb.ingest.impl.simple_policy.SimpleAssignmentPolicy"
+        "chromadb_deterministic.ingest.impl.simple_policy.SimpleAssignmentPolicy"
     )
 
     # =======
@@ -327,11 +327,11 @@ class System(Component):
         if is_thin_client:
             # The thin client is a system with only the API component
             if settings["chroma_api_impl"] not in [
-                "chromadb.api.fastapi.FastAPI",
-                "chromadb.api.async_fastapi.AsyncFastAPI",
+                "chromadb_deterministic.api.fastapi.FastAPI",
+                "chromadb_deterministic.api.async_fastapi.AsyncFastAPI",
             ]:
                 raise RuntimeError(
-                    "Chroma is running in http-only client mode, and can only be run with 'chromadb.api.fastapi.FastAPI' or 'chromadb.api.async_fastapi.AsyncFastAPI' as the chroma_api_impl. \
+                    "Chroma is running in http-only client mode, and can only be run with 'chromadb_deterministic.api.fastapichromadb_deterministic' or 'chromadb_deterministic.api.async_fastapi.AsyncFastAPI' as the chroma_api_impl. \
             see https://docs.trychroma.com/guides#using-the-python-http-only-client for more information."
                 )
         # Validate settings don't contain any legacy config values

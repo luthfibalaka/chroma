@@ -11,22 +11,22 @@ import hypothesis.strategies as st
 import pytest
 import json
 from urllib import request
-from chromadb import config
-from chromadb.api.configuration import (
+from chromadb_deterministic import config
+from chromadb_deterministic.api.configuration import (
     ConfigurationParameter,
     EmbeddingsQueueConfigurationInternal,
 )
-from chromadb.api.types import Documents, EmbeddingFunction, Embeddings
-from chromadb.db.impl.sqlite import SqliteDB
-from chromadb.ingest.impl.utils import trigger_vector_segments_max_seq_id_migration
-from chromadb.segment import SegmentManager
-import chromadb.test.property.strategies as strategies
-import chromadb.test.property.invariants as invariants
+from chromadb_deterministic.api.types import Documents, EmbeddingFunction, Embeddings
+from chromadb_deterministic.db.impl.sqlite import SqliteDB
+from chromadb_deterministic.ingest.impl.utils import trigger_vector_segments_max_seq_id_migration
+from chromadb_deterministic.segment import SegmentManager
+import chromadb_deterministic.test.property.strategies as strategies
+import chromadb_deterministic.test.property.invariants as invariants
 from packaging import version as packaging_version
 import re
 import multiprocessing
-from chromadb.config import Settings
-from chromadb.api.client import Client as ClientCreator
+from chromadb_deterministic.config import Settings
+from chromadb_deterministic.api.client import Client as ClientCreator
 
 # Minimum persisted version we support, and other substantial change versions
 # 0.4.1 is the first version with persistence
@@ -39,8 +39,8 @@ VERSIONED_MODULES = ["pydantic"]
 
 
 def versions() -> List[str]:
-    """Returns the pinned minimum version and the latest version of chromadb."""
-    url = "https://pypi.org/pypi/chromadb/json"
+    """Returns the pinned minimum version and the latest version of chromadb_deterministic."""
+    url = "https://pypi.org/pypi/chromadb_deterministic/json"
     data = json.load(request.urlopen(request.Request(url)))
     versions = list(data["releases"].keys())
     # Older versions on pypi contain "devXYZ" suffixes
@@ -83,7 +83,7 @@ def _patch_telemetry_client(
 ) -> None:
     # chroma 0.4.14 added OpenTelemetry, distinct from ProductTelemetry. Before 0.4.14
     # ProductTelemetry was simply called Telemetry.
-    settings.chroma_telemetry_impl = "chromadb.telemetry.posthog.Posthog"
+    settings.chroma_telemetry_impl = "chromadb_deterministic.telemetry.posthog.Posthog"
 
 
 version_patches: List[
@@ -121,11 +121,11 @@ def configurations(versions: List[str]) -> List[Tuple[str, Settings]]:
         (
             version,
             Settings(
-                chroma_api_impl="chromadb.api.segment.SegmentAPI",
-                chroma_sysdb_impl="chromadb.db.impl.sqlite.SqliteDB",
-                chroma_producer_impl="chromadb.db.impl.sqlite.SqliteDB",
-                chroma_consumer_impl="chromadb.db.impl.sqlite.SqliteDB",
-                chroma_segment_manager_impl="chromadb.segment.impl.manager.local.LocalSegmentManager",
+                chroma_api_impl="chromadb_deterministic.api.segment.SegmentAPI",
+                chroma_sysdb_impl="chromadb_deterministic.db.impl.sqlite.SqliteDB",
+                chroma_producer_impl="chromadb_deterministic.db.impl.sqlite.SqliteDB",
+                chroma_consumer_impl="chromadb_deterministic.db.impl.sqlite.SqliteDB",
+                chroma_segment_manager_impl="chromadb_deterministic.segment.impl.manager.local.LocalSegmentManager",
                 allow_reset=True,
                 is_persistent=True,
                 persist_directory=tempfile.gettempdir() + "/persistence_test_chromadb",
@@ -140,7 +140,7 @@ base_install_dir = tempfile.gettempdir() + "/persistence_test_chromadb_versions"
 
 
 # This fixture is not shared with the rest of the tests because it is unique in how it
-# installs the versions of chromadb
+# installs the versions of chromadb_deterministic
 @pytest.fixture(scope="module", params=configurations(test_old_versions))  # type: ignore
 def version_settings(request) -> Generator[Tuple[str, Settings], None, None]:
     configuration = request.param
@@ -161,7 +161,7 @@ def get_path_to_version_install(version: str) -> str:
 
 
 def get_path_to_version_library(version: str) -> str:
-    return get_path_to_version_install(version) + "/chromadb/__init__.py"
+    return get_path_to_version_install(version) + "/chromadb_deterministic/__init__.py"
 
 
 def install_version(version: str) -> None:
@@ -170,7 +170,7 @@ def install_version(version: str) -> None:
     if os.path.exists(version_library):
         return
     path = get_path_to_version_install(version)
-    install(f"chromadb=={version}", path)
+    install(f"chromadb_deterministic=={version}", path)
 
 
 def install(pkg: str, path: str) -> int:
@@ -186,7 +186,7 @@ def install(pkg: str, path: str) -> int:
             "purge",
         ]
     )
-    print(f"Installing chromadb version {pkg} to {path}")
+    print(f"Installing chromadb_deterministic version {pkg} to {path}")
     return subprocess.check_call(
         [
             sys.executable,
@@ -203,7 +203,7 @@ def install(pkg: str, path: str) -> int:
 
 
 def switch_to_version(version: str) -> ModuleType:
-    module_name = "chromadb"
+    module_name = "chromadb_deterministic"
     # Remove old version from sys.modules, except test modules
     old_modules = {
         n: m
@@ -219,10 +219,10 @@ def switch_to_version(version: str) -> ModuleType:
     # Load the target version and override the path to the installed version
     # https://docs.python.org/3/library/importlib.html#importing-a-source-file-directly
     sys.path.insert(0, get_path_to_version_install(version))
-    import chromadb
+    import chromadb_deterministic
 
-    assert chromadb.__version__ == version
-    return chromadb
+    assert chromadb_deterministic.__version__ == version
+    return chromadb_deterministic
 
 
 class not_implemented_ef(EmbeddingFunction[Documents]):

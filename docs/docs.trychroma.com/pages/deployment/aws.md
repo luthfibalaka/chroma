@@ -33,11 +33,11 @@ Fill out the survey to jump the wait-list. Coming Q3 2023.
 
 You can run a Chroma server in a Docker container.
 
-You can get the Chroma Docker image from [Docker Hub](https://hub.docker.com/r/chromadb/chroma), or from the [Chroma GitHub Container Registry](https://github.com/chroma-core/chroma/pkgs/container/chroma)
+You can get the Chroma Docker image from [Docker Hub](https://hub.docker.com/r/chromadb_deterministic/chroma), or from the [Chroma GitHub Container Registry](https://github.com/chroma-core/chroma/pkgs/container/chroma)
 
 ```sh
-docker pull chromadb/chroma
-docker run -p 8000:8000 chromadb/chroma
+docker pull chromadb_deterministic/chroma
+docker run -p 8000:8000 chromadb_deterministic/chroma
 ```
 
 You can also build the Docker image yourself from the Dockerfile in the [Chroma GitHub repository](https://github.com/chroma-core/chroma)
@@ -51,8 +51,8 @@ docker-compose up -d --build
 The Chroma client can then be configured to connect to the server running in the Docker container.
 
 ```python
-import chromadb
-chroma_client = chromadb.HttpClient(host='localhost', port=8000)
+import chromadb_deterministic
+chroma_client = chromadb_deterministic.HttpClient(host='localhost', port=8000)
 ```
 
 ### Authentication with Docker
@@ -62,7 +62,7 @@ By default, the Docker image will run with no authentication. Follow the [Authen
 You can also create a `.chroma_env` file setting the required environment variables and pass it to the Docker container with the `--env-file` flag when running the container.
 
 ```sh
-docker run --env-file ./.chroma_env -p 8000:8000 chromadb/chroma
+docker run --env-file ./.chroma_env -p 8000:8000 chromadb_deterministic/chroma
 ```
 
 ## Simple AWS Deployment
@@ -182,9 +182,9 @@ export CHROMA_SERVER_HTTP_PORT=8000
 
 ```
 
-import chromadb
-from chromadb.config import Settings
-chroma = chromadb.HttpClient(host=<server IP address>, port=8000)
+import chromadb_deterministic
+from chromadb_deterministic.config import Settings
+chroma = chromadb_deterministic.HttpClient(host=<server IP address>, port=8000)
 
 ```
 

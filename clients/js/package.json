@@ -1,5 +1,5 @@
 {
-  "name": "chromadb",
+  "name": "chromadb_deterministic",
   "version": "1.9.1",
   "description": "A JavaScript interface for chroma",
   "keywords": [],
@@ -27,18 +27,18 @@
     "typescript": "^5.0.4"
   },
   "type": "module",
-  "main": "dist/cjs/chromadb.cjs",
-  "types": "dist/chromadb.d.ts",
-  "module": "dist/chromadb.legacy-esm.js",
+  "main": "dist/cjs/chromadb_deterministic.cjs",
+  "types": "dist/chromadb_deterministic.d.ts",
+  "module": "dist/chromadb_deterministic.legacy-esm.js",
   "exports": {
     ".": {
       "import": {
-        "types": "./dist/chromadb.d.ts",
-        "default": "./dist/chromadb.mjs"
+        "types": "./dist/chromadb_deterministic.d.ts",
+        "default": "./dist/chromadb_deterministic.mjs"
       },
       "require": {
-        "types": "./dist/cjs/chromadb.d.cts",
-        "default": "./dist/cjs/chromadb.cjs"
+        "types": "./dist/cjs/chromadb_deterministic.d.cts",
+        "default": "./dist/cjs/chromadb_deterministic.cjs"
       }
     }
   },

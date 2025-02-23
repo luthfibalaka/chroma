@@ -3,8 +3,8 @@ from abc import abstractmethod
 from functools import wraps
 from typing import Optional, Any, Dict, Callable
 
-from chromadb.config import Component
-from chromadb.quota import QuotaProvider, Resource
+from chromadb_deterministic.config import Component
+from chromadb_deterministic.quota import QuotaProvider, Resource
 
 
 class RateLimitError(Exception):

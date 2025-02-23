@@ -23,26 +23,26 @@ from fastapi.routing import APIRoute
 from fastapi import HTTPException, status
 from uuid import UUID
 
-from chromadb.api.configuration import CollectionConfigurationInternal
+from chromadb_deterministic.api.configuration import CollectionConfigurationInternal
 from pydantic import BaseModel
-from chromadb.api.types import GetResult, QueryResult
-from chromadb.auth import (
+from chromadb_deterministic.api.types import GetResult, QueryResult
+from chromadb_deterministic.auth import (
     AuthzAction,
     AuthzResource,
     ServerAuthenticationProvider,
     ServerAuthorizationProvider,
 )
-from chromadb.config import DEFAULT_DATABASE, DEFAULT_TENANT, Settings, System
-from chromadb.api import ServerAPI
-from chromadb.errors import (
+from chromadb_deterministic.config import DEFAULT_DATABASE, DEFAULT_TENANT, Settings, System
+from chromadb_deterministic.api import ServerAPI
+from chromadb_deterministic.errors import (
     ChromaError,
     InvalidDimensionException,
     InvalidHTTPVersion,
 )
-from chromadb.quota import QuotaError
-from chromadb.rate_limiting import RateLimitError
-from chromadb.server import Server
-from chromadb.server.fastapi.types import (
+from chromadb_deterministic.quota import QuotaError
+from chromadb_deterministic.rate_limiting import RateLimitError
+from chromadb_deterministic.server import Server
+from chromadb_deterministic.server.fastapi.types import (
     AddEmbedding,
     CreateDatabase,
     CreateTenant,
@@ -55,18 +55,18 @@ from chromadb.server.fastapi.types import (
 )
 from starlette.datastructures import Headers
 import logging
-from chromadb.telemetry.product.events import ServerStartEvent
-from chromadb.utils.fastapi import fastapi_json_response, string_to_uuid as _uuid
+from chromadb_deterministic.telemetry.product.events import ServerStartEvent
+from chromadb_deterministic.utils.fastapi import fastapi_json_response, string_to_uuid as _uuid
 from opentelemetry import trace
-from chromadb.telemetry.opentelemetry.fastapi import instrument_fastapi
-from chromadb.types import Database, Tenant
-from chromadb.telemetry.product import ServerContext, ProductTelemetryClient
-from chromadb.telemetry.opentelemetry import (
+from chromadb_deterministic.telemetry.opentelemetry.fastapi import instrument_fastapi
+from chromadb_deterministic.types import Database, Tenant
+from chromadb_deterministic.telemetry.product import ServerContext, ProductTelemetryClient
+from chromadb_deterministic.telemetry.opentelemetry import (
     OpenTelemetryClient,
     OpenTelemetryGranularity,
     trace_method,
 )
-from chromadb.types import Collection as CollectionModel
+from chromadb_deterministic.types import Collection as CollectionModel
 
 logger = logging.getLogger(__name__)
 

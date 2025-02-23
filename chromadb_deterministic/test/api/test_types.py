@@ -1,6 +1,6 @@
 import pytest
 from typing import List, cast
-from chromadb.api.types import EmbeddingFunction, Documents, Image, Document, Embeddings
+from chromadb_deterministic.api.types import EmbeddingFunction, Documents, Image, Document, Embeddings
 import numpy as np
 
 

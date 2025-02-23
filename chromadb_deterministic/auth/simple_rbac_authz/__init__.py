@@ -2,16 +2,16 @@ import logging
 from typing import Dict, Set
 from overrides import override
 import yaml
-from chromadb.auth import (
+from chromadb_deterministic.auth import (
     AuthzAction,
     AuthzResource,
     UserIdentity,
     ServerAuthorizationProvider,
 )
-from chromadb.config import System
+from chromadb_deterministic.config import System
 from fastapi import HTTPException
 
-from chromadb.telemetry.opentelemetry import (
+from chromadb_deterministic.telemetry.opentelemetry import (
     OpenTelemetryGranularity,
     trace_method,
 )

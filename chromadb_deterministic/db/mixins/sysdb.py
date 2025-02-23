@@ -5,14 +5,14 @@ from overrides import override
 from pypika import Table, Column
 from itertools import groupby
 
-from chromadb.api.configuration import (
+from chromadb_deterministic.api.configuration import (
     CollectionConfigurationInternal,
     ConfigurationParameter,
     HNSWConfigurationInternal,
     InvalidConfigurationError,
 )
-from chromadb.config import DEFAULT_DATABASE, DEFAULT_TENANT, System
-from chromadb.db.base import (
+from chromadb_deterministic.config import DEFAULT_DATABASE, DEFAULT_TENANT, System
+from chromadb_deterministic.db.base import (
     Cursor,
     SqlDB,
     ParameterValue,
@@ -20,15 +20,15 @@ from chromadb.db.base import (
     NotFoundError,
     UniqueConstraintError,
 )
-from chromadb.db.system import SysDB
-from chromadb.telemetry.opentelemetry import (
+from chromadb_deterministic.db.system import SysDB
+from chromadb_deterministic.telemetry.opentelemetry import (
     add_attributes_to_current_span,
     OpenTelemetryClient,
     OpenTelemetryGranularity,
     trace_method,
 )
-from chromadb.ingest import Producer
-from chromadb.types import (
+from chromadb_deterministic.ingest import Producer
+from chromadb_deterministic.types import (
     Database,
     OptionalArgument,
     Segment,
@@ -818,7 +818,7 @@ class SqlSysDB(SqlDB, SysDB):
 
         # This is a legacy case where we don't have configuration stored in the database
         # This is non-destructive, we don't delete or overwrite any keys in the metadata
-        from chromadb.segment.impl.vector.hnsw_params import PersistentHnswParams
+        from chromadb_deterministic.segment.impl.vector.hnsw_params import PersistentHnswParams
 
         collections_t = Table("collections")
 

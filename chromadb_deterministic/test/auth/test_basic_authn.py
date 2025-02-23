@@ -1,6 +1,6 @@
 import pytest
 
-from chromadb.api import ServerAPI
+from chromadb_deterministic.api import ServerAPI
 
 
 def test_invalid_auth_cred(api_wrong_cred: ServerAPI) -> None:

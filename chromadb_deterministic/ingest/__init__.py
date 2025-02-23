@@ -1,13 +1,13 @@
 from abc import abstractmethod
 from typing import Callable, Optional, Sequence
-from chromadb.types import (
+from chromadb_deterministic.types import (
     OperationRecord,
     LogRecord,
     SeqId,
     Vector,
     ScalarEncoding,
 )
-from chromadb.config import Component
+from chromadb_deterministic.config import Component
 from uuid import UUID
 import array
 

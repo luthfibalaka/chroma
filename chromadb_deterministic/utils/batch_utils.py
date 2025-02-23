@@ -1,6 +1,6 @@
 from typing import Optional, Tuple, List
-from chromadb.api import BaseAPI
-from chromadb.api.types import (
+from chromadb_deterministic.api import BaseAPI
+from chromadb_deterministic.api.types import (
     Documents,
     Embeddings,
     IDs,

@@ -5,15 +5,15 @@ from typing import Generator, Tuple
 import grpc
 import pytest
 
-from chromadb.proto.convert import to_proto_submit
-from chromadb.proto.logservice_pb2 import PushLogsRequest, PushLogsResponse
-from chromadb.proto.logservice_pb2_grpc import (
+from chromadb_deterministic.proto.convert import to_proto_submit
+from chromadb_deterministic.proto.logservice_pb2 import PushLogsRequest, PushLogsResponse
+from chromadb_deterministic.proto.logservice_pb2_grpc import (
     LogServiceServicer,
     LogServiceStub,
     add_LogServiceServicer_to_server,
 )
-from chromadb.proto.utils import RetryOnRpcErrorClientInterceptor
-from chromadb.types import Operation, OperationRecord
+from chromadb_deterministic.proto.utils import RetryOnRpcErrorClientInterceptor
+from chromadb_deterministic.types import Operation, OperationRecord
 
 
 class FlakyLogServiceServicer(LogServiceServicer):

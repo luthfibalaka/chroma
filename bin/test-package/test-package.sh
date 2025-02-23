@@ -5,4 +5,4 @@ source ./install.sh
 
 pip_install_from_tarball $1
 
-python -c "import chromadb; api = chromadb.Client(); print(api.heartbeat())"
+python -c "import chromadb_deterministic_determichromadb_deterministicapi = chromadb_deterministic.Client(); print(api.heartbeat())"

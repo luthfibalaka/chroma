@@ -9,12 +9,12 @@ import uvicorn
 import os
 import webbrowser
 
-from chromadb.api.client import Client
-from chromadb.cli.utils import get_directory_size, set_log_file_path, sizeof_fmt
-from chromadb.config import Settings, System
-from chromadb.db.impl.sqlite import SqliteDB
-from chromadb.ingest.impl.utils import trigger_vector_segments_max_seq_id_migration
-from chromadb.segment import SegmentManager
+from chromadb_deterministic.api.client import Client
+from chromadb_deterministic.cli.utils import get_directory_size, set_log_file_path, sizeof_fmt
+from chromadb_deterministic.config import Settings, System
+from chromadb_deterministic.db.impl.sqlite import SqliteDB
+from chromadb_deterministic.ingest.impl.utils import trigger_vector_segments_max_seq_id_migration
+from chromadb_deterministic.segment import SegmentManager
 
 app = typer.Typer()
 utils_app = typer.Typer(short_help="Use maintenance utilities")
@@ -73,14 +73,14 @@ def run(
     os.environ["CHROMA_SERVER_NOFILE"] = "65535"
     os.environ["CHROMA_CLI"] = "True"
 
-    # get the path where chromadb is installed
+    # get the path where chromadb_deterministic is installed
     chromadb_path = os.path.dirname(os.path.realpath(__file__))
 
     # this is the path of the CLI, we want to move up one directory
     chromadb_path = os.path.dirname(chromadb_path)
     log_config = set_log_file_path(f"{chromadb_path}/log_config.yml", f"{log_path}")
     config = {
-        "app": "chromadb.app:app",
+        "app": "chromadb_deterministic.app:app",
         "host": host,
         "port": port,
         "workers": 1,

@@ -11,11 +11,11 @@ export default defineConfig({
   resolve: {
     alias: [
       {
-        find: "chromadb-default-embed",
+        find: "chromadb_deterministic-default-embed",
         replacement: path.resolve(
           __dirname,
           "node_modules",
-          "chromadb-default-embed",
+          "chromadb_deterministic-default-embed",
         ),
       },
     ],

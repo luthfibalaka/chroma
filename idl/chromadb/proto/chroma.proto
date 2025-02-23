@@ -9,7 +9,7 @@ message Status {
   int32 code = 2; // TODO: What is the enum of this code?
 }
 
-// Types here should mirror chromadb/types.py
+// Types here should mirror chromadb_deterministic/types.py
 enum Operation {
     ADD = 0;
     UPDATE = 1;

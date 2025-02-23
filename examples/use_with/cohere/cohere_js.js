@@ -12,7 +12,7 @@ chroma run --path /chroma_db_path
 
 Then install chroma and cohere
 ```
-npm install chromadb
+npm install chromadb_deterministic
 npm install cohere-ai
 ```
 
@@ -23,7 +23,7 @@ Then set your API KEY
 */
 
 // import chroma
-const chroma = require("chromadb");
+const chroma = require("chromadb_deterministic");
 const cohere = require("cohere-ai");
 
 const main = async () => {

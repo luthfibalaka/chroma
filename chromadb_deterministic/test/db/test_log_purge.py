@@ -1,6 +1,6 @@
-from chromadb.api.client import Client
-from chromadb.config import System
-from chromadb.test.property import invariants
+from chromadb_deterministic.api.client import Client
+from chromadb_deterministic.config import System
+from chromadb_deterministic.test.property import invariants
 
 
 def test_log_purge(sqlite_persistent: System) -> None:

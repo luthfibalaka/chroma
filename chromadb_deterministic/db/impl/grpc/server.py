@@ -2,9 +2,9 @@ from concurrent import futures
 from typing import Any, Dict, cast
 from uuid import UUID
 from overrides import overrides
-from chromadb.api.configuration import CollectionConfigurationInternal
-from chromadb.config import DEFAULT_DATABASE, DEFAULT_TENANT, Component, System
-from chromadb.proto.convert import (
+from chromadb_deterministic.api.configuration import CollectionConfigurationInternal
+from chromadb_deterministic.config import DEFAULT_DATABASE, DEFAULT_TENANT, Component, System
+from chromadb_deterministic.proto.convert import (
     from_proto_metadata,
     from_proto_update_metadata,
     from_proto_segment,
@@ -12,8 +12,8 @@ from chromadb.proto.convert import (
     to_proto_collection,
     to_proto_segment,
 )
-import chromadb.proto.chroma_pb2 as proto
-from chromadb.proto.coordinator_pb2 import (
+import chromadb_deterministic.proto.chroma_pb2 as proto
+from chromadb_deterministic.proto.coordinator_pb2 import (
     CreateCollectionRequest,
     CreateCollectionResponse,
     CreateDatabaseRequest,
@@ -40,13 +40,13 @@ from chromadb.proto.coordinator_pb2 import (
     UpdateSegmentRequest,
     UpdateSegmentResponse,
 )
-from chromadb.proto.coordinator_pb2_grpc import (
+from chromadb_deterministic.proto.coordinator_pb2_grpc import (
     SysDBServicer,
     add_SysDBServicer_to_server,
 )
 import grpc
 from google.protobuf.empty_pb2 import Empty
-from chromadb.types import Collection, Metadata, Segment
+from chromadb_deterministic.types import Collection, Metadata, Segment
 
 
 class GrpcMockSysDB(SysDBServicer, Component):

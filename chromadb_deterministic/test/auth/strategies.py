@@ -5,8 +5,8 @@ import yaml
 
 import string
 
-from chromadb import TokenTransportHeader
-from chromadb.test.property.strategies import collection_name
+from chromadb_deterministic import TokenTransportHeader
+from chromadb_deterministic.test.property.strategies import collection_name
 
 
 @st.composite

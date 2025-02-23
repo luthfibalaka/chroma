@@ -2,39 +2,39 @@ import unittest
 import os
 from unittest.mock import patch, Mock
 import pytest
-import chromadb
-import chromadb.config
-from chromadb.db.system import SysDB
-from chromadb.ingest import Consumer, Producer
+import chromadb_deterministic
+import chromadb_deterministic.config
+from chromadb_deterministic.db.system import SysDB
+from chromadb_deterministic.ingest import Consumer, Producer
 
 
 class GetDBTest(unittest.TestCase):
-    @patch("chromadb.db.impl.sqlite.SqliteDB", autospec=True)
+    @patch("chromadb_deterministic.db.impl.sqlite.SqliteDB", autospec=True)
     def test_default_db(self, mock: Mock) -> None:
-        system = chromadb.config.System(
-            chromadb.config.Settings(persist_directory="./foo")
+        system = chromadb_deterministic.config.System(
+            chromadb_deterministic.config.Settings(persist_directory="./foo")
         )
         system.instance(SysDB)
         assert mock.called
 
-    @patch("chromadb.db.impl.sqlite.SqliteDB", autospec=True)
+    @patch("chromadb_deterministic.db.impl.sqlite.SqliteDB", autospec=True)
     def test_sqlite_sysdb(self, mock: Mock) -> None:
-        system = chromadb.config.System(
-            chromadb.config.Settings(
-                chroma_sysdb_impl="chromadb.db.impl.sqlite.SqliteDB",
+        system = chromadb_deterministic.config.System(
+            chromadb_deterministic.config.Settings(
+                chroma_sysdb_impl="chromadb_deterministic.db.impl.sqlite.SqliteDB",
                 persist_directory="./foo",
             )
         )
         system.instance(SysDB)
         assert mock.called
 
-    @patch("chromadb.db.impl.sqlite.SqliteDB", autospec=True)
+    @patch("chromadb_deterministic.db.impl.sqlite.SqliteDB", autospec=True)
     def test_sqlite_queue(self, mock: Mock) -> None:
-        system = chromadb.config.System(
-            chromadb.config.Settings(
-                chroma_sysdb_impl="chromadb.db.impl.sqlite.SqliteDB",
-                chroma_producer_impl="chromadb.db.impl.sqlite.SqliteDB",
-                chroma_consumer_impl="chromadb.db.impl.sqlite.SqliteDB",
+        system = chromadb_deterministic.config.System(
+            chromadb_deterministic.config.Settings(
+                chroma_sysdb_impl="chromadb_deterministic.db.impl.sqlite.SqliteDB",
+                chroma_producer_impl="chromadb_deterministic.db.impl.sqlite.SqliteDB",
+                chroma_consumer_impl="chromadb_deterministic.db.impl.sqlite.SqliteDB",
                 persist_directory="./foo",
             )
         )
@@ -44,26 +44,26 @@ class GetDBTest(unittest.TestCase):
 
 
 class GetAPITest(unittest.TestCase):
-    @patch("chromadb.api.segment.SegmentAPI", autospec=True)
+    @patch("chromadb_deterministic.api.segment.SegmentAPI", autospec=True)
     @patch.dict(os.environ, {}, clear=True)
     def test_local(self, mock_api: Mock) -> None:
-        client = chromadb.Client(chromadb.config.Settings(persist_directory="./foo"))
+        client = chromadb_deterministic_determichromadb_deterministiclient(chromadb_deterministic.config.Settings(persist_directory="./foo"))
         assert mock_api.called
         client.clear_system_cache()
 
-    @patch("chromadb.db.impl.sqlite.SqliteDB", autospec=True)
+    @patch("chromadb_deterministic.db.impl.sqlite.SqliteDB", autospec=True)
     @patch.dict(os.environ, {}, clear=True)
     def test_local_db(self, mock_db: Mock) -> None:
-        client = chromadb.Client(chromadb.config.Settings(persist_directory="./foo"))
+        client = chromadb_deterministic_determichromadb_deterministiclient(chromadb_deterministic.config.Settings(persist_directory="./foo"))
         assert mock_db.called
         client.clear_system_cache()
 
-    @patch("chromadb.api.fastapi.FastAPI", autospec=True)
+    @patch("chromadb_deterministic.api.fastapi.FastAPI", autospec=True)
     @patch.dict(os.environ, {}, clear=True)
     def test_fastapi(self, mock: Mock) -> None:
-        client = chromadb.Client(
-            chromadb.config.Settings(
-                chroma_api_impl="chromadb.api.fastapi.FastAPI",
+        client = chromadb_deterministic.Client(
+            chromadb_deterministic.config.Settings(
+                chroma_api_impl="chromadb_deterministic.api.fastapi.FastAPI",
                 persist_directory="./foo",
                 chroma_server_host="foo",
                 chroma_server_http_port=80,
@@ -72,16 +72,16 @@ class GetAPITest(unittest.TestCase):
         assert mock.called
         client.clear_system_cache()
 
-    @patch("chromadb.api.fastapi.FastAPI", autospec=True)
+    @patch("chromadb_deterministic.api.fastapi.FastAPI", autospec=True)
     @patch.dict(os.environ, {}, clear=True)
     def test_settings_pass_to_fastapi(self, mock: Mock) -> None:
-        settings = chromadb.config.Settings(
-            chroma_api_impl="chromadb.api.fastapi.FastAPI",
+        settings = chromadb_deterministic.config.Settings(
+            chroma_api_impl="chromadb_deterministic.api.fastapi.FastAPI",
             chroma_server_host="foo",
             chroma_server_http_port=80,
             chroma_server_headers={"foo": "bar"},
         )
-        client = chromadb.Client(settings)
+        client = chromadb_deterministic.Client(settings)
 
         # Check that the mock was called
         assert mock.called
@@ -101,9 +101,9 @@ class GetAPITest(unittest.TestCase):
 
 def test_legacy_values() -> None:
     with pytest.raises(ValueError):
-        client = chromadb.Client(
-            chromadb.config.Settings(
-                chroma_api_impl="chromadb.api.local.LocalAPI",
+        client = chromadb_deterministic.Client(
+            chromadb_deterministic.config.Settings(
+                chroma_api_impl="chromadb_deterministic.api.local.LocalAPI",
                 persist_directory="./foo",
                 chroma_server_host="foo",
                 chroma_server_http_port=80,

@@ -17,15 +17,15 @@ pip install -r requirements_dev.txt
 pre-commit install # install the precommit hooks
 ```
 
-You can also install `chromadb` the `pypi` package locally and in editable mode with `pip install -e .`.
+You can also install `chromadb_deterministic` the `pypi` package locally and in editable mode with `pip install -e .`.
 
 ## Running Chroma
 
 Chroma can be run via 3 modes:
 1. Standalone and in-memory:
 ```python
-import chromadb
-api = chromadb.Client()
+import chromadb_deterministic
+api = chromadb_deterministic.Client()
 print(api.heartbeat())
 ```
 
@@ -33,8 +33,8 @@ print(api.heartbeat())
 
 This by default saves your db and your indexes to a `.chroma` directory and can also load from them.
 ```python
-import chromadb
-api = chromadb.PersistentClient(path="/path/to/persist/directory")
+import chromadb_deterministic
+api = chromadb_deterministic.PersistentClient(path="/path/to/persist/directory")
 print(api.heartbeat())
 ```
 
@@ -43,8 +43,8 @@ print(api.heartbeat())
 
 Run `chroma run --path /chroma_db_path`
 ```python
-import chromadb
-api = chromadb.HttpClient(host="localhost", port="8000")
+import chromadb_deterministic
+api = chromadb_deterministic.HttpClient(host="localhost", port="8000")
 
 print(api.heartbeat())
 ```
@@ -60,7 +60,7 @@ Once done, it will expose Chroma on port 8000. You can also visit the Tilt dashb
 
 ## Testing
 
-Unit tests are in the `/chromadb/test` directory.
+Unit tests are in the `/chromadb_deterministic/test` directory.
 
 To run unit tests using your current environment, run `pytest`.
 

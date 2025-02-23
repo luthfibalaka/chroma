@@ -2,7 +2,7 @@ var fs = require("fs");
 var path = require("path");
 
 var express = require("express");
-var chroma = require("chromadb");
+var chroma = require("chromadb_deterministic");
 
 var app = express();
 app.get("/", async (req, res) => {

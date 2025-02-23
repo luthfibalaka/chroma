@@ -15,7 +15,7 @@ from typing import (
 from typing_extensions import Self
 from multiprocessing import cpu_count
 
-from chromadb.serde import JSONSerializable
+from chromadb_deterministic.serde import JSONSerializable
 
 # TODO: move out of API
 

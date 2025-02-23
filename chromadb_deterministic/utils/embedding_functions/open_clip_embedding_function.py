@@ -2,7 +2,7 @@ import importlib
 import logging
 from typing import Optional, Union, cast
 
-from chromadb.api.types import (
+from chromadb_deterministic.api.types import (
     Document,
     Documents,
     Embedding,

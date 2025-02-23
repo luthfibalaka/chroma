@@ -12,10 +12,10 @@ curl http://localhost:11434/api/embeddings -d '{"model": "nomic-embed-text","pro
 Now let's configure our OllamaEmbeddingFunction Embedding (python) function with the default Ollama endpoint:
 
 ```python
-import chromadb
-from chromadb.utils.embedding_functions import OllamaEmbeddingFunction
+import chromadb_deterministic
+from chromadb_deterministic.utils.embedding_functions import OllamaEmbeddingFunction
 
-client = chromadb.PersistentClient(path="ollama")
+client = chromadb_deterministic.PersistentClient(path="ollama")
 
 # create EF with custom endpoint
 ef = OllamaEmbeddingFunction(
@@ -29,7 +29,7 @@ print(ef(["Here is an article about llamas..."]))
 For JS users, you can use the `OllamaEmbeddingFunction` class to create embeddings:
 
 ```javascript
-const {OllamaEmbeddingFunction} = require('chromadb');
+const {OllamaEmbeddingFunction} = require('chromadb_deterministic');
 const embedder = new OllamaEmbeddingFunction({
     url: "http://127.0.0.1:11434/api/embeddings",
     model: "llama2"

@@ -20,7 +20,7 @@ Chroma is an AI-native open-source vector database. It comes with everything you
 {% tab label="Python" %}
 
 ```bash
-pip install chromadb # [!code $]
+pip install chromadb_deterministic # [!code $]
 ```
 
 {% /tab %}
@@ -30,21 +30,21 @@ pip install chromadb # [!code $]
 {% codetab label="yarn" %}
 
 ```bash {% codetab=true %}
-yarn install chromadb chromadb-default-embed # [!code $]
+yarn install chromadb_deterministic_chromadb_deterministicistic chromadb_deterministic-default-embed # [!code $]
 ```
 
 {% /codetab %}
 {% codetab label="npm" %}
 
 ```bash {% codetab=true %}
-npm install --save chromadb chromadb-default-embed # [!code $]
+npm install --save chromadb_deterministic_chromadb_deterministicistic chromadb_deterministic-default-embed # [!code $]
 ```
 
 {% /codetab %}
 {% codetab label="pnpm" %}
 
 ```bash {% codetab=true %}
-pnpm install chromadb chromadb-default-embed # [!code $]
+pnpm install chromadb_deterministic_chromadb_deterministicistic chromadb_deterministic-default-embed # [!code $]
 ```
 
 {% /codetab %}
@@ -53,7 +53,7 @@ pnpm install chromadb chromadb-default-embed # [!code $]
 Install chroma via `pypi` to easily run the backend server. (Docker also available)
 
 ```bash
-pip install chromadb # [!code $]
+pip install chromadb_deterministic # [!code $]
 ```
 
 {% /tab %}
@@ -65,8 +65,8 @@ pip install chromadb # [!code $]
 {% tab label="Python" %}
 
 ```python
-import chromadb
-chroma_client = chromadb.Client()
+import chromadb_deterministic
+chroma_client = chromadb_deterministic.Client()
 ```
 
 {% /tab %}
@@ -85,8 +85,8 @@ chroma run --path ./getting-started # [!code $]
 {% codetab label="Docker" %}
 
 ```bash {% codetab=true %}
-docker pull chromadb/chroma # [!code $]
-docker run -p 8000:8000 chromadb/chroma # [!code $]
+docker pull chromadb_deterministic/chroma # [!code $]
+docker run -p 8000:8000 chromadb_deterministic/chroma # [!code $]
 ```
 
 {% /codetab %}
@@ -98,7 +98,7 @@ Then create a client which connects to it:
 {% codetab label="ESM" %}
 
 ```js {% codetab=true %}
-import { ChromaClient } from "chromadb";
+import { ChromaClient } from "chromadb_deterministic";
 const client = new ChromaClient();
 ```
 
@@ -106,7 +106,7 @@ const client = new ChromaClient();
 {% codetab label="CJS" %}
 
 ```js {% codetab=true %}
-const { ChromaClient } = require("chromadb");
+const { ChromaClient } = require("chromadb_deterministic");
 const client = new ChromaClient();
 ```
 
@@ -258,8 +258,8 @@ For example - what if we tried querying with `"This is a document about florida"
 {% tab label="Python" %}
 
 ```py
-import chromadb
-chroma_client = chromadb.Client()
+import chromadb_deterministic
+chroma_client = chromadb_deterministic.Client()
 
 # switch `create_collection` to `get_or_create_collection` to avoid creating a new collection every time
 collection = chroma_client.get_or_create_collection(name="my_collection")
@@ -285,7 +285,7 @@ print(results)
 {% tab label="Javascript" %}
 
 ```js
-import { ChromaClient } from "chromadb";
+import { ChromaClient } from "chromadb_deterministic";
 const client = new ChromaClient();
 
 // switch `createCollection` to `getOrCreateCollection` to avoid creating a new collection every time

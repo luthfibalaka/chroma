@@ -34,7 +34,7 @@ class OtelInterceptor(
     grpc.StreamStreamClientInterceptor,
 ):
     def _intercept_call(self, continuation, client_call_details, request_or_iterator):
-        from chromadb.telemetry.opentelemetry import tracer
+        from chromadb_deterministic.telemetry.opentelemetry import tracer
 
         if tracer is None:
             return continuation(client_call_details, request_or_iterator)

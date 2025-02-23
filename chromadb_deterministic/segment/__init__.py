@@ -1,6 +1,6 @@
 from typing import Optional, Sequence, TypeVar, Type
 from abc import abstractmethod
-from chromadb.types import (
+from chromadb_deterministic.types import (
     Collection,
     MetadataEmbeddingRecord,
     Operation,
@@ -13,7 +13,7 @@ from chromadb.types import (
     SeqId,
     Metadata,
 )
-from chromadb.config import Component, System
+from chromadb_deterministic.config import Component, System
 from uuid import UUID
 from enum import Enum
 

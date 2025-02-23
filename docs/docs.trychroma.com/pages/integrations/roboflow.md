@@ -11,7 +11,7 @@ To run Inference through the Roboflow cloud, you will need an API key. [Learn ho
 You can pass it directly on creation of the `RoboflowEmbeddingFunction`:
 
 ```python
-from chromadb.utils.embedding_functions import RoboflowEmbeddingFunction
+from chromadb_deterministic.utils.embedding_functions import RoboflowEmbeddingFunction
 
 roboflow_ef = RoboflowEmbeddingFunction(api_key=API_KEY)
 ```
@@ -25,7 +25,7 @@ export ROBOFLOW_API_KEY=YOUR_API_KEY
 Then, you can create the `RoboflowEmbeddingFunction` without passing an API key directly:
 
 ```python
-from chromadb.utils.embedding_functions import RoboflowEmbeddingFunction
+from chromadb_deterministic.utils.embedding_functions import RoboflowEmbeddingFunction
 
 roboflow_ef = RoboflowEmbeddingFunction()
 ```
@@ -55,7 +55,7 @@ Your Inference server will run at `http://localhost:9001`.
 Then, you can create the `RoboflowEmbeddingFunction`:
 
 ```python
-from chromadb.utils.embedding_functions import RoboflowEmbeddingFunction
+from chromadb_deterministic.utils.embedding_functions import RoboflowEmbeddingFunction
 
 roboflow_ef = RoboflowEmbeddingFunction(api_key=API_KEY, server_url="http://localhost:9001")
 ```

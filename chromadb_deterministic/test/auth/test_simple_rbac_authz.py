@@ -3,15 +3,15 @@ import hypothesis.strategies as st
 import pytest
 from typing import Any, Dict, Optional
 
-from chromadb.api import ServerAPI
-from chromadb.config import Settings, System
-from chromadb.test.auth.rbac_test_executors import api_executors
-from chromadb.test.auth.strategies import (
+from chromadb_deterministic.api import ServerAPI
+from chromadb_deterministic.config import Settings, System
+from chromadb_deterministic.test.auth.rbac_test_executors import api_executors
+from chromadb_deterministic.test.auth.strategies import (
     random_token_transport_header,
     rbac_test_conf,
     unauthorized_actions,
 )
-from chromadb.test.conftest import _fastapi_fixture
+from chromadb_deterministic.test.conftest import _fastapi_fixture
 
 
 def test_basic_authn_rbac_authz_unit_test(api_with_authn_rbac_authz: ServerAPI) -> None:
@@ -37,12 +37,12 @@ def test_token_authn_rbac_authz(
             is_persistent=persistence,
             chroma_auth_token_transport_header=header,
             chroma_client_auth_credentials=token,
-            chroma_client_auth_provider="chromadb.auth."
+            chroma_client_auth_provider="chromadb_deterministic.auth."
             "token_authn.TokenAuthClientProvider",
-            chroma_server_authn_provider="chromadb.auth.token_authn."
+            chroma_server_authn_provider="chromadb_deterministic.auth.token_authn."
             "TokenAuthenticationServerProvider",
             chroma_server_authn_credentials_file=rbac_conf["filename"],
-            chroma_server_authz_provider="chromadb.auth.simple_rbac_authz."
+            chroma_server_authz_provider="chromadb_deterministic.auth.simple_rbac_authz."
             "SimpleRBACAuthorizationProvider",
             chroma_server_authz_config_file=rbac_conf["filename"],
         )

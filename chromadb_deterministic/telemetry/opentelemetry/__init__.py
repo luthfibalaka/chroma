@@ -11,8 +11,8 @@ from opentelemetry.sdk.trace.export import (
 )
 from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
 
-from chromadb.config import Component
-from chromadb.config import System
+from chromadb_deterministic.config import Component
+from chromadb_deterministic.config import System
 
 
 class OpenTelemetryGranularity(Enum):

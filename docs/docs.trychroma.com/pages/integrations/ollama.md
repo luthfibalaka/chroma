@@ -11,7 +11,7 @@ a [model](https://github.com/ollama/ollama?tab=readme-ov-file#model-library) of 
 {% tab label="Python" %}
 
 ```python
-import chromadb.utils.embedding_functions as embedding_functions
+import chromadb_deterministic.utils.embedding_functions as embedding_functions
 
 ollama_ef = embedding_functions.OllamaEmbeddingFunction(
     url="http://localhost:11434/api/embeddings",
@@ -28,7 +28,7 @@ embeddings = ollama_ef(["This is my first text to embed",
 {% codetabs customHeader="js" %}
 {% codetab label="ESM" %}
 ```js {% codetab=true %}
-import {OllamaEmbeddingFunction} from "chromadb";
+import {OllamaEmbeddingFunction} from "chromadb_deterministic";
 const embedder = new OllamaEmbeddingFunction({
     url: "http://127.0.0.1:11434/api/embeddings",
     model: "llama2"
@@ -50,7 +50,7 @@ const collection = await client.getCollection({
 {% /codetab %}
 {% codetab label="CJS" %}
 ```js {% codetab=true %}
-const {OllamaEmbeddingFunction} = require('chromadb');
+const {OllamaEmbeddingFunction} = require('chromadb_deterministic');
 const embedder = new OllamaEmbeddingFunction({
     url: "http://127.0.0.1:11434/api/embeddings",
     model: "llama2"

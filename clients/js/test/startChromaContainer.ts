@@ -30,7 +30,7 @@ export async function startChromaContainer({
     container = container.withCopyContentToContainer([
       {
         content: BASIC_AUTH_PASSWORD_FILE_CONTENTS,
-        target: "/chromadb/test.htpasswd",
+        target: "/chromadb_deterministic/test.htpasswd",
       },
     ]);
   }
@@ -44,19 +44,19 @@ export async function startChromaContainer({
   switch (authType) {
     case "basic":
       env.CHROMA_SERVER_AUTHN_PROVIDER =
-        "chromadb.auth.basic_authn.BasicAuthenticationServerProvider";
-      env.CHROMA_SERVER_AUTHN_CREDENTIALS_FILE = "/chromadb/test.htpasswd";
+        "chromadb_deterministic.auth.basic_authn.BasicAuthenticationServerProvider";
+      env.CHROMA_SERVER_AUTHN_CREDENTIALS_FILE = "/chromadb_deterministic/test.htpasswd";
       break;
     case "token":
       env.CHROMA_SERVER_AUTHN_CREDENTIALS = "test-token";
       env.CHROMA_SERVER_AUTHN_PROVIDER =
-        "chromadb.auth.token_authn.TokenAuthenticationServerProvider";
+        "chromadb_deterministic.auth.token_authn.TokenAuthenticationServerProvider";
       break;
     case "xtoken":
       env.CHROMA_AUTH_TOKEN_TRANSPORT_HEADER = "X-Chroma-Token";
       env.CHROMA_SERVER_AUTHN_CREDENTIALS = "test-token";
       env.CHROMA_SERVER_AUTHN_PROVIDER =
-        "chromadb.auth.token_authn.TokenAuthenticationServerProvider";
+        "chromadb_deterministic.auth.token_authn.TokenAuthenticationServerProvider";
       break;
   }
 

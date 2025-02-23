@@ -1,21 +1,21 @@
 from typing import Optional, Sequence, Any, Tuple, cast, Generator, Union, Dict, List
-from chromadb.segment import MetadataReader
-from chromadb.ingest import Consumer
-from chromadb.config import System
-from chromadb.types import Segment, InclusionExclusionOperator
-from chromadb.db.impl.sqlite import SqliteDB
+from chromadb_deterministic.segment import MetadataReader
+from chromadb_deterministic.ingest import Consumer
+from chromadb_deterministic.config import System
+from chromadb_deterministic.types import Segment, InclusionExclusionOperator
+from chromadb_deterministic.db.impl.sqlite import SqliteDB
 from overrides import override
-from chromadb.db.base import (
+from chromadb_deterministic.db.base import (
     Cursor,
     ParameterValue,
     get_sql,
 )
-from chromadb.telemetry.opentelemetry import (
+from chromadb_deterministic.telemetry.opentelemetry import (
     OpenTelemetryClient,
     OpenTelemetryGranularity,
     trace_method,
 )
-from chromadb.types import (
+from chromadb_deterministic.types import (
     Where,
     WhereDocument,
     MetadataEmbeddingRecord,

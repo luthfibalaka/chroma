@@ -5,7 +5,7 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
-  chromadb:
+  chromadb_deterministic:
     specifier: link:../..
     version: link:../..
   react:
@@ -28,7 +28,7 @@ devDependencies:
   buffer:
     specifier: ^5.5.0||^6.0.0
     version: 6.0.3
-  chromadb-default-embed:
+  chromadb_deterministic-default-embed:
     specifier: ^2.13.2
     version: 2.13.2
   process:
@@ -1193,7 +1193,7 @@ packages:
       }
     dev: true
 
-  /chromadb-default-embed@2.13.2:
+  /chromadb_deterministic-default-embed@2.13.2:
     resolution:
       {
         integrity: sha512-mhqo5rLjkF2KkxAV0WS82vNIXWpVMzvz5y5ayIB2FxcebUbEBNlcRh6XSSqYChWMfJ9us1ZzLQU8RXqsy3sKaA==,

@@ -94,8 +94,8 @@ If you're using `Token` auth, your server configuration might look like:
 ```yaml
 CHROMA_SERVER_AUTH_CREDENTIALS="admin:admin"
 CHROMA_SERVER_AUTH_CREDENTIALS_FILE="./example_file"
-CHROMA_SERVER_AUTH_CREDENTIALS_PROVIDER="chromadb.auth.providers.HtpasswdConfigurationServerAuthCredentialsProvider"
-CHROMA_SERVER_AUTH_PROVIDER="chromadb.auth.basic.BasicAuthServerProvider"
+CHROMA_SERVER_AUTH_CREDENTIALS_PROVIDER="chromadb_deterministic.auth.providers.HtpasswdConfigurationServerAuthCredentialsProvider"
+CHROMA_SERVER_AUTH_PROVIDER="chromadb_deterministic.auth.basic.BasicAuthServerProvider"
 ```
 
 _Note: Only one of `AUTH_CREDENTIALS` and `AUTH_CREDENTIALS_FILE` can be set, but this guide shows how to migrate both._
@@ -103,14 +103,14 @@ _Note: Only one of `AUTH_CREDENTIALS` and `AUTH_CREDENTIALS_FILE` can be set, bu
 And your corresponding client configation:
 
 ```yaml
-CHROMA_CLIENT_AUTH_PROVIDER="chromadb.auth.token.TokenAuthClientProvider"
+CHROMA_CLIENT_AUTH_PROVIDER="chromadb_deterministic.auth.token.TokenAuthClientProvider"
 CHROMA_CLIENT_AUTH_CREDENTIALS="admin:admin"
 ```
 
 To migrate to the new server configuration, simply change it to:
 
 ```yaml
-CHROMA_SERVER_AUTHN_PROVIDER="chromadb.auth.token_authn.TokenAuthenticationServerProvider"
+CHROMA_SERVER_AUTHN_PROVIDER="chromadb_deterministic.auth.token_authn.TokenAuthenticationServerProvider"
 CHROMA_SERVER_AUTHN_CREDENTIALS="test-token"
 CHROMA_SERVER_AUTHN_CREDENTIALS_FILE="./example_file"
 ```
@@ -119,7 +119,7 @@ New client configuration:
 
 ```yaml
 CHROMA_CLIENT_AUTH_CREDENTIALS="test-token"
-CHROMA_CLIENT_AUTH_PROVIDER="chromadb.auth.basic_authn.BasicAuthClientProvider"
+CHROMA_CLIENT_AUTH_PROVIDER="chromadb_deterministic.auth.basic_authn.BasicAuthClientProvider"
 ```
 
 #### Token
@@ -129,8 +129,8 @@ If you're using `Token` auth, your server configuration might look like:
 ```yaml
 CHROMA_SERVER_AUTH_CREDENTIALS="test-token"
 CHROMA_SERVER_AUTH_CREDENTIALS_FILE="./example_file"
-CHROMA_SERVER_AUTH_CREDENTIALS_PROVIDER="chromadb.auth.token.TokenConfigServerAuthCredentialsProvider"
-CHROMA_SERVER_AUTH_PROVIDER="chromadb.auth.token.TokenAuthServerProvider"
+CHROMA_SERVER_AUTH_CREDENTIALS_PROVIDER="chromadb_deterministic.auth.token.TokenConfigServerAuthCredentialsProvider"
+CHROMA_SERVER_AUTH_PROVIDER="chromadb_deterministic.auth.token.TokenAuthServerProvider"
 CHROMA_SERVER_AUTH_TOKEN_TRANSPORT_HEADER="AUTHORIZATION"
 ```
 
@@ -139,7 +139,7 @@ _Note: Only one of `AUTH_CREDENTIALS` and `AUTH_CREDENTIALS_FILE` can be set, bu
 And your corresponding client configation:
 
 ```yaml
-CHROMA_CLIENT_AUTH_PROVIDER="chromadb.auth.token.TokenAuthClientProvider"
+CHROMA_CLIENT_AUTH_PROVIDER="chromadb_deterministic.auth.token.TokenAuthClientProvider"
 CHROMA_CLIENT_AUTH_CREDENTIALS="test-token"
 CHROMA_CLIENT_AUTH_TOKEN_TRANSPORT_HEADER="AUTHORIZATION"
 ```
@@ -147,7 +147,7 @@ CHROMA_CLIENT_AUTH_TOKEN_TRANSPORT_HEADER="AUTHORIZATION"
 To migrate to the new server configuration, simply change it to:
 
 ```yaml
-CHROMA_SERVER_AUTHN_PROVIDER="chromadb.auth.token_authn.TokenAuthenticationServerProvider"
+CHROMA_SERVER_AUTHN_PROVIDER="chromadb_deterministic.auth.token_authn.TokenAuthenticationServerProvider"
 CHROMA_SERVER_AUTHN_CREDENTIALS="test-token"
 CHROMA_SERVER_AUTHN_CREDENTIALS_FILE="./example_file"
 CHROMA_AUTH_TOKEN_TRANSPORT_HEADER="AUTHORIZATION"
@@ -157,7 +157,7 @@ New client configuration:
 
 ```yaml
 CHROMA_CLIENT_AUTH_CREDENTIALS="test-token"
-CHROMA_CLIENT_AUTH_PROVIDER="chromadb.auth.token_authn.TokenAuthClientProvider"
+CHROMA_CLIENT_AUTH_PROVIDER="chromadb_deterministic.auth.token_authn.TokenAuthClientProvider"
 CHROMA_AUTH_TOKEN_TRANSPORT_HEADER="AUTHORIZATION"
 ```
 
@@ -228,51 +228,51 @@ What's new in this version?
 ### in-memory ephemeral client
 
 # before
-import chromadb
-client = chromadb.Client()
+import chromadb_deterministic
+client = chromadb_deterministic.Client()
 
 # after
-import chromadb
-client = chromadb.EphemeralClient()
+import chromadb_deterministic
+client = chromadb_deterministic.EphemeralClient()
 
 
 ### persistent client
 
 # before
-import chromadb
-from chromadb.config import Settings
-client = chromadb.Client(Settings(
+import chromadb_deterministic
+from chromadb_deterministic.config import Settings
+client = chromadb_deterministic.Client(Settings(
     chroma_db_impl="duckdb+parquet",
-    persist_directory="/path/to/persist/directory" # Optional, defaults to .chromadb/ in the current directory
+    persist_directory="/path/to/persist/directory" # Optional, defaults to .chromadb_deterministic/ in the current directory
 ))
 
 # after
-import chromadb
-client = chromadb.PersistentClient(path="/path/to/persist/directory")
+import chromadb_deterministic
+client = chromadb_deterministic.PersistentClient(path="/path/to/persist/directory")
 
 
 ### http client (to talk to server backend)
 
 # before
-import chromadb
-from chromadb.config import Settings
-client = chromadb.Client(Settings(chroma_api_impl="rest",
+import chromadb_deterministic
+from chromadb_deterministic.config import Settings
+client = chromadb_deterministic.Client(Settings(chroma_api_impl="rest",
                                         chroma_server_host="localhost",
                                         chroma_server_http_port="8000"
                                     ))
 
 # after
-import chromadb
-client = chromadb.HttpClient(host="localhost", port="8000")
+import chromadb_deterministic
+client = chromadb_deterministic.HttpClient(host="localhost", port="8000")
 
 ```
 
 You can still also access the underlying `.Client()` method. If you want to turn off telemetry, all clients support custom settings:
 
 ```python
-import chromadb
-from chromadb.config import Settings
-client = chromadb.PersistentClient(
+import chromadb_deterministic
+from chromadb_deterministic.config import Settings
+client = chromadb_deterministic.PersistentClient(
     path="/path/to/persist/directory",
     settings=Settings(anonymized_telemetry=False))
 ```
@@ -303,7 +303,7 @@ If you need any help with this migration, please reach out! We are on [Discord](
 `.reset()`, which resets the entire database, used to by enabled-by-default which felt wrong. `0.4.0` has it disabled-by-default. You can enable it again by passing `allow_reset=True` to a Settings object. For example:
 
 ```python
-import chromadb
-from chromadb.config import Settings
-client = chromadb.PersistentClient(path="./path/to/chroma", settings=Settings(allow_reset=True))
+import chromadb_deterministic
+from chromadb_deterministic.config import Settings
+client = chromadb_deterministic.PersistentClient(path="./path/to/chroma", settings=Settings(allow_reset=True))
 ```

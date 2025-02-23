@@ -20,7 +20,7 @@ This embedding function relies on the `google-generativeai` python package, whic
 
 ```python
 # import
-import chromadb.utils.embedding_functions as embedding_functions
+import chromadb_deterministic.utils.embedding_functions as embedding_functions
 
 # use directly
 google_ef  = embedding_functions.GoogleGenerativeAiEmbeddingFunction(api_key="YOUR_API_KEY")
@@ -41,7 +41,7 @@ For more info - please visit the [official Google python docs](https://ai.google
 This embedding function relies on the `@google/generative-ai` npm package, which you can install with e.g. `npm install @google/generative-ai`.
 
 ```javascript
-import { ChromaClient, GoogleGenerativeAiEmbeddingFunction } from "chromadb";
+import { ChromaClient, GoogleGenerativeAiEmbeddingFunction } from "chromadb_deterministic";
 const embedder = new GoogleGenerativeAiEmbeddingFunction({
   googleApiKey: "<YOUR API KEY>",
 });

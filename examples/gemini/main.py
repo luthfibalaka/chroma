@@ -3,8 +3,8 @@ import os
 from typing import List
 
 import google.generativeai as genai
-import chromadb
-from chromadb.utils import embedding_functions
+import chromadb_deterministic
+from chromadb_deterministic.utils import embedding_functions
 
 model = genai.GenerativeModel("gemini-pro")
 
@@ -75,7 +75,7 @@ def main(
     # Instantiate a persistent chroma client in the persist_directory.
     # This will automatically load any previously saved collections.
     # Learn more at docs.trychroma.com
-    client = chromadb.PersistentClient(path=persist_directory)
+    client = chromadb_deterministic.PersistentClient(path=persist_directory)
 
     # create embedding function
     embedding_function = embedding_functions.GoogleGenerativeAIEmbeddingFunction(

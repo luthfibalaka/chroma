@@ -1,9 +1,9 @@
 import pytest
 import logging
 import hypothesis.strategies as st
-import chromadb.test.property.strategies as strategies
-from chromadb.api import ClientAPI
-import chromadb.api.types as types
+import chromadb_deterministic.test.property.strategies as strategies
+from chromadb_deterministic.api import ClientAPI
+import chromadb_deterministic.api.types as types
 from hypothesis.stateful import (
     Bundle,
     RuleBasedStateMachine,
@@ -16,7 +16,7 @@ from hypothesis.stateful import (
 )
 from typing import Any, Dict, Mapping, Optional
 import numpy
-from chromadb.test.property.strategies import hashing_embedding_function
+from chromadb_deterministic.test.property.strategies import hashing_embedding_function
 
 
 class CollectionStateMachine(RuleBasedStateMachine):

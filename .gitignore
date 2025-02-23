@@ -16,7 +16,7 @@ clients/js/package-lock.json
 
 index_data
 
-# Default configuration for persist_directory in chromadb/config.py
+# Default configuration for persist_directory in chromadb_deterministic/config.py
 # Currently it's located in "./chroma/"
 chroma/
 chroma_test_data/

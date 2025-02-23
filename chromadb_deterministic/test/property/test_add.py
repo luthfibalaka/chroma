@@ -6,17 +6,17 @@ import hypothesis
 import pytest
 import hypothesis.strategies as st
 from hypothesis import given, settings
-from chromadb.api import ClientAPI
-from chromadb.api.types import Embeddings, Metadatas
-from chromadb.test.conftest import (
+from chromadb_deterministic.api import ClientAPI
+from chromadb_deterministic.api.types import Embeddings, Metadatas
+from chromadb_deterministic.test.conftest import (
     reset,
     NOT_CLUSTER_ONLY,
     override_hypothesis_profile,
 )
-import chromadb.test.property.strategies as strategies
-import chromadb.test.property.invariants as invariants
-from chromadb.test.utils.wait_for_version_increase import wait_for_version_increase
-from chromadb.utils.batch_utils import create_batches
+import chromadb_deterministic.test.property.strategies as strategies
+import chromadb_deterministic.test.property.invariants as invariants
+from chromadb_deterministic.test.utils.wait_for_version_increase import wait_for_version_increase
+from chromadb_deterministic.utils.batch_utils import create_batches
 
 
 collection_st = st.shared(strategies.collections(with_hnsw_params=True), key="coll")

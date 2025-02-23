@@ -27,8 +27,8 @@ This is a quick cheatsheet of the API. For full API docs, refer to the JS and Py
 ### In-memory chroma
 
 ```python
-import chromadb
-client = chromadb.Client()
+import chromadb_deterministic
+client = chromadb_deterministic.Client()
 ```
 
 ### In-memory chroma with saving/loading to disk
@@ -36,8 +36,8 @@ client = chromadb.Client()
 In this mode, Chroma will persist data between sessions. On load - it will load up the data in the directory you specify. And as you add data - it will save to that directory.
 
 ```python
-import chromadb
-client = chromadb.PersistentClient(path="/path/to/data")
+import chromadb_deterministic
+client = chromadb_deterministic.PersistentClient(path="/path/to/data")
 ```
 
 ### Run chroma just as a client to talk to a backend service
@@ -47,8 +47,8 @@ You can run Chroma a standalone Chroma server using the Chroma command line. Run
 Then update your API initialization and then use the API the same way as before.
 
 ```python
-import chromadb
-chroma_client = chromadb.HttpClient(host="localhost", port=8000)
+import chromadb_deterministic
+chroma_client = chromadb_deterministic.HttpClient(host="localhost", port=8000)
 ```
 
 ## Methods on Client
@@ -154,10 +154,10 @@ Run `chroma run --path /db_path` to run the Chroma backend as a standalone serve
 
 ```javascript
 // CJS
-const { ChromaClient } = require("chromadb");
+const { ChromaClient } = require("chromadb_deterministic");
 
 // ESM
-import { ChromaClient } from 'chromadb'
+import { ChromaClient } from 'chromadb_deterministic'
 
 const client = new ChromaClient();
 ```

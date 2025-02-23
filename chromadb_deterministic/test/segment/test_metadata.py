@@ -13,12 +13,12 @@ from typing import (
     Sequence,
 )
 
-from chromadb.api.types import validate_metadata
-from chromadb.config import System, Settings
-from chromadb.db.base import ParameterValue, get_sql
-from chromadb.db.impl.sqlite import SqliteDB
-from chromadb.test.conftest import ProducerFn
-from chromadb.types import (
+from chromadb_deterministic.api.types import validate_metadata
+from chromadb_deterministic.config import System, Settings
+from chromadb_deterministic.db.base import ParameterValue, get_sql
+from chromadb_deterministic.db.impl.sqlite import SqliteDB
+from chromadb_deterministic.test.conftest import ProducerFn
+from chromadb_deterministic.types import (
     OperationRecord,
     MetadataEmbeddingRecord,
     Operation,
@@ -28,12 +28,12 @@ from chromadb.types import (
     SeqId,
 )
 from pypika import Table
-from chromadb.ingest import Producer
-from chromadb.segment import MetadataReader
+from chromadb_deterministic.ingest import Producer
+from chromadb_deterministic.segment import MetadataReader
 import uuid
 import time
 
-from chromadb.segment.impl.metadata.sqlite import SqliteMetadataSegment
+from chromadb_deterministic.segment.impl.metadata.sqlite import SqliteMetadataSegment
 
 from pytest import FixtureRequest
 from itertools import count

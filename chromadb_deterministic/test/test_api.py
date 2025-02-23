@@ -2,20 +2,20 @@
 import traceback
 import httpx
 
-import chromadb
-from chromadb.errors import ChromaError
-from chromadb.api.fastapi import FastAPI
-from chromadb.api.types import QueryResult, EmbeddingFunction, Document
-from chromadb.config import Settings
-from chromadb.errors import InvalidCollectionException
-import chromadb.server.fastapi
+import chromadb_deterministic
+from chromadb_deterministic.errors import ChromaError
+from chromadb_deterministic.api.fastapi import FastAPI
+from chromadb_deterministic.api.types import QueryResult, EmbeddingFunction, Document
+from chromadb_deterministic.config import Settings
+from chromadb_deterministic.errors import InvalidCollectionException
+import chromadb_deterministic.server.fastapi
 import pytest
 import tempfile
 import numpy as np
 import os
 import shutil
 from datetime import datetime, timedelta
-from chromadb.utils.embedding_functions import (
+from chromadb_deterministic.utils.embedding_functions import (
     DefaultEmbeddingFunction,
 )
 
@@ -24,13 +24,13 @@ persist_dir = tempfile.mkdtemp()
 
 @pytest.fixture
 def local_persist_api():
-    client = chromadb.Client(
+    client = chromadb_deterministic.Client(
         Settings(
-            chroma_api_impl="chromadb.api.segment.SegmentAPI",
-            chroma_sysdb_impl="chromadb.db.impl.sqlite.SqliteDB",
-            chroma_producer_impl="chromadb.db.impl.sqlite.SqliteDB",
-            chroma_consumer_impl="chromadb.db.impl.sqlite.SqliteDB",
-            chroma_segment_manager_impl="chromadb.segment.impl.manager.local.LocalSegmentManager",
+            chroma_api_impl="chromadb_deterministic.api.segment.SegmentAPI",
+            chroma_sysdb_impl="chromadb_deterministic.db.impl.sqlite.SqliteDB",
+            chroma_producer_impl="chromadb_deterministic.db.impl.sqlite.SqliteDB",
+            chroma_consumer_impl="chromadb_deterministic.db.impl.sqlite.SqliteDB",
+            chroma_segment_manager_impl="chromadb_deterministic.segment.impl.manager.local.LocalSegmentManager",
             allow_reset=True,
             is_persistent=True,
             persist_directory=persist_dir,
@@ -45,13 +45,13 @@ def local_persist_api():
 # https://docs.pytest.org/en/6.2.x/fixture.html#fixtures-can-be-requested-more-than-once-per-test-return-values-are-cached
 @pytest.fixture
 def local_persist_api_cache_bust():
-    client = chromadb.Client(
+    client = chromadb_deterministic.Client(
         Settings(
-            chroma_api_impl="chromadb.api.segment.SegmentAPI",
-            chroma_sysdb_impl="chromadb.db.impl.sqlite.SqliteDB",
-            chroma_producer_impl="chromadb.db.impl.sqlite.SqliteDB",
-            chroma_consumer_impl="chromadb.db.impl.sqlite.SqliteDB",
-            chroma_segment_manager_impl="chromadb.segment.impl.manager.local.LocalSegmentManager",
+            chroma_api_impl="chromadb_deterministic.api.segment.SegmentAPI",
+            chroma_sysdb_impl="chromadb_deterministic.db.impl.sqlite.SqliteDB",
+            chroma_producer_impl="chromadb_deterministic.db.impl.sqlite.SqliteDB",
+            chroma_consumer_impl="chromadb_deterministic.db.impl.sqlite.SqliteDB",
+            chroma_segment_manager_impl="chromadb_deterministic.segment.impl.manager.local.LocalSegmentManager",
             allow_reset=True,
             is_persistent=True,
             persist_directory=persist_dir,
@@ -1617,7 +1617,7 @@ def test_ssl_self_signed_without_ssl_verify(client_ssl):
     client_ssl.heartbeat()
     _port = client_ssl._server._settings.chroma_server_http_port
     with pytest.raises(ValueError) as e:
-        chromadb.HttpClient(ssl=True, port=_port)
+        chromadb_deterministic.HttpClient(ssl=True, port=_port)
     stack_trace = traceback.format_exception(
         type(e.value), e.value, e.value.__traceback__
     )

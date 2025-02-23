@@ -17,7 +17,7 @@ Chroma also provides a convenient wrapper around Cohere's embedding API. This em
 This embedding function relies on the `cohere` python package, which you can install with `pip install cohere`.
 
 ```python
-import chromadb.utils.embedding_functions as embedding_functions
+import chromadb_deterministic.utils.embedding_functions as embedding_functions
 cohere_ef  = embedding_functions.CohereEmbeddingFunction(api_key="YOUR_API_KEY",  model_name="large")
 cohere_ef(texts=["document1","document2"])
 ```
@@ -26,7 +26,7 @@ cohere_ef(texts=["document1","document2"])
 {% tab label="Javascript" %}
 
 ```javascript
-const {CohereEmbeddingFunction} = require('chromadb');
+const {CohereEmbeddingFunction} = require('chromadb_deterministic');
 const embedder = new CohereEmbeddingFunction("apiKey")
 
 // use directly
@@ -69,7 +69,7 @@ cohere_ef(texts=multilingual_texts)
 {% tab label="Javascript" %}
 
 ```javascript
-const {CohereEmbeddingFunction} = require('chromadb');
+const {CohereEmbeddingFunction} = require('chromadb_deterministic');
 const embedder = new CohereEmbeddingFunction("apiKey")
 
 multilingual_texts  = [ 'Hello from Cohere!', 'مرحبًا من كوهير!',

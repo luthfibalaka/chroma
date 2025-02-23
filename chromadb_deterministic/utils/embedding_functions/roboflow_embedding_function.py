@@ -7,7 +7,7 @@ from typing import Union
 
 import httpx
 
-from chromadb.api.types import (
+from chromadb_deterministic.api.types import (
     Documents,
     EmbeddingFunction,
     Embeddings,

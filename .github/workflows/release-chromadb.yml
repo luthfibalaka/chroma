@@ -1,4 +1,4 @@
-name: 📦 Release chromadb to PyPI and DockerHub
+name: 📦 Release chromadb_deterministic to PyPI and DockerHub
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
 
 env:
   GHCR_IMAGE_NAME: "ghcr.io/chroma-core/chroma"
-  DOCKERHUB_IMAGE_NAME: "chromadb/chroma"
+  DOCKERHUB_IMAGE_NAME: "chromadb_deterministic/chroma"
   PLATFORMS: linux/amd64,linux/arm64 #linux/riscv64, linux/arm/v7
 
 jobs:
@@ -130,8 +130,8 @@ jobs:
       - name: Upload as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: "built-chromadb-package"
-          path: "dist/chromadb-${{needs.get-version.outputs.version}}.tar.gz"
+          name: "built-chromadb_deterministic-package"
+          path: "dist/chromadb_deterministic-${{needs.get-version.outputs.version}}.tar.gz"
       - name: Publish to Test PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
@@ -214,7 +214,7 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
-          name: built-chromadb-package
+          name: built-chromadb_deterministic-package
           path: dist
       - name: Get current date
         id: builddate
@@ -230,7 +230,7 @@ jobs:
             PIP Package: `chroma-${{needs.get-version.outputs.version}}.tar.gz`
             Github Container Registry Image: `${{ env.GHCR_IMAGE_NAME }}:${{ needs.get-version.outputs.version }}`
             DockerHub Image: `${{ env.DOCKERHUB_IMAGE_NAME }}:${{ needs.get-version.outputs.version }}`
-          artifacts: "dist/chromadb-${{needs.get-version.outputs.version}}.tar.gz"
+          artifacts: "dist/chromadb_deterministic-${{needs.get-version.outputs.version}}.tar.gz"
           prerelease: true
           generateReleaseNotes: true
       - name: Update Tag
@@ -253,7 +253,7 @@ jobs:
             PIP Package: `chroma-${{needs.get-version.outputs.version}}.tar.gz`
             Github Container Registry Image: `${{ env.GHCR_IMAGE_NAME }}:${{ needs.get-version.outputs.version }}`
             DockerHub Image: `${{ env.DOCKERHUB_IMAGE_NAME }}:${{ needs.get-version.outputs.version }}`
-          artifacts: "dist/chromadb-${{needs.get-version.outputs.version}}.tar.gz"
+          artifacts: "dist/chromadb_deterministic-${{needs.get-version.outputs.version}}.tar.gz"
           allowUpdates: true
           removeArtifacts: true
           prerelease: true

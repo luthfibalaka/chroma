@@ -23,20 +23,20 @@ import uvicorn
 from httpx import ConnectError
 from typing_extensions import Protocol
 
-from chromadb.api.async_fastapi import AsyncFastAPI
-from chromadb.api.fastapi import FastAPI
-import chromadb.server.fastapi
-from chromadb.api import ClientAPI, ServerAPI, BaseAPI
-from chromadb.config import Settings, System
-from chromadb.db.mixins import embeddings_queue
-from chromadb.ingest import Producer
-from chromadb.types import SeqId, OperationRecord
-from chromadb.api.client import Client as ClientCreator, AdminClient
-from chromadb.api.async_client import (
+from chromadb_deterministic.api.async_fastapi import AsyncFastAPI
+from chromadb_deterministic.api.fastapi import FastAPI
+import chromadb_deterministic.server.fastapi
+from chromadb_deterministic.api import ClientAPI, ServerAPI, BaseAPI
+from chromadb_deterministic.config import Settings, System
+from chromadb_deterministic.db.mixins import embeddings_queue
+from chromadb_deterministic.ingest import Producer
+from chromadb_deterministic.types import SeqId, OperationRecord
+from chromadb_deterministic.api.client import Client as ClientCreator, AdminClient
+from chromadb_deterministic.api.async_client import (
     AsyncAdminClient,
     AsyncClient as AsyncClientCreator,
 )
-from chromadb.utils.async_to_sync import async_class_to_sync
+from chromadb_deterministic.utils.async_to_sync import async_class_to_sync
 
 VALID_PRESETS = ["fast", "normal", "slow"]
 CURRENT_PRESET = os.getenv("PROPERTY_TESTING_PRESET", "fast")
@@ -184,11 +184,11 @@ def _run_server(
     """Run a Chroma server locally"""
     if is_persistent and persist_directory:
         settings = Settings(
-            chroma_api_impl="chromadb.api.segment.SegmentAPI",
-            chroma_sysdb_impl="chromadb.db.impl.sqlite.SqliteDB",
-            chroma_producer_impl="chromadb.db.impl.sqlite.SqliteDB",
-            chroma_consumer_impl="chromadb.db.impl.sqlite.SqliteDB",
-            chroma_segment_manager_impl="chromadb.segment.impl.manager.local.LocalSegmentManager",
+            chroma_api_impl="chromadb_deterministic.api.segment.SegmentAPI",
+            chroma_sysdb_impl="chromadb_deterministic.db.impl.sqlite.SqliteDB",
+            chroma_producer_impl="chromadb_deterministic.db.impl.sqlite.SqliteDB",
+            chroma_consumer_impl="chromadb_deterministic.db.impl.sqlite.SqliteDB",
+            chroma_segment_manager_impl="chromadb_deterministic.segment.impl.manager.local.LocalSegmentManager",
             is_persistent=is_persistent,
             persist_directory=persist_directory,
             allow_reset=True,
@@ -202,11 +202,11 @@ def _run_server(
         )
     else:
         settings = Settings(
-            chroma_api_impl="chromadb.api.segment.SegmentAPI",
-            chroma_sysdb_impl="chromadb.db.impl.sqlite.SqliteDB",
-            chroma_producer_impl="chromadb.db.impl.sqlite.SqliteDB",
-            chroma_consumer_impl="chromadb.db.impl.sqlite.SqliteDB",
-            chroma_segment_manager_impl="chromadb.segment.impl.manager.local.LocalSegmentManager",
+            chroma_api_impl="chromadb_deterministic.api.segment.SegmentAPI",
+            chroma_sysdb_impl="chromadb_deterministic.db.impl.sqlite.SqliteDB",
+            chroma_producer_impl="chromadb_deterministic.db.impl.sqlite.SqliteDB",
+            chroma_consumer_impl="chromadb_deterministic.db.impl.sqlite.SqliteDB",
+            chroma_segment_manager_impl="chromadb_deterministic.segment.impl.manager.local.LocalSegmentManager",
             is_persistent=False,
             allow_reset=True,
             chroma_server_authn_provider=chroma_server_authn_provider,
@@ -217,7 +217,7 @@ def _run_server(
             chroma_server_authz_config_file=chroma_server_authz_config_file,
             chroma_overwrite_singleton_tenant_database_access_from_auth=chroma_overwrite_singleton_tenant_database_access_from_auth,
         )
-    server = chromadb.server.fastapi.FastAPI(settings)
+    server = chromadb_deterministic.server.fastapi.FastAPI(settings)
     uvicorn.run(
         server.app(),
         host="0.0.0.0",
@@ -242,7 +242,7 @@ def _await_server(api: ServerAPI, attempts: int = 0) -> None:
 
 def _fastapi_fixture(
     is_persistent: bool = False,
-    chroma_api_impl: str = "chromadb.api.fastapi.FastAPI",
+    chroma_api_impl: str = "chromadb_deterministic.api.fastapi.FastAPI",
     chroma_server_authn_provider: Optional[str] = None,
     chroma_client_auth_provider: Optional[str] = None,
     chroma_server_authn_credentials_file: Optional[str] = None,
@@ -354,7 +354,7 @@ def fastapi() -> Generator[System, None, None]:
 def async_fastapi() -> Generator[System, None, None]:
     return _fastapi_fixture(
         is_persistent=False,
-        chroma_api_impl="chromadb.api.async_fastapi.AsyncFastAPI",
+        chroma_api_impl="chromadb_deterministic.api.async_fastapi.AsyncFastAPI",
     )
 
 
@@ -373,7 +373,7 @@ def fastapi_ssl() -> Generator[System, None, None]:
 
 def basic_http_client() -> Generator[System, None, None]:
     settings = Settings(
-        chroma_api_impl="chromadb.api.fastapi.FastAPI",
+        chroma_api_impl="chromadb_deterministic.api.fastapi.FastAPI",
         chroma_server_http_port=8000,
         chroma_server_host="localhost",
         allow_reset=True,
@@ -397,9 +397,9 @@ def fastapi_server_basic_auth_valid_cred_single_user() -> Generator[System, None
 
         for item in _fastapi_fixture(
             is_persistent=False,
-            chroma_server_authn_provider="chromadb.auth.basic_authn.BasicAuthenticationServerProvider",
+            chroma_server_authn_provider="chromadb_deterministic.auth.basic_authn.BasicAuthenticationServerProvider",
             chroma_server_authn_credentials_file=f.name,
-            chroma_client_auth_provider="chromadb.auth.basic_authn.BasicAuthClientProvider",
+            chroma_client_auth_provider="chromadb_deterministic.auth.basic_authn.BasicAuthClientProvider",
             chroma_client_auth_credentials="admin:admin",
         ):
             yield item
@@ -420,9 +420,9 @@ def fastapi_server_basic_auth_valid_cred_multiple_users() -> (
 
         for item in _fastapi_fixture(
             is_persistent=False,
-            chroma_server_authn_provider="chromadb.auth.basic_authn.BasicAuthenticationServerProvider",
+            chroma_server_authn_provider="chromadb_deterministic.auth.basic_authn.BasicAuthenticationServerProvider",
             chroma_server_authn_credentials_file=f.name,
-            chroma_client_auth_provider="chromadb.auth.basic_authn.BasicAuthClientProvider",
+            chroma_client_auth_provider="chromadb_deterministic.auth.basic_authn.BasicAuthClientProvider",
             chroma_client_auth_credentials="admin:admin",
         ):
             yield item
@@ -435,9 +435,9 @@ def fastapi_server_basic_auth_invalid_cred() -> Generator[System, None, None]:
 
         for item in _fastapi_fixture(
             is_persistent=False,
-            chroma_server_authn_provider="chromadb.auth.basic_authn.BasicAuthenticationServerProvider",
+            chroma_server_authn_provider="chromadb_deterministic.auth.basic_authn.BasicAuthenticationServerProvider",
             chroma_server_authn_credentials_file=f.name,
-            chroma_client_auth_provider="chromadb.auth.basic_authn.BasicAuthClientProvider",
+            chroma_client_auth_provider="chromadb_deterministic.auth.basic_authn.BasicAuthClientProvider",
             chroma_client_auth_credentials="admin:admin1",
         ):
             yield item
@@ -490,11 +490,11 @@ users:
 
             for item in _fastapi_fixture(
                 is_persistent=False,
-                chroma_client_auth_provider="chromadb.auth.basic_authn.BasicAuthClientProvider",
+                chroma_client_auth_provider="chromadb_deterministic.auth.basic_authn.BasicAuthClientProvider",
                 chroma_client_auth_credentials="admin:admin",
-                chroma_server_authn_provider="chromadb.auth.basic_authn.BasicAuthenticationServerProvider",
+                chroma_server_authn_provider="chromadb_deterministic.auth.basic_authn.BasicAuthenticationServerProvider",
                 chroma_server_authn_credentials_file=server_authn_file.name,
-                chroma_server_authz_provider="chromadb.auth.simple_rbac_authz.SimpleRBACAuthorizationProvider",
+                chroma_server_authz_provider="chromadb_deterministic.auth.simple_rbac_authz.SimpleRBACAuthorizationProvider",
                 chroma_server_authz_config_file=server_authz_file.name,
             ):
                 yield item
@@ -523,9 +523,9 @@ users:
         for item in _fastapi_fixture(
             is_persistent=False,
             chroma_overwrite_singleton_tenant_database_access_from_auth=True,
-            chroma_client_auth_provider="chromadb.auth.token_authn.TokenAuthClientProvider",
+            chroma_client_auth_provider="chromadb_deterministic.auth.token_authn.TokenAuthClientProvider",
             chroma_client_auth_credentials="admin-token",
-            chroma_server_authn_provider="chromadb.auth.token_authn.TokenAuthenticationServerProvider",
+            chroma_server_authn_provider="chromadb_deterministic.auth.token_authn.TokenAuthenticationServerProvider",
             chroma_server_authn_credentials_file=f.name,
         ):
             yield item
@@ -545,11 +545,11 @@ def integration() -> Generator[System, None, None]:
 def sqlite_fixture() -> Generator[System, None, None]:
     """Fixture generator for segment-based API using in-memory Sqlite"""
     settings = Settings(
-        chroma_api_impl="chromadb.api.segment.SegmentAPI",
-        chroma_sysdb_impl="chromadb.db.impl.sqlite.SqliteDB",
-        chroma_producer_impl="chromadb.db.impl.sqlite.SqliteDB",
-        chroma_consumer_impl="chromadb.db.impl.sqlite.SqliteDB",
-        chroma_segment_manager_impl="chromadb.segment.impl.manager.local.LocalSegmentManager",
+        chroma_api_impl="chromadb_deterministic.api.segment.SegmentAPI",
+        chroma_sysdb_impl="chromadb_deterministic.db.impl.sqlite.SqliteDB",
+        chroma_producer_impl="chromadb_deterministic.db.impl.sqlite.SqliteDB",
+        chroma_consumer_impl="chromadb_deterministic.db.impl.sqlite.SqliteDB",
+        chroma_segment_manager_impl="chromadb_deterministic.segment.impl.manager.local.LocalSegmentManager",
         is_persistent=False,
         allow_reset=True,
     )
@@ -568,11 +568,11 @@ def sqlite_persistent_fixture() -> Generator[System, None, None]:
     """Fixture generator for segment-based API using persistent Sqlite"""
     save_path = tempfile.TemporaryDirectory()
     settings = Settings(
-        chroma_api_impl="chromadb.api.segment.SegmentAPI",
-        chroma_sysdb_impl="chromadb.db.impl.sqlite.SqliteDB",
-        chroma_producer_impl="chromadb.db.impl.sqlite.SqliteDB",
-        chroma_consumer_impl="chromadb.db.impl.sqlite.SqliteDB",
-        chroma_segment_manager_impl="chromadb.segment.impl.manager.local.LocalSegmentManager",
+        chroma_api_impl="chromadb_deterministic.api.segment.SegmentAPI",
+        chroma_sysdb_impl="chromadb_deterministic.db.impl.sqlite.SqliteDB",
+        chroma_producer_impl="chromadb_deterministic.db.impl.sqlite.SqliteDB",
+        chroma_consumer_impl="chromadb_deterministic.db.impl.sqlite.SqliteDB",
+        chroma_segment_manager_impl="chromadb_deterministic.segment.impl.manager.local.LocalSegmentManager",
         allow_reset=True,
         is_persistent=True,
         persist_directory=save_path.name,
@@ -734,7 +734,7 @@ class ClientFactories:
 
         if (
             self._system.settings.chroma_api_impl
-            == "chromadb.api.async_fastapi.AsyncFastAPI"
+            == "chromadb_deterministic.api.async_fastapi.AsyncFastAPI"
         ):
             client = cast(ClientCreator, AsyncClientCreatorSync.create(*args, **kwargs))
             self._created_clients.append(client)
@@ -747,7 +747,7 @@ class ClientFactories:
     def create_admin_client(self, *args: Any, **kwargs: Any) -> AdminClient:
         if (
             self._system.settings.chroma_api_impl
-            == "chromadb.api.async_fastapi.AsyncFastAPI"
+            == "chromadb_deterministic.api.async_fastapi.AsyncFastAPI"
         ):
             return cast(AdminClient, AsyncAdminClientSync(*args, **kwargs))
 
@@ -756,7 +756,7 @@ class ClientFactories:
     def create_admin_client_from_system(self) -> AdminClient:
         if (
             self._system.settings.chroma_api_impl
-            == "chromadb.api.async_fastapi.AsyncFastAPI"
+            == "chromadb_deterministic.api.async_fastapi.AsyncFastAPI"
         ):
             return cast(AdminClient, AsyncAdminClientSync.from_system(self._system))
 
@@ -780,7 +780,7 @@ def client_factories(system: System) -> Generator[ClientFactories, None, None]:
 def client(system: System) -> Generator[ClientAPI, None, None]:
     system.reset_state()
 
-    if system.settings.chroma_api_impl == "chromadb.api.async_fastapi.AsyncFastAPI":
+    if system.settings.chroma_api_impl == "chromadb_deterministic.api.async_fastapi.AsyncFastAPI":
         client = cast(Any, AsyncClientCreatorSync.from_system_async(system))
         yield client
         client.clear_system_cache()
@@ -796,7 +796,7 @@ def http_client(system_http_server: System) -> Generator[ClientAPI, None, None]:
 
     if (
         system_http_server.settings.chroma_api_impl
-        == "chromadb.api.async_fastapi.AsyncFastAPI"
+        == "chromadb_deterministic.api.async_fastapi.AsyncFastAPI"
     ):
         client = cast(Any, AsyncClientCreatorSync.from_system_async(system_http_server))
         yield client

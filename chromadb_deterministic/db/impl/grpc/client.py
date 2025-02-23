@@ -2,18 +2,18 @@ import logging
 from typing import List, Optional, Sequence, Tuple, Union, cast
 from uuid import UUID
 from overrides import overrides
-from chromadb.api.configuration import CollectionConfigurationInternal
-from chromadb.config import DEFAULT_DATABASE, DEFAULT_TENANT, System, logger
-from chromadb.db.base import NotFoundError, UniqueConstraintError
-from chromadb.db.system import SysDB
-from chromadb.proto.convert import (
+from chromadb_deterministic.api.configuration import CollectionConfigurationInternal
+from chromadb_deterministic.config import DEFAULT_DATABASE, DEFAULT_TENANT, System, logger
+from chromadb_deterministic.db.base import NotFoundError, UniqueConstraintError
+from chromadb_deterministic.db.system import SysDB
+from chromadb_deterministic.proto.convert import (
     from_proto_collection,
     from_proto_segment,
     to_proto_update_metadata,
     to_proto_segment,
     to_proto_segment_scope,
 )
-from chromadb.proto.coordinator_pb2 import (
+from chromadb_deterministic.proto.coordinator_pb2 import (
     CreateCollectionRequest,
     CreateDatabaseRequest,
     CreateSegmentRequest,
@@ -28,10 +28,10 @@ from chromadb.proto.coordinator_pb2 import (
     UpdateCollectionRequest,
     UpdateSegmentRequest,
 )
-from chromadb.proto.coordinator_pb2_grpc import SysDBStub
-from chromadb.proto.utils import RetryOnRpcErrorClientInterceptor
-from chromadb.telemetry.opentelemetry.grpc import OtelInterceptor
-from chromadb.types import (
+from chromadb_deterministic.proto.coordinator_pb2_grpc import SysDBStub
+from chromadb_deterministic.proto.utils import RetryOnRpcErrorClientInterceptor
+from chromadb_deterministic.telemetry.opentelemetry.grpc import OtelInterceptor
+from chromadb_deterministic.types import (
     Collection,
     Database,
     Metadata,

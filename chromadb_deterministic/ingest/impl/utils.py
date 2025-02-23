@@ -2,8 +2,8 @@ import re
 from typing import Tuple
 from uuid import UUID
 
-from chromadb.db.base import SqlDB
-from chromadb.segment import SegmentManager, VectorReader
+from chromadb_deterministic.db.base import SqlDB
+from chromadb_deterministic.segment import SegmentManager, VectorReader
 
 topic_regex = r"persistent:\/\/(?P<tenant>.+)\/(?P<namespace>.+)\/(?P<topic>.+)"
 

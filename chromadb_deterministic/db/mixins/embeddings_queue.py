@@ -1,26 +1,26 @@
 from functools import cached_property
 import json
-from chromadb.api.configuration import (
+from chromadb_deterministic.api.configuration import (
     ConfigurationParameter,
     EmbeddingsQueueConfigurationInternal,
 )
-from chromadb.db.base import SqlDB, ParameterValue, get_sql
-from chromadb.ingest import (
+from chromadb_deterministic.db.base import SqlDB, ParameterValue, get_sql
+from chromadb_deterministic.ingest import (
     Producer,
     Consumer,
     ConsumerCallbackFn,
     decode_vector,
     encode_vector,
 )
-from chromadb.types import (
+from chromadb_deterministic.types import (
     OperationRecord,
     LogRecord,
     ScalarEncoding,
     SeqId,
     Operation,
 )
-from chromadb.config import System
-from chromadb.telemetry.opentelemetry import (
+from chromadb_deterministic.config import System
+from chromadb_deterministic.telemetry.opentelemetry import (
     OpenTelemetryClient,
     OpenTelemetryGranularity,
     trace_method,
@@ -32,7 +32,7 @@ from uuid import UUID
 from pypika import Table, functions
 import uuid
 import logging
-from chromadb.ingest.impl.utils import create_topic_name
+from chromadb_deterministic.ingest.impl.utils import create_topic_name
 
 
 logger = logging.getLogger(__name__)

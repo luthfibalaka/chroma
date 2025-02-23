@@ -10,19 +10,19 @@ from hypothesis.stateful import (
 import uuid
 import logging
 import pytest
-from chromadb.api import AdminAPI
-from chromadb.api.client import AdminClient, Client
-from chromadb.config import Settings, System
-from chromadb.test.conftest import (
+from chromadb_deterministic.api import AdminAPI
+from chromadb_deterministic.api.client import AdminClient, Client
+from chromadb_deterministic.config import Settings, System
+from chromadb_deterministic.test.conftest import (
     ClientFactories,
     fastapi_fixture_admin_and_singleton_tenant_db_user,
 )
-from chromadb.test.property.test_collections_with_database_tenant import (
+from chromadb_deterministic.test.property.test_collections_with_database_tenant import (
     TenantDatabaseCollectionStateMachine,
 )
-import chromadb.test.property.strategies as strategies
+import chromadb_deterministic.test.property.strategies as strategies
 import numpy
-import chromadb.api.types as types
+import chromadb_deterministic.api.types as types
 
 # See conftest.py
 SINGLETON_TENANT = "singleton_tenant"

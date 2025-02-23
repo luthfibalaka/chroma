@@ -3,7 +3,7 @@ import argparse
 
 from tqdm import tqdm
 
-import chromadb
+import chromadb_deterministic
 
 
 def main(
@@ -30,7 +30,7 @@ def main(
 
     # Instantiate a persistent chroma client in the persist_directory.
     # Learn more at docs.trychroma.com
-    client = chromadb.PersistentClient(path=persist_directory)
+    client = chromadb_deterministic.PersistentClient(path=persist_directory)
 
     # If the collection already exists, we just return it. This allows us to add more
     # data to an existing collection.

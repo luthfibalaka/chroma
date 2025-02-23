@@ -4,10 +4,10 @@ from typing_extensions import TypedDict, NotRequired
 from importlib_resources.abc import Traversable
 import re
 import hashlib
-from chromadb.db.base import SqlDB, Cursor
+from chromadb_deterministic.db.base import SqlDB, Cursor
 from abc import abstractmethod
-from chromadb.config import System, Settings
-from chromadb.telemetry.opentelemetry import (
+from chromadb_deterministic.config import System, Settings
+from chromadb_deterministic.telemetry.opentelemetry import (
     OpenTelemetryClient,
     OpenTelemetryGranularity,
     trace_method,

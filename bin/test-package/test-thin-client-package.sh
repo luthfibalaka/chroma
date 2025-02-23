@@ -5,4 +5,4 @@ source ./install.sh
 
 pip_install_from_tarball $1
 
-python -c "import chromadb; print(chromadb.__version__)"
+python -c "import chromadb_deterministic_determichromadb_deterministicprint(chromadb_deterministic.__version__)"

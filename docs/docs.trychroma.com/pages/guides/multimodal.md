@@ -28,7 +28,7 @@ Chroma supports multi-modal embedding functions, which can be used to embed data
 Chroma has the OpenCLIP embedding function built in, which supports both text and images.
 
 ```python
-from chromadb.utils.embedding_functions import OpenCLIPEmbeddingFunction
+from chromadb_deterministic.utils.embedding_functions import OpenCLIPEmbeddingFunction
 embedding_function = OpenCLIPEmbeddingFunction()
 ```
 
@@ -39,7 +39,7 @@ Chroma supports data loaders, for storing and querying with data stored outside 
 Chroma has an data loader for loading images from a filesystem built in.
 
 ```python
-from chromadb.utils.data_loaders import ImageLoader
+from chromadb_deterministic.utils.data_loaders import ImageLoader
 data_loader = ImageLoader()
 ```
 
@@ -48,9 +48,9 @@ data_loader = ImageLoader()
 You can create a multi-modal collection by passing in a multi-modal embedding function. In order to load data from a URI, you must also pass in a data loader.
 
 ```python
-import chromadb
+import chromadb_deterministic
 
-client = chromadb.Client()
+client = chromadb_deterministic.Client()
 
 collection = client.create_collection(
     name='multimodal_collection',

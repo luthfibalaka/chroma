@@ -1,8 +1,8 @@
 from abc import abstractmethod
 from typing import Optional, Sequence, Tuple
 from uuid import UUID
-from chromadb.api.configuration import CollectionConfigurationInternal
-from chromadb.types import (
+from chromadb_deterministic.api.configuration import CollectionConfigurationInternal
+from chromadb_deterministic.types import (
     Collection,
     Database,
     Tenant,
@@ -13,7 +13,7 @@ from chromadb.types import (
     Unspecified,
     UpdateMetadata,
 )
-from chromadb.config import DEFAULT_DATABASE, DEFAULT_TENANT, Component
+from chromadb_deterministic.config import DEFAULT_DATABASE, DEFAULT_TENANT, Component
 
 
 class SysDB(Component):

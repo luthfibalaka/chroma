@@ -77,7 +77,7 @@ export const chromaFetch: FetchAPI = async (
         case 503:
         case 504:
           throw new ChromaConnectionError(
-            `Unable to connect to the chromadb server. Please try again later.`,
+            `Unable to connect to the chromadb_deterministic server. Please try again later.`,
           );
       }
       throw new Error(
@@ -93,7 +93,7 @@ export const chromaFetch: FetchAPI = async (
   } catch (error) {
     if (isOfflineError(error)) {
       throw new ChromaConnectionError(
-        "Failed to connect to chromadb. Make sure your server is running and try again. If you are running from a browser, make sure that your chromadb instance is configured to allow requests from the current origin using the CHROMA_SERVER_CORS_ALLOW_ORIGINS environment variable.",
+        "Failed to connect to chromadb_deterministic. Make sure your server is running and try again. If you are running from a browser, make schromadb_deterministic your chromadb_deterministic instance is configured to allow requests from the current origin using the CHROMA_SERVER_CORS_ALLOW_ORIGINS environment variable.",
         error,
       );
     }

@@ -1,7 +1,7 @@
 from abc import abstractmethod
 from typing import List, Sequence, Optional, Tuple
 from uuid import UUID
-from chromadb.api.types import (
+from chromadb_deterministic.api.types import (
     Embeddings,
     Documents,
     IDs,
@@ -10,7 +10,7 @@ from chromadb.api.types import (
     Where,
     WhereDocument,
 )
-from chromadb.config import Component
+from chromadb_deterministic.config import Component
 
 
 class DB(Component):

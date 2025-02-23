@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.4.0
 // - protoc             v5.26.1
-// source: chromadb/proto/logservice.proto
+// source: chromadb_deterministic/proto/logservice.proto
 
 package logservicepb
 
@@ -220,5 +220,5 @@ var LogService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "chromadb/proto/logservice.proto",
+	Metadata: "chromadb_deterministic/proto/logservice.proto",
 }

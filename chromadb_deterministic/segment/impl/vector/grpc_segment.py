@@ -1,20 +1,20 @@
 from overrides import EnforceOverrides, override
 from typing import List, Optional, Sequence
-from chromadb.config import System
-from chromadb.proto.convert import (
+from chromadb_deterministic.config import System
+from chromadb_deterministic.proto.convert import (
     from_proto_vector_embedding_record,
     from_proto_vector_query_result,
     to_proto_vector,
 )
-from chromadb.proto.utils import RetryOnRpcErrorClientInterceptor
-from chromadb.segment import VectorReader
-from chromadb.segment.impl.vector.hnsw_params import PersistentHnswParams
-from chromadb.telemetry.opentelemetry import (
+from chromadb_deterministic.proto.utils import RetryOnRpcErrorClientInterceptor
+from chromadb_deterministic.segment import VectorReader
+from chromadb_deterministic.segment.impl.vector.hnsw_params import PersistentHnswParams
+from chromadb_deterministic.telemetry.opentelemetry import (
     OpenTelemetryGranularity,
     trace_method,
 )
-from chromadb.telemetry.opentelemetry.grpc import OtelInterceptor
-from chromadb.types import (
+from chromadb_deterministic.telemetry.opentelemetry.grpc import OtelInterceptor
+from chromadb_deterministic.types import (
     Metadata,
     ScalarEncoding,
     Segment,
@@ -22,8 +22,8 @@ from chromadb.types import (
     VectorQuery,
     VectorQueryResult,
 )
-from chromadb.proto.chroma_pb2_grpc import VectorReaderStub
-from chromadb.proto.chroma_pb2 import (
+from chromadb_deterministic.proto.chroma_pb2_grpc import VectorReaderStub
+from chromadb_deterministic.proto.chroma_pb2 import (
     GetVectorsRequest,
     GetVectorsResponse,
     QueryVectorsRequest,

@@ -16,16 +16,16 @@ from typing import (
     Sequence,
     Tuple,
 )
-from chromadb.ingest import Producer, Consumer
-from chromadb.db.impl.sqlite import SqliteDB
-from chromadb.test.conftest import ProducerFn
-from chromadb.types import (
+from chromadb_deterministic.ingest import Producer, Consumer
+from chromadb_deterministic.db.impl.sqlite import SqliteDB
+from chromadb_deterministic.test.conftest import ProducerFn
+from chromadb_deterministic.types import (
     OperationRecord,
     Operation,
     LogRecord,
     ScalarEncoding,
 )
-from chromadb.config import System, Settings
+from chromadb_deterministic.config import System, Settings
 from pytest import FixtureRequest, approx
 from asyncio import Event, wait_for, TimeoutError
 

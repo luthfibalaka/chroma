@@ -1,11 +1,11 @@
 import array
 from typing import Dict, Any, Callable
 import pytest
-from chromadb.config import System, Settings
-from chromadb.logservice.logservice import LogService
-from chromadb.test.conftest import skip_if_not_cluster
-from chromadb.test.test_api import records  # type: ignore
-from chromadb.api.models.Collection import Collection
+from chromadb_deterministic.config import System, Settings
+from chromadb_deterministic.logservice.logservice import LogService
+from chromadb_deterministic.test.conftest import skip_if_not_cluster
+from chromadb_deterministic.test.test_api import records  # type: ignore
+from chromadb_deterministic.api.models.Collection import Collection
 import time
 
 batch_records = {

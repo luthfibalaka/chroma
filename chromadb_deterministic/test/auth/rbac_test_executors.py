@@ -1,14 +1,14 @@
 import hypothesis.strategies as st
 from typing import Callable, Dict
 
-from chromadb.api import ServerAPI
-from chromadb.config import DEFAULT_TENANT, DEFAULT_DATABASE
-from chromadb.test.property.strategies import (
+from chromadb_deterministic.api import ServerAPI
+from chromadb_deterministic.config import DEFAULT_TENANT, DEFAULT_DATABASE
+from chromadb_deterministic.test.property.strategies import (
     collection_name,
     tenant_database_name,
 )
-from chromadb.api.models.Collection import Collection
-from chromadb.types import Collection as CollectionModel
+from chromadb_deterministic.api.models.Collection import Collection
+from chromadb_deterministic.types import Collection as CollectionModel
 
 
 def wrap_model(api: ServerAPI, model: CollectionModel) -> Collection:

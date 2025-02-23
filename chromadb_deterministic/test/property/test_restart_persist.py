@@ -1,6 +1,6 @@
 from overrides import overrides
-from chromadb.api.client import Client
-from chromadb.config import System
+from chromadb_deterministic.api.client import Client
+from chromadb_deterministic.config import System
 import hypothesis.strategies as st
 from hypothesis.stateful import (
     rule,
@@ -8,12 +8,12 @@ from hypothesis.stateful import (
     initialize,
 )
 
-from chromadb.test.property.test_embeddings import (
+from chromadb_deterministic.test.property.test_embeddings import (
     EmbeddingStateMachineBase,
     EmbeddingStateMachineStates,
     trace,
 )
-import chromadb.test.property.strategies as strategies
+import chromadb_deterministic.test.property.strategies as strategies
 
 
 collection_persistent_st = st.shared(
@@ -28,7 +28,7 @@ collection_persistent_st = st.shared(
 )
 
 
-# This machine shares a lot of similarity with the machine in chromadb/test/property/test_persist.py.
+# This machine shares a lot of similarity with the machine in chromadb_deterministic/test/property/test_persist.py.
 # However, test_persist.py tests correctness under complete process isolation and therefore can only check invariants on a new system--whereas this machine does not have full process isolation between systems/clients but after a restart continues to exercise the state machine with the newly-created system.
 class RestartablePersistedEmbeddingStateMachine(EmbeddingStateMachineBase):
     system: System
@@ -58,7 +58,7 @@ class RestartablePersistedEmbeddingStateMachine(EmbeddingStateMachineBase):
 
     @rule()
     def restart_system(self) -> None:
-        # Simulates restarting chromadb
+        # Simulates restarting chromadb_deterministic
         self.system.stop()
         self.system = System(self.system.settings)
         self.system.start()

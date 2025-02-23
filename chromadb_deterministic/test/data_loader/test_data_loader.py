@@ -3,10 +3,10 @@ import numpy as np
 from numpy.typing import NDArray
 
 import pytest
-import chromadb
-from chromadb.api.types import URI, DataLoader, Documents, IDs, Image, URIs
-from chromadb.api import ClientAPI
-from chromadb.test.ef.test_multimodal_ef import hashing_multimodal_ef
+import chromadb_deterministic
+from chromadb_deterministic.api.types import URI, DataLoader, Documents, IDs, Image, URIs
+from chromadb_deterministic.api import ClientAPI
+from chromadb_deterministic.test.ef.test_multimodal_ef import hashing_multimodal_ef
 
 
 def encode_data(data: str) -> NDArray[np.uint8]:
@@ -30,7 +30,7 @@ def record_set_with_uris(n: int = 3) -> Dict[str, Union[IDs, Documents, URIs]]:
 @pytest.fixture()
 def collection_with_data_loader(
     client: ClientAPI,
-) -> Generator[chromadb.Collection, None, None]:
+) -> Generator[chromadb_deterministic.Collection, None, None]:
     collection = client.create_collection(
         name="collection_with_data_loader",
         data_loader=DefaultDataLoader(),
@@ -43,7 +43,7 @@ def collection_with_data_loader(
 @pytest.fixture
 def collection_without_data_loader(
     client: ClientAPI,
-) -> Generator[chromadb.Collection, None, None]:
+) -> Generator[chromadb_deterministic.Collection, None, None]:
     collection = client.create_collection(
         name="collection_without_data_loader",
         embedding_function=hashing_multimodal_ef(),
@@ -53,7 +53,7 @@ def collection_without_data_loader(
 
 
 def test_without_data_loader(
-    collection_without_data_loader: chromadb.Collection,
+    collection_without_data_loader: chromadb_deterministic.Collection,
     n_examples: int = 3,
 ) -> None:
     record_set = record_set_with_uris(n=n_examples)
@@ -71,7 +71,7 @@ def test_without_data_loader(
 
 
 def test_without_uris(
-    collection_with_data_loader: chromadb.Collection, n_examples: int = 3
+    collection_with_data_loader: chromadb_deterministic.Collection, n_examples: int = 3
 ) -> None:
     record_set = record_set_with_uris(n=n_examples)
 
@@ -88,7 +88,7 @@ def test_without_uris(
 
 
 def test_data_loader(
-    collection_with_data_loader: chromadb.Collection, n_examples: int = 3
+    collection_with_data_loader: chromadb_deterministic.Collection, n_examples: int = 3
 ) -> None:
     record_set = record_set_with_uris(n=n_examples)
 

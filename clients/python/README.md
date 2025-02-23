@@ -9,15 +9,15 @@
 
 
 ```bash
-pip install chromadb-client # python http-client only library
+pip install chromadb_deterministic-client # python http-client only library
 ```
 
 To connect to your server and perform operations using the client only library, you can do the following:
 
 ```python
-import chromadb
+import chromadb_deterministic
 # Example setup of the client to connect to your chroma server
-client = chromadb.HttpClient(host="localhost", port=8000)
+client = chromadb_deterministic.HttpClient(host="localhost", port=8000)
 
 collection = client.create_collection("all-my-documents")
 

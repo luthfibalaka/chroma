@@ -35,7 +35,7 @@ The above docker command will run the server with the `BAAI/bge-small-en-v1.5` m
 {% tab label="Python" %}
 
 ```python
-from chromadb.utils.embedding_functions import HuggingFaceEmbeddingServer
+from chromadb_deterministic.utils.embedding_functions import HuggingFaceEmbeddingServer
 huggingface_ef = HuggingFaceEmbeddingServer(url="http://localhost:8001/embed")
 ```
 
@@ -46,7 +46,7 @@ The embedding model is configured on the server side. Check the docker-compose f
 
 
 ```javascript
-import  {HuggingFaceEmbeddingServerFunction} from 'chromadb';
+import  {HuggingFaceEmbeddingServerFunction} from 'chromadb_deterministic';
 const embedder = new HuggingFaceEmbeddingServerFunction({url:"http://localhost:8001/embed"})
 
 // use directly

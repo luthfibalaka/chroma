@@ -42,7 +42,7 @@ Set the following environment variables:
 
 ```bash
 export CHROMA_SERVER_AUTHN_CREDENTIALS_FILE="server.htpasswd"
-export CHROMA_SERVER_AUTHN_PROVIDER="chromadb.auth.basic_authn.BasicAuthenticationServerProvider"
+export CHROMA_SERVER_AUTHN_PROVIDER="chromadb_deterministic.auth.basic_authn.BasicAuthenticationServerProvider"
 ```
 
 And run the server as normal:
@@ -57,11 +57,11 @@ chroma run --path /db_path
 #### Client Setup
 
 ```python
-import chromadb
-from chromadb.config import Settings
+import chromadb_deterministic
+from chromadb_deterministic.config import Settings
 
-client = chromadb.HttpClient(
-  settings=Settings(chroma_client_auth_provider="chromadb.auth.basic_authn.BasicAuthClientProvider",chroma_client_auth_credentials="admin:admin"))
+client = chromadb_deterministic.HttpClient(
+  settings=Settings(chroma_client_auth_provider="chromadb_deterministic.auth.basic_authn.BasicAuthClientProvider",chroma_client_auth_credentials="admin:admin"))
 client.heartbeat()  # this should work with or without authentication - it is a public endpoint
 
 client.get_version()  # this should work with or without authentication - it is a public endpoint
@@ -75,7 +75,7 @@ client.list_collections()  # this is a protected endpoint and requires authentic
 #### Client Setup
 
 ```js
-import { ChromaClient } from "chromadb";
+import { ChromaClient } from "chromadb_deterministic";
 
 const client = new ChromaClient({
   auth: { provider: "basic", credentials: "admin:admin" },
@@ -105,7 +105,7 @@ Set the following environment variables to use `Authorization: Bearer test-token
 
 ```bash
 export CHROMA_SERVER_AUTHN_CREDENTIALS="test-token"
-export CHROMA_SERVER_AUTHN_PROVIDER="chromadb.auth.token_authn.TokenAuthenticationServerProvider"
+export CHROMA_SERVER_AUTHN_PROVIDER="chromadb_deterministic.auth.token_authn.TokenAuthenticationServerProvider"
 ```
 
 To configure multiple tokens and use them for role-based access control (RBAC), use a file like [this](https://github.com/chroma-core/chroma/blob/main/examples/basic_functionality/authz/authz.yaml) and the following configuration settings:
@@ -113,15 +113,15 @@ To configure multiple tokens and use them for role-based access control (RBAC), 
 ```bash
 export CHROMA_SERVER_AUTHN_CREDENTIALS_FILE=<path_to_authz.yaml>
 export CHROMA_SERVER_AUTHZ_CONFIG_FILE=<path_to_authz.yaml>  # Note: these are the same!
-export CHROMA_SERVER_AUTHN_PROVIDER="chromadb.auth.token_authn.TokenAuthenticationServerProvider"
-export CHROMA_SERVER_AUTHZ_PROVIDER="chromadb.auth.simple_rbac_authz.SimpleRBACAuthorizationProvider"
+export CHROMA_SERVER_AUTHN_PROVIDER="chromadb_deterministic.auth.token_authn.TokenAuthenticationServerProvider"
+export CHROMA_SERVER_AUTHZ_PROVIDER="chromadb_deterministic.auth.simple_rbac_authz.SimpleRBACAuthorizationProvider"
 ```
 
 To use `X-Chroma-Token: test-token` type of authentication header you can set the `CHROMA_AUTH_TOKEN_TRANSPORT_HEADER` environment variable or configuration setting.
 
 ```bash
 export CHROMA_SERVER_AUTHN_CREDENTIALS="test-token"
-export CHROMA_SERVER_AUTHN_PROVIDER="chromadb.auth.token_authn.TokenAuthenticationServerProvider"
+export CHROMA_SERVER_AUTHN_PROVIDER="chromadb_deterministic.auth.token_authn.TokenAuthenticationServerProvider"
 export CHROMA_AUTH_TOKEN_TRANSPORT_HEADER="X_CHROMA_TOKEN"
 
 {% tabs group="code-lang" hideTabs=true %}
@@ -130,11 +130,11 @@ export CHROMA_AUTH_TOKEN_TRANSPORT_HEADER="X_CHROMA_TOKEN"
 #### Client Setup
 
 ```python
-import chromadb
-from chromadb.config import Settings
+import chromadb_deterministic
+from chromadb_deterministic.config import Settings
 
-client = chromadb.HttpClient(
-    settings=Settings(chroma_client_auth_provider="chromadb.auth.token_authn.TokenAuthClientProvider",
+client = chromadb_deterministic.HttpClient(
+    settings=Settings(chroma_client_auth_provider="chromadb_deterministic.auth.token_authn.TokenAuthClientProvider",
                       chroma_client_auth_credentials="test-token"))
 client.heartbeat()  # this should work with or without authentication - it is a public endpoint
 
@@ -151,7 +151,7 @@ client.list_collections()  # this is a protected endpoint and requires authentic
 Using the default `Authorization: Bearer <token>` header:
 
 ```js
-import { ChromaClient } from "chromadb";
+import { ChromaClient } from "chromadb_deterministic";
 
 const client = new ChromaClient({
   auth: { provider: "token", credentials: "test-token" },
@@ -169,7 +169,7 @@ const client = new ChromaClient({
 Using custom Chroma auth token `X-Chroma-Token: <token>` header:
 
 ```js
-import { ChromaClient } from "chromadb";
+import { ChromaClient } from "chromadb_deterministic";
 
 const client = new ChromaClient({
   auth: {

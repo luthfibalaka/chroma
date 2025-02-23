@@ -1,7 +1,7 @@
 from concurrent.futures import ThreadPoolExecutor
 
-from chromadb.config import DEFAULT_TENANT
-from chromadb.test.conftest import ClientFactories
+from chromadb_deterministic.config import DEFAULT_TENANT
+from chromadb_deterministic.test.conftest import ClientFactories
 
 
 def test_multiple_clients_concurrently(client_factories: ClientFactories) -> None:

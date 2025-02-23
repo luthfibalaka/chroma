@@ -14,7 +14,7 @@ from dataclasses import dataclass
 
 from pydantic import SecretStr
 
-from chromadb.config import (
+from chromadb_deterministic.config import (
     Component,
     System,
 )

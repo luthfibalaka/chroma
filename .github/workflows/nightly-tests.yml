@@ -11,10 +11,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        test-globs: ["chromadb/test/property/test_collections.py",
-                   "chromadb/test/property/test_add.py",
-                   "chromadb/test/property/test_filtering.py",
-                   "chromadb/test/property/test_embeddings.py"]
+        test-globs: ["chromadb_deterministic/test/property/test_collections.py",
+                   "chromadb_deterministic/test/property/test_add.py",
+                   "chromadb_deterministic/test/property/test_filtering.py",
+                   "chromadb_deterministic/test/property/test_embeddings.py"]
     runs-on: "depot-ubuntu-22.04-8"
     steps:
       - uses: actions/checkout@v3

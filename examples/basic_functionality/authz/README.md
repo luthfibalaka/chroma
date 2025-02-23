@@ -126,21 +126,21 @@ users:
 
 ```bash
 IS_PERSISTENT=1 \
-CHROMA_SERVER_AUTHN_PROVIDER="chromadb.auth.token_authn.TokenAuthenticationServerProvider" \
+CHROMA_SERVER_AUTHN_PROVIDER="chromadb_deterministic.auth.token_authn.TokenAuthenticationServerProvider" \
 CHROMA_SERVER_AUTHN_CREDENTIALS_FILE=examples/basic_functionality/authz/authz.yaml \
-CHROMA_SERVER_AUTHZ_PROVIDER="chromadb.auth.simple_rbac_authz.SimpleRBACAuthorizationProvider" \
+CHROMA_SERVER_AUTHZ_PROVIDER="chromadb_deterministic.auth.simple_rbac_authz.SimpleRBACAuthorizationProvider" \
 CHROMA_SERVER_AUTHZ_CONFIG_FILE=examples/basic_functionality/authz/authz.yaml \
-uvicorn chromadb.app:app --workers 1 --host 0.0.0.0 --port 8000 --proxy-headers --log-config chromadb/log_config.yml --reload --timeout-keep-alive 30
+uvicorn chromadb_deterministic.app:app --workers 1 --host 0.0.0.0 --port 8000 --proxy-headerschromadb_deterministiconfig chromadb_deterministic/log_config.yml --reload --timeout-keep-alive 30
 ```
 
 ## Testing the authorization
 
 ```python
-import chromadb
-from chromadb.config import Settings
+import chromadb_deterministic
+from chromadb_deterministic.config import Settings
 
-client = chromadb.HttpClient("http://localhost:8000/",
-                             settings=Settings(chroma_client_auth_provider="chromadb.auth.token_authn.TokenAuthClientProvider",
+client = chromadb_deterministic.HttpClient("http://localhost:8000/",
+                             settings=Settings(chroma_client_auth_provider="chromadb_deterministic.auth.token_authn.TokenAuthClientProvider",
                                                chroma_client_auth_credentials="test-token-admin"))
 
 client.list_collections()

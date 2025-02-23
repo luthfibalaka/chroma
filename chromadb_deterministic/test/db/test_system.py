@@ -4,22 +4,22 @@ import tempfile
 import pytest
 from typing import Generator, List, Callable, Dict, Union
 
-from chromadb.db.impl.grpc.client import GrpcSysDB
-from chromadb.db.impl.grpc.server import GrpcMockSysDB
-from chromadb.test.conftest import find_free_port
-from chromadb.types import Collection, Segment, SegmentScope
-from chromadb.db.impl.sqlite import SqliteDB
-from chromadb.config import (
+from chromadb_deterministic.db.impl.grpc.client import GrpcSysDB
+from chromadb_deterministic.db.impl.grpc.server import GrpcMockSysDB
+from chromadb_deterministic.test.conftest import find_free_port
+from chromadb_deterministic.types import Collection, Segment, SegmentScope
+from chromadb_deterministic.db.impl.sqlite import SqliteDB
+from chromadb_deterministic.config import (
     DEFAULT_DATABASE,
     DEFAULT_TENANT,
     System,
     Settings,
 )
-from chromadb.db.system import SysDB
-from chromadb.db.base import NotFoundError, UniqueConstraintError
+from chromadb_deterministic.db.system import SysDB
+from chromadb_deterministic.db.base import NotFoundError, UniqueConstraintError
 from pytest import FixtureRequest
 import uuid
-from chromadb.api.configuration import CollectionConfigurationInternal
+from chromadb_deterministic.api.configuration import CollectionConfigurationInternal
 
 TENANT = "default"
 NAMESPACE = "default"

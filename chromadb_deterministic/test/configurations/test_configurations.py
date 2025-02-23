@@ -1,6 +1,6 @@
 from overrides import overrides
 import pytest
-from chromadb.api.configuration import (
+from chromadb_deterministic.api.configuration import (
     ConfigurationInternal,
     ConfigurationDefinition,
     InvalidConfigurationError,

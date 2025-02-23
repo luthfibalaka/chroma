@@ -1,21 +1,21 @@
 from typing import Dict, List, Optional, Sequence
-from chromadb.proto.utils import RetryOnRpcErrorClientInterceptor
-from chromadb.segment import MetadataReader
-from chromadb.config import System
-from chromadb.types import Segment
+from chromadb_deterministic.proto.utils import RetryOnRpcErrorClientInterceptor
+from chromadb_deterministic.segment import MetadataReader
+from chromadb_deterministic.config import System
+from chromadb_deterministic.types import Segment
 from overrides import override
-from chromadb.telemetry.opentelemetry import (
+from chromadb_deterministic.telemetry.opentelemetry import (
     OpenTelemetryGranularity,
     trace_method,
 )
-from chromadb.telemetry.opentelemetry.grpc import OtelInterceptor
-from chromadb.types import (
+from chromadb_deterministic.telemetry.opentelemetry.grpc import OtelInterceptor
+from chromadb_deterministic.types import (
     Where,
     WhereDocument,
     MetadataEmbeddingRecord,
 )
-from chromadb.proto.chroma_pb2_grpc import MetadataReaderStub
-import chromadb.proto.chroma_pb2 as pb
+from chromadb_deterministic.proto.chroma_pb2_grpc import MetadataReaderStub
+import chromadb_deterministic.proto.chroma_pb2 as pb
 import grpc
 
 

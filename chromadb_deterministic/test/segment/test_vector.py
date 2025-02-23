@@ -1,8 +1,8 @@
 import pytest
 from typing import Generator, List, Callable, Iterator, Type, cast
-from chromadb.config import System, Settings
-from chromadb.test.conftest import ProducerFn
-from chromadb.types import (
+from chromadb_deterministic.config import System, Settings
+from chromadb_deterministic.test.conftest import ProducerFn
+from chromadb_deterministic.types import (
     OperationRecord,
     VectorQuery,
     Operation,
@@ -12,20 +12,20 @@ from chromadb.types import (
     SeqId,
     Vector,
 )
-from chromadb.ingest import Producer
-from chromadb.segment import VectorReader
+from chromadb_deterministic.ingest import Producer
+from chromadb_deterministic.segment import VectorReader
 import uuid
 import time
 
-from chromadb.segment.impl.vector.local_hnsw import (
+from chromadb_deterministic.segment.impl.vector.local_hnsw import (
     LocalHnswSegment,
 )
 
-from chromadb.segment.impl.vector.local_persistent_hnsw import (
+from chromadb_deterministic.segment.impl.vector.local_persistent_hnsw import (
     PersistentLocalHnswSegment,
 )
 
-from chromadb.test.property.strategies import test_hnsw_config
+from chromadb_deterministic.test.property.strategies import test_hnsw_config
 from pytest import FixtureRequest
 from itertools import count
 import tempfile

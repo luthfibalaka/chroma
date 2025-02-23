@@ -1,7 +1,7 @@
 variable "chroma_image_reg_url" {
-  description = "The URL of the chroma-core image registry (e.g. docker.io/chromadb/chroma). The URL must also include the image itself without the tag."
+  description = "The URL of the chroma-core image registry (e.g. docker.io/chromadb_deterministic/chroma). The URL must also include the image itself without the tag."
   type        = string
-  default     = "docker.io/chromadb/chroma"
+  default     = "docker.io/chromadb_deterministic/chroma"
 }
 
 variable "chroma_release" {

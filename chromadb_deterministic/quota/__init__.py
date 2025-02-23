@@ -2,9 +2,9 @@ from abc import abstractmethod
 from enum import Enum
 from typing import Optional
 
-from chromadb import Documents, Embeddings
-from chromadb.api import Metadatas
-from chromadb.config import (
+from chromadb_deterministic import Documents, Embeddings
+from chromadb_deterministic.api import Metadatas
+from chromadb_deterministic.config import (
     Component,
     System,
 )

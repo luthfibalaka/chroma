@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.4.0
 // - protoc             v5.26.1
-// source: chromadb/proto/chroma.proto
+// source: chromadb_deterministic/proto/chroma.proto
 
 package coordinatorpb
 
@@ -144,7 +144,7 @@ var MetadataReader_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "chromadb/proto/chroma.proto",
+	Metadata: "chromadb_deterministic/proto/chroma.proto",
 }
 
 const (
@@ -273,5 +273,5 @@ var VectorReader_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "chromadb/proto/chroma.proto",
+	Metadata: "chromadb_deterministic/proto/chroma.proto",
 }

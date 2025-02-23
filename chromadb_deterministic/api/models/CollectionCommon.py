@@ -12,8 +12,8 @@ from typing import (
 import numpy as np
 from uuid import UUID
 
-import chromadb.utils.embedding_functions as ef
-from chromadb.api.types import (
+import chromadb_deterministic.utils.embedding_functions as ef
+from chromadb_deterministic.api.types import (
     URI,
     CollectionMetadata,
     DataLoader,
@@ -52,17 +52,17 @@ from chromadb.api.types import (
     validate_where_document,
 )
 
-# TODO: We should rename the types in chromadb.types to be Models where
+# TODO: We should rename the types in chromadb_deterministic.types to be Models where
 # appropriate. This will help to distinguish between manipulation objects
 # which are essentially API views. And the actual data models which are
 # stored / retrieved / transmitted.
-from chromadb.types import Collection as CollectionModel, Where, WhereDocument
+from chromadb_deterministic.types import Collection as CollectionModel, Where, WhereDocument
 import logging
 
 logger = logging.getLogger(__name__)
 
 if TYPE_CHECKING:
-    from chromadb.api import ServerAPI, AsyncServerAPI
+    from chromadb_deterministic.api import ServerAPI, AsyncServerAPI
 
 ClientT = TypeVar("ClientT", "ServerAPI", "AsyncServerAPI")
 

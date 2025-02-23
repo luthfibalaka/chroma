@@ -1,6 +1,6 @@
 from typing import Dict, List, cast
 from collections import OrderedDict
-from chromadb.types import LogRecord, Operation, SeqId, Vector
+from chromadb_deterministic.types import LogRecord, Operation, SeqId, Vector
 
 
 class Batch:

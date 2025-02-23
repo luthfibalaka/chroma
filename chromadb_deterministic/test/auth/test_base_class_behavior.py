@@ -4,8 +4,8 @@ from hypothesis import given, settings
 from overrides import override
 from typing import Dict, List, Tuple
 
-from chromadb.api import ServerAPI
-from chromadb.auth import UserIdentity, ServerAuthenticationProvider
+from chromadb_deterministic.api import ServerAPI
+from chromadb_deterministic.auth import UserIdentity, ServerAuthenticationProvider
 
 
 class DummyServerAuthenticationProvider(ServerAuthenticationProvider):

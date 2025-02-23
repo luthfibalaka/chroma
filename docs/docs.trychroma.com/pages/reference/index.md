@@ -26,7 +26,7 @@ Chroma currently maintains 1st party clients for Python and Javascript. For othe
 Chroma's backend Swagger REST API docs are viewable by running Chroma and navigating to `http://localhost:8000/docs`.
 
 ```bash
-pip install chromadb
+pip install chromadb_deterministic
 chroma run
 open http://localhost:8000/docs
 ```

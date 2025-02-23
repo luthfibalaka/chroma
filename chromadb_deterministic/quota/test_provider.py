@@ -2,7 +2,7 @@ from typing import Optional
 
 from overrides import overrides
 
-from chromadb.quota import QuotaProvider, Resource
+from chromadb_deterministic.quota import QuotaProvider, Resource
 
 
 class QuotaProviderForTest(QuotaProvider):

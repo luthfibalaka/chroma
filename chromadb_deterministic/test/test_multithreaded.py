@@ -5,12 +5,12 @@ import threading
 from typing import Any, Dict, List, Optional, Set, Tuple, cast
 import numpy as np
 
-from chromadb.api import ClientAPI
-import chromadb.test.property.invariants as invariants
-from chromadb.api.segment import SegmentAPI
-from chromadb.test.property.strategies import RecordSet
-from chromadb.test.property.strategies import test_hnsw_config
-from chromadb.types import Metadata
+from chromadb_deterministic.api import ClientAPI
+import chromadb_deterministic.test.property.invariants as invariants
+from chromadb_deterministic.api.segment import SegmentAPI
+from chromadb_deterministic.test.property.strategies import RecordSet
+from chromadb_deterministic.test.property.strategies import test_hnsw_config
+from chromadb_deterministic.types import Metadata
 
 
 def generate_data_shape() -> Tuple[int, int]:

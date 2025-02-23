@@ -6,21 +6,21 @@ from typing import Any, Optional, cast, Tuple, Sequence, Dict
 import logging
 import httpx
 from overrides import override
-from chromadb.api.async_api import AsyncServerAPI
-from chromadb.api.base_http_client import BaseHTTPClient
-from chromadb.api.configuration import CollectionConfigurationInternal
-from chromadb.config import DEFAULT_DATABASE, DEFAULT_TENANT, System, Settings
-from chromadb.telemetry.opentelemetry import (
+from chromadb_deterministic.api.async_api import AsyncServerAPI
+from chromadb_deterministic.api.base_http_client import BaseHTTPClient
+from chromadb_deterministic.api.configuration import CollectionConfigurationInternal
+from chromadb_deterministic.config import DEFAULT_DATABASE, DEFAULT_TENANT, System, Settings
+from chromadb_deterministic.telemetry.opentelemetry import (
     OpenTelemetryClient,
     OpenTelemetryGranularity,
     trace_method,
 )
-from chromadb.telemetry.product import ProductTelemetryClient
-from chromadb.utils.async_to_sync import async_to_sync
+from chromadb_deterministic.telemetry.product import ProductTelemetryClient
+from chromadb_deterministic.utils.async_to_sync import async_to_sync
 
-from chromadb.types import Database, Tenant, Collection as CollectionModel
+from chromadb_deterministic.types import Database, Tenant, Collection as CollectionModel
 
-from chromadb.api.types import (
+from chromadb_deterministic.api.types import (
     Documents,
     Embeddings,
     IDs,

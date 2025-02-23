@@ -1,5 +1,5 @@
 from threading import Lock
-from chromadb.segment import (
+from chromadb_deterministic.segment import (
     SegmentImplementation,
     SegmentManager,
     MetadataReader,
@@ -7,16 +7,16 @@ from chromadb.segment import (
     VectorReader,
     S,
 )
-from chromadb.config import System, get_class
-from chromadb.db.system import SysDB
+from chromadb_deterministic.config import System, get_class
+from chromadb_deterministic.db.system import SysDB
 from overrides import override
-from chromadb.segment.distributed import SegmentDirectory
-from chromadb.telemetry.opentelemetry import (
+from chromadb_deterministic.segment.distributed import SegmentDirectory
+from chromadb_deterministic.telemetry.opentelemetry import (
     OpenTelemetryClient,
     OpenTelemetryGranularity,
     trace_method,
 )
-from chromadb.types import Collection, Operation, Segment, SegmentScope, Metadata
+from chromadb_deterministic.types import Collection, Operation, Segment, SegmentScope, Metadata
 from typing import Dict, Type, Sequence, Optional, cast
 from uuid import UUID, uuid4
 from collections import defaultdict
@@ -28,9 +28,9 @@ from collections import defaultdict
 # this abstraction.
 
 SEGMENT_TYPE_IMPLS = {
-    SegmentType.SQLITE: "chromadb.segment.impl.metadata.sqlite.SqliteMetadataSegment",
-    SegmentType.HNSW_DISTRIBUTED: "chromadb.segment.impl.vector.grpc_segment.GrpcVectorSegment",
-    SegmentType.BLOCKFILE_METADATA: "chromadb.segment.impl.metadata.grpc_segment.GrpcMetadataSegment",
+    SegmentType.SQLITE: "chromadb_deterministic.segment.impl.metadata.sqlite.SqliteMetadataSegment",
+    SegmentType.HNSW_DISTRIBUTED: "chromadb_deterministic.segment.impl.vector.grpc_segment.GrpcVectorSegment",
+    SegmentType.BLOCKFILE_METADATA: "chromadb_deterministic.segment.impl.metadata.grpc_segment.GrpcMetadataSegment",
 }
 
 

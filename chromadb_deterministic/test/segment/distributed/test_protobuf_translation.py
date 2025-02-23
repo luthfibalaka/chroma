@@ -1,15 +1,15 @@
 import uuid
 
-from chromadb.config import Settings, System
-from chromadb.segment.impl.metadata.grpc_segment import GrpcMetadataSegment
-from chromadb.types import (
+from chromadb_deterministic.config import Settings, System
+from chromadb_deterministic.segment.impl.metadata.grpc_segment import GrpcMetadataSegment
+from chromadb_deterministic.types import (
     Segment,
     SegmentScope,
     Where,
     WhereDocument,
     MetadataEmbeddingRecord,
 )
-import chromadb.proto.chroma_pb2 as pb
+import chromadb_deterministic.proto.chroma_pb2 as pb
 
 
 # Note: trying to start() this segment will cause it to error since it doesn't

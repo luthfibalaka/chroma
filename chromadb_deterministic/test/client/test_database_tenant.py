@@ -1,6 +1,6 @@
 import pytest
-from chromadb.config import DEFAULT_DATABASE, DEFAULT_TENANT
-from chromadb.test.conftest import ClientFactories
+from chromadb_deterministic.config import DEFAULT_DATABASE, DEFAULT_TENANT
+from chromadb_deterministic.test.conftest import ClientFactories
 
 
 def test_database_tenant_collections(client_factories: ClientFactories) -> None:

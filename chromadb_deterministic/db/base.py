@@ -6,11 +6,11 @@ from threading import local
 from overrides import override, EnforceOverrides
 import pypika
 import pypika.queries
-from chromadb.config import System, Component
+from chromadb_deterministic.config import System, Component
 from uuid import UUID
 from itertools import islice, count
 
-from chromadb.types import SeqId
+from chromadb_deterministic.types import SeqId
 
 
 class NotFoundError(Exception):

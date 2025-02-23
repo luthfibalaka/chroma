@@ -1,4 +1,4 @@
-## chromadb
+## chromadb_deterministic
 
 Chroma is the open-source embedding database. Chroma makes it easy to build LLM apps by making knowledge, facts, and skills pluggable for LLMs.
 
@@ -18,7 +18,7 @@ Chroma needs to be running in order for this client to talk to it. Please see th
 ## Small example
 
 ```js
-import { ChromaClient } from "chromadb";
+import { ChromaClient } from "chromadb_deterministic";
 const chroma = new ChromaClient({ path: "http://localhost:8000" });
 const collection = await chroma.createCollection({ name: "test-from-js" });
 for (let i = 0; i < 20; i++) {

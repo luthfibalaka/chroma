@@ -1,8 +1,8 @@
 from typing import List
 import numpy as np
 
-from chromadb.api import ServerAPI
-from chromadb.api.models.Collection import Collection
+from chromadb_deterministic.api import ServerAPI
+from chromadb_deterministic.api.models.Collection import Collection
 
 
 def test_many_collections(client: ServerAPI) -> None:

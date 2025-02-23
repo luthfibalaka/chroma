@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.34.2
 // 	protoc        v5.26.1
-// source: chromadb/proto/chroma.proto
+// source: chromadb_deterministic/proto/chroma.proto
 
 package coordinatorpb
 
@@ -20,7 +20,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// Types here should mirror chromadb/types.py
+// Types here should mirror chromadb_deterministic/types.py
 type Operation int32
 
 const (

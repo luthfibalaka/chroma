@@ -29,7 +29,7 @@ This embedding function relies on the `openai` python package, which you can ins
 You can pass in an optional `model_name` argument, which lets you choose which OpenAI embeddings model to use. By default, Chroma uses `text-embedding-ada-002`.
 
 ```python
-import chromadb.utils.embedding_functions as embedding_functions
+import chromadb_deterministic.utils.embedding_functions as embedding_functions
 openai_ef = embedding_functions.OpenAIEmbeddingFunction(
                 api_key="YOUR_API_KEY",
                 model_name="text-embedding-3-small"
@@ -38,7 +38,7 @@ openai_ef = embedding_functions.OpenAIEmbeddingFunction(
 
 To use the OpenAI embedding models on other platforms such as Azure, you can use the `api_base` and `api_type` parameters:
 ```python
-import chromadb.utils.embedding_functions as embedding_functions
+import chromadb_deterministic.utils.embedding_functions as embedding_functions
 openai_ef = embedding_functions.OpenAIEmbeddingFunction(
                 api_key="YOUR_API_KEY",
                 api_base="YOUR_API_BASE_PATH",
@@ -54,7 +54,7 @@ openai_ef = embedding_functions.OpenAIEmbeddingFunction(
 You can pass in an optional `model` argument, which lets you choose which OpenAI embeddings model to use. By default, Chroma uses `text-embedding-ada-002`.
 
 ```javascript
-const {OpenAIEmbeddingFunction} = require('chromadb');
+const {OpenAIEmbeddingFunction} = require('chromadb_deterministic');
 const embeddingFunction = new OpenAIEmbeddingFunction({
     openai_api_key: "apiKey",
     model: "text-embedding-3-small"

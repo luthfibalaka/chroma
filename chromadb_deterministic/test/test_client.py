@@ -1,24 +1,24 @@
 import asyncio
 from typing import Any, Callable, Generator, cast
 from unittest.mock import patch
-import chromadb
-from chromadb.config import Settings
-from chromadb.api import ClientAPI
-import chromadb.server.fastapi
+import chromadb_deterministic
+from chromadb_deterministic.config import Settings
+from chromadb_deterministic.api import ClientAPI
+import chromadb_deterministic.server.fastapi
 import pytest
 import tempfile
 
 
 @pytest.fixture
 def ephemeral_api() -> Generator[ClientAPI, None, None]:
-    client = chromadb.EphemeralClient()
+    client = chromadb_deterministic.EphemeralClient()
     yield client
     client.clear_system_cache()
 
 
 @pytest.fixture
 def persistent_api() -> Generator[ClientAPI, None, None]:
-    client = chromadb.PersistentClient(
+    client = chromadb_deterministic.PersistentClient(
         path=tempfile.gettempdir() + "/test_server",
     )
     yield client
@@ -33,14 +33,14 @@ def http_api_factory(
     request: pytest.FixtureRequest,
 ) -> Generator[HttpAPIFactory, None, None]:
     if request.param == "sync_client":
-        with patch("chromadb.api.client.Client._validate_tenant_database"):
-            yield chromadb.HttpClient
+        with patch("chromadb_deterministic.api.client.Client._validate_tenant_database"):
+            yield chromadb_deterministic.HttpClient
     else:
-        with patch("chromadb.api.async_client.AsyncClient._validate_tenant_database"):
+        with patch("chromadb_deterministic.api.async_client.AsyncClient._validate_tenant_database"):
 
             def factory(*args: Any, **kwargs: Any) -> Any:
                 cls = asyncio.get_event_loop().run_until_complete(
-                    chromadb.AsyncHttpClient(*args, **kwargs)
+                    chromadb_deterministic.AsyncHttpClient(*args, **kwargs)
                 )
                 return cls
 
@@ -67,8 +67,8 @@ def test_persistent_client(persistent_api: ClientAPI) -> None:
 def test_http_client(http_api: ClientAPI) -> None:
     settings = http_api.get_settings()
     assert (
-        settings.chroma_api_impl == "chromadb.api.fastapi.FastAPI"
-        or settings.chroma_api_impl == "chromadb.api.async_fastapi.AsyncFastAPI"
+        settings.chroma_api_impl == "chromadb_deterministic.api.fastapi.FastAPI"
+        or settings.chroma_api_impl == "chromadb_deterministic.api.async_fastapi.AsyncFastAPI"
     )
 
 

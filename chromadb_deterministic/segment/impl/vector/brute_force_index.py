@@ -1,14 +1,14 @@
 from typing import Any, Callable, Dict, List, Optional, Sequence, Set
 import numpy as np
 import numpy.typing as npt
-from chromadb.types import (
+from chromadb_deterministic.types import (
     LogRecord,
     VectorEmbeddingRecord,
     VectorQuery,
     VectorQueryResult,
 )
 
-from chromadb.utils import distance_functions
+from chromadb_deterministic.utils import distance_functions
 import logging
 
 logger = logging.getLogger(__name__)

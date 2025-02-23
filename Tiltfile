@@ -42,9 +42,9 @@ docker_build(
 docker_build(
   'local:frontend-service',
   '.',
-  only=['chromadb/', 'idl/', 'requirements.txt', 'bin/'],
+  only=['chromadb_deterministic/', 'idl/', 'requirements.txt', 'bin/'],
   dockerfile='./Dockerfile',
-  ignore=['**/*.pyc', 'chromadb/test/'],
+  ignore=['**/*.pyc', 'chromadb_deterministic/test/'],
 )
 
 docker_build(

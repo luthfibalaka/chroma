@@ -1,8 +1,8 @@
 from typing import TYPE_CHECKING, Optional, Union
 import numpy as np
 
-from chromadb.api.models.CollectionCommon import CollectionCommon
-from chromadb.api.types import (
+from chromadb_deterministic.api.models.CollectionCommon import CollectionCommon
+from chromadb_deterministic.api.types import (
     URI,
     CollectionMetadata,
     Embedding,
@@ -24,7 +24,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 if TYPE_CHECKING:
-    from chromadb.api import ServerAPI  # noqa: F401
+    from chromadb_deterministic.api import ServerAPI  # noqa: F401
 
 
 class Collection(CollectionCommon["ServerAPI"]):

@@ -47,12 +47,12 @@ Code tabs
 {% codetabs customHeader="sh" %}
 {% codetab label="yarn" %}
 ```bash {% codetab=true %}
-yarn install chromadb chromadb-default-embed # [!code $]
+yarn install chromadb_deterministic_chromadb_deterministicistic chromadb_deterministic-default-embed # [!code $]
 ```
 {% /codetab %}
 {% codetab label="npm" %}
 ```bash {% codetab=true %}
-npm install --save chromadb chromadb-default-embed # [!code $]
+npm install --save chromadb_deterministic_chromadb_deterministicistic chromadb_deterministic-default-embed # [!code $]
 ```
 {% /codetab %}
 {% /codetabs %}

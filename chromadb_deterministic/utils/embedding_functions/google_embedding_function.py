@@ -2,7 +2,7 @@ import logging
 
 import httpx
 
-from chromadb.api.types import Documents, EmbeddingFunction, Embeddings
+from chromadb_deterministic.api.types import Documents, EmbeddingFunction, Embeddings
 
 logger = logging.getLogger(__name__)
 

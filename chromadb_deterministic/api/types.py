@@ -4,8 +4,8 @@ import numpy as np
 from typing_extensions import TypedDict, Protocol, runtime_checkable
 from enum import Enum
 from pydantic import Field
-import chromadb.errors as errors
-from chromadb.types import (
+import chromadb_deterministic.errors as errors
+from chromadb_deterministic.types import (
     Metadata,
     UpdateMetadata,
     Vector,
@@ -20,7 +20,7 @@ from chromadb.types import (
 from inspect import signature
 from tenacity import retry
 
-# Re-export types from chromadb.types
+# Re-export types from chromadb_deterministic.types
 __all__ = ["Metadata", "Where", "WhereDocument", "UpdateCollectionMetadata"]
 META_KEY_CHROMA_DOCUMENT = "chroma:document"
 T = TypeVar("T")
@@ -149,7 +149,7 @@ IncludeMetadataDocumentsDistances = Field(
     default=["metadatas", "documents", "distances"]
 )
 
-# Re-export types from chromadb.types
+# Re-export types from chromadb_deterministic.types
 LiteralValue = LiteralValue
 LogicalOperator = LogicalOperator
 WhereOperator = WhereOperator

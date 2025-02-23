@@ -3,13 +3,13 @@ from typing import Sequence, Optional
 from uuid import UUID
 
 from overrides import override
-from chromadb.api.configuration import (
+from chromadb_deterministic.api.configuration import (
     CollectionConfiguration,
     CollectionConfigurationInternal,
 )
-from chromadb.api.models.AsyncCollection import AsyncCollection
-from chromadb.config import DEFAULT_DATABASE, DEFAULT_TENANT
-from chromadb.api.types import (
+from chromadb_deterministic.api.models.AsyncCollection import AsyncCollection
+from chromadb_deterministic.config import DEFAULT_DATABASE, DEFAULT_TENANT
+from chromadb_deterministic.api.types import (
     CollectionMetadata,
     Documents,
     Embeddable,
@@ -26,9 +26,9 @@ from chromadb.api.types import (
     GetResult,
     WhereDocument,
 )
-from chromadb.config import Component, Settings
-from chromadb.types import Database, Tenant, Collection as CollectionModel
-import chromadb.utils.embedding_functions as ef
+from chromadb_deterministic.config import Component, Settings
+from chromadb_deterministic.types import Database, Tenant, Collection as CollectionModel
+import chromadb_deterministic.utils.embedding_functions as ef
 
 
 class AsyncBaseAPI(ABC):

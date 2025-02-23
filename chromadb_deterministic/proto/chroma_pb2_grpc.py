@@ -3,7 +3,7 @@
 import grpc
 import warnings
 
-from chromadb.proto import chroma_pb2 as chromadb_dot_proto_dot_chroma__pb2
+from chromadb_deterministic.proto import chroma_pb2 as chromadb_dot_proto_dot_chroma__pb2
 
 GRPC_GENERATED_VERSION = '1.63.0'
 GRPC_VERSION = grpc.__version__
@@ -20,7 +20,7 @@ except ImportError:
 if _version_not_supported:
     warnings.warn(
         f'The grpc package installed is at version {GRPC_VERSION},'
-        + f' but the generated code in chromadb/proto/chroma_pb2_grpc.py depends on'
+        + f' but the generated code in chromadb_deterministic/proto/chroma_pb2_grpc.py depends on'
         + f' grpcio>={GRPC_GENERATED_VERSION}.'
         + f' Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}'
         + f' or downgrade your generated code using grpcio-tools<={GRPC_VERSION}.'

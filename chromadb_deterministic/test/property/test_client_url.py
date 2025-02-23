@@ -4,7 +4,7 @@ from urllib.parse import urlparse
 import pytest
 from hypothesis import given, strategies as st
 
-from chromadb.api.fastapi import FastAPI
+from chromadb_deterministic.api.fastapi import FastAPI
 
 
 def hostname_strategy() -> st.SearchStrategy[str]:

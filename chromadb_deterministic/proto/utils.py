@@ -30,7 +30,7 @@ class RetryOnRpcErrorClientInterceptor(
         sleep_span: Optional[Span] = None
 
         def before_sleep(_):
-            from chromadb.telemetry.opentelemetry import tracer
+            from chromadb_deterministic.telemetry.opentelemetry import tracer
 
             nonlocal sleep_span
             if tracer is not None:

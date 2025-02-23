@@ -7,12 +7,12 @@ import httpx
 import urllib.parse
 from overrides import override
 
-from chromadb.api.configuration import CollectionConfigurationInternal
-from chromadb.api.base_http_client import BaseHTTPClient
-from chromadb.types import Database, Tenant, Collection as CollectionModel
-from chromadb.api import ServerAPI
+from chromadb_deterministic.api.configuration import CollectionConfigurationInternal
+from chromadb_deterministic.api.base_http_client import BaseHTTPClient
+from chromadb_deterministic.types import Database, Tenant, Collection as CollectionModel
+from chromadb_deterministic.api import ServerAPI
 
-from chromadb.api.types import (
+from chromadb_deterministic.api.types import (
     Documents,
     Embeddings,
     IDs,
@@ -26,16 +26,16 @@ from chromadb.api.types import (
     CollectionMetadata,
     validate_batch,
 )
-from chromadb.auth import (
+from chromadb_deterministic.auth import (
     ClientAuthProvider,
 )
-from chromadb.config import DEFAULT_DATABASE, DEFAULT_TENANT, Settings, System
-from chromadb.telemetry.opentelemetry import (
+from chromadb_deterministic.config import DEFAULT_DATABASE, DEFAULT_TENANT, Settings, System
+from chromadb_deterministic.telemetry.opentelemetry import (
     OpenTelemetryClient,
     OpenTelemetryGranularity,
     trace_method,
 )
-from chromadb.telemetry.product import ProductTelemetryClient
+from chromadb_deterministic.telemetry.product import ProductTelemetryClient
 
 logger = logging.getLogger(__name__)
 

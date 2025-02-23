@@ -1,14 +1,14 @@
 from typing import Dict, Optional
 import logging
-from chromadb.api.client import Client as ClientCreator
-from chromadb.api.client import AdminClient as AdminClientCreator
-from chromadb.api.async_client import AsyncClient as AsyncClientCreator
-from chromadb.auth.token_authn import TokenTransportHeader
-import chromadb.config
-from chromadb.config import DEFAULT_DATABASE, DEFAULT_TENANT, Settings
-from chromadb.api import AdminAPI, AsyncClientAPI, ClientAPI
-from chromadb.api.models.Collection import Collection
-from chromadb.api.types import (
+from chromadb_deterministic.api.client import Client as ClientCreator
+from chromadb_deterministic.api.client import AdminClient as AdminClientCreator
+from chromadb_deterministic.api.async_client import AsyncClient as AsyncClientCreator
+from chromadb_deterministic.auth.token_authn import TokenTransportHeader
+import chromadb_deterministic.config
+from chromadb_deterministic.config import DEFAULT_DATABASE, DEFAULT_TENANT, Settings
+from chromadb_deterministic.api import AdminAPI, AsyncClientAPI, ClientAPI
+from chromadb_deterministic.api.models.Collection import Collection
+from chromadb_deterministic.api.types import (
     CollectionMetadata,
     Documents,
     EmbeddingFunction,
@@ -23,7 +23,7 @@ from chromadb.api.types import (
     UpdateCollectionMetadata,
 )
 
-# Re-export types from chromadb.types
+# Re-export types from chromadb_deterministic.types
 __all__ = [
     "Collection",
     "Metadata",
@@ -62,7 +62,7 @@ IN_COLAB = is_in_colab()
 
 is_client = False
 try:
-    from chromadb.is_thin_client import is_thin_client
+    from chromadb_deterministic.is_thin_client import is_thin_client
 
     is_client = is_thin_client
 except ImportError:
@@ -95,7 +95,7 @@ if not is_client:
 def configure(**kwargs) -> None:  # type: ignore
     """Override Chroma's default settings, environment variables or .env files"""
     global __settings
-    __settings = chromadb.config.Settings(**kwargs)
+    __settings = chromadb_deterministic.config.Settings(**kwargs)
 
 
 def get_settings() -> Settings:
@@ -187,7 +187,7 @@ def HttpClient(
     tenant = str(tenant)
     database = str(database)
 
-    settings.chroma_api_impl = "chromadb.api.fastapi.FastAPI"
+    settings.chroma_api_impl = "chromadb_deterministic.api.fastapi.FastAPI"
     if settings.chroma_server_host and settings.chroma_server_host != host:
         raise ValueError(
             f"Chroma server host provided in settings[{settings.chroma_server_host}] is different to the one provided in HttpClient: [{host}]"
@@ -238,7 +238,7 @@ async def AsyncHttpClient(
     tenant = str(tenant)
     database = str(database)
 
-    settings.chroma_api_impl = "chromadb.api.async_fastapi.AsyncFastAPI"
+    settings.chroma_api_impl = "chromadb_deterministic.api.async_fastapi.AsyncFastAPI"
     if settings.chroma_server_host and settings.chroma_server_host != host:
         raise ValueError(
             f"Chroma server host provided in settings[{settings.chroma_server_host}] is different to the one provided in HttpClient: [{host}]"
@@ -300,14 +300,14 @@ def CloudClient(
     cloud_port = int(cloud_port)
     enable_ssl = bool(enable_ssl)
 
-    settings.chroma_api_impl = "chromadb.api.fastapi.FastAPI"
+    settings.chroma_api_impl = "chromadb_deterministic.api.fastapi.FastAPI"
     settings.chroma_server_host = cloud_host
     settings.chroma_server_http_port = cloud_port
     # Always use SSL for cloud
     settings.chroma_server_ssl_enabled = enable_ssl
 
     settings.chroma_client_auth_provider = (
-        "chromadb.auth.token_authn.TokenAuthClientProvider"
+        "chromadb_deterministic.auth.token_authn.TokenAuthClientProvider"
     )
     settings.chroma_client_auth_credentials = api_key
     settings.chroma_auth_token_transport_header = TokenTransportHeader.X_CHROMA_TOKEN

@@ -1,23 +1,23 @@
-from chromadb.api import ServerAPI
-from chromadb.api.configuration import CollectionConfigurationInternal
-from chromadb.config import DEFAULT_DATABASE, DEFAULT_TENANT, Settings, System
-from chromadb.db.system import SysDB
-from chromadb.quota import QuotaEnforcer, Resource
-from chromadb.rate_limiting import rate_limit
-from chromadb.segment import SegmentManager, MetadataReader, VectorReader
-from chromadb.telemetry.opentelemetry import (
+from chromadb_deterministic.api import ServerAPI
+from chromadb_deterministic.api.configuration import CollectionConfigurationInternal
+from chromadb_deterministic.config import DEFAULT_DATABASE, DEFAULT_TENANT, Settings, System
+from chromadb_deterministic.db.system import SysDB
+from chromadb_deterministic.quota import QuotaEnforcer, Resource
+from chromadb_deterministic.rate_limiting import rate_limit
+from chromadb_deterministic.segment import SegmentManager, MetadataReader, VectorReader
+from chromadb_deterministic.telemetry.opentelemetry import (
     add_attributes_to_current_span,
     OpenTelemetryClient,
     OpenTelemetryGranularity,
     trace_method,
 )
-from chromadb.telemetry.product import ProductTelemetryClient
-from chromadb.ingest import Producer
-from chromadb.types import Collection as CollectionModel
-from chromadb import __version__
-from chromadb.errors import InvalidDimensionException, InvalidCollectionException
+from chromadb_deterministic.telemetry.product import ProductTelemetryClient
+from chromadb_deterministic.ingest import Producer
+from chromadb_deterministic.types import Collection as CollectionModel
+from chromadb_deterministic import __version__
+from chromadb_deterministic.errors import InvalidDimensionException, InvalidCollectionException
 
-from chromadb.api.types import (
+from chromadb_deterministic.api.types import (
     URI,
     CollectionMetadata,
     Document,
@@ -38,7 +38,7 @@ from chromadb.api.types import (
     validate_where_document,
     validate_batch,
 )
-from chromadb.telemetry.product.events import (
+from chromadb_deterministic.telemetry.product.events import (
     CollectionAddEvent,
     CollectionDeleteEvent,
     CollectionGetEvent,
@@ -47,7 +47,7 @@ from chromadb.telemetry.product.events import (
     ClientCreateCollectionEvent,
 )
 
-import chromadb.types as t
+import chromadb_deterministic.types as t
 from typing import Optional, Sequence, Generator, List, cast, Set, Dict
 from overrides import override
 from uuid import UUID, uuid4

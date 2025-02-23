@@ -2,8 +2,8 @@ from abc import abstractmethod
 from typing import Any, Callable, List
 
 from overrides import EnforceOverrides, overrides
-from chromadb.config import Component, System
-from chromadb.types import Segment
+from chromadb_deterministic.config import Component, System
+from chromadb_deterministic.types import Segment
 
 
 class SegmentDirectory(Component):

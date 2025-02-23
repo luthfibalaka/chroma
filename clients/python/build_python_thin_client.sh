@@ -6,7 +6,7 @@ thin_client_toml="clients/python/pyproject.toml"
 
 # Define the path to the thin client flag script
 is_thin_client_py="clients/python/is_thin_client.py"
-is_thin_client_target="chromadb/is_thin_client.py"
+is_thin_client_target="chromadb_deterministic/is_thin_client.py"
 
 # Define the path to the existing readme and new readme for packaging
 existing_readme="README.md"

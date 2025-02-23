@@ -9,11 +9,11 @@ from uuid import UUID
 from enum import Enum
 from pydantic import BaseModel
 
-from chromadb.api.configuration import (
+from chromadb_deterministic.api.configuration import (
     CollectionConfigurationInternal,
     ConfigurationInternal,
 )
-from chromadb.serde import BaseModelJSONSerializable
+from chromadb_deterministic.serde import BaseModelJSONSerializable
 
 
 Metadata = Mapping[str, Union[str, int, float, bool]]

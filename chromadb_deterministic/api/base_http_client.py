@@ -4,8 +4,8 @@ import logging
 import orjson as json
 import httpx
 
-import chromadb.errors as errors
-from chromadb.config import Settings
+import chromadb_deterministic.errors as errors
+from chromadb_deterministic.config import Settings
 
 logger = logging.getLogger(__name__)
 

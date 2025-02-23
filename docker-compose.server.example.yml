@@ -9,7 +9,7 @@ services:
     environment:
       - IS_PERSISTENT=TRUE
     volumes:
-      # Default configuration for persist_directory in chromadb/config.py
+      # Default configuration for persist_directory in chromadb_deterministic/config.py
       # Currently it's located in "/chroma/chroma/"
       - chroma-data:/chroma/chroma/
     ports:

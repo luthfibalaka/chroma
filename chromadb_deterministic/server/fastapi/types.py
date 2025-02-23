@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from typing import Any, Dict, List, Optional
-from chromadb.api.types import (
+from chromadb_deterministic.api.types import (
     CollectionMetadata,
     Include,
     IncludeMetadataDocuments,

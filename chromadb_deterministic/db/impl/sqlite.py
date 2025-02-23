@@ -1,11 +1,11 @@
 import logging
-from chromadb.db.impl.sqlite_pool import Connection, LockPool, PerThreadPool, Pool
-from chromadb.db.migrations import MigratableDB, Migration
-from chromadb.config import System, Settings
-import chromadb.db.base as base
-from chromadb.db.mixins.embeddings_queue import SqlEmbeddingsQueue
-from chromadb.db.mixins.sysdb import SqlSysDB
-from chromadb.telemetry.opentelemetry import (
+from chromadb_deterministic.db.impl.sqlite_pool import Connection, LockPool, PerThreadPool, Pool
+from chromadb_deterministic.db.migrations import MigratableDB, Migration
+from chromadb_deterministic.config import System, Settings
+import chromadb_deterministic.db.base as base
+from chromadb_deterministic.db.mixins.embeddings_queue import SqlEmbeddingsQueue
+from chromadb_deterministic.db.mixins.sysdb import SqlSysDB
+from chromadb_deterministic.telemetry.opentelemetry import (
     OpenTelemetryClient,
     OpenTelemetryGranularity,
     trace_method,
@@ -71,9 +71,9 @@ class SqliteDB(MigratableDB, SqlEmbeddingsQueue, SqlSysDB):
     def __init__(self, system: System):
         self._settings = system.settings
         self._migration_imports = [
-            files("chromadb.migrations.embeddings_queue"),
-            files("chromadb.migrations.sysdb"),
-            files("chromadb.migrations.metadb"),
+            files("chromadb_deterministic.migrations.embeddings_queue"),
+            files("chromadb_deterministic.migrations.sysdb"),
+            files("chromadb_deterministic.migrations.metadb"),
         ]
         self._is_persistent = self._settings.require("is_persistent")
         self._opentelemetry_client = system.require(OpenTelemetryClient)
@@ -109,7 +109,7 @@ class SqliteDB(MigratableDB, SqlEmbeddingsQueue, SqlSysDB):
             and self.config.get_parameter("automatically_purge").value is False
         ):
             logger.warn(
-                "⚠️ It looks like you upgraded from a version below 0.6 and could benefit from vacuuming your database. Run chromadb utils vacuum --help for more information."
+                "⚠️ It looks like you upgraded from a version below 0.6 and could benefit from vacuuming your database. Run chromadb_deterministic utils vacuum --help for more information."
             )
 
     @trace_method("SqliteDB.stop", OpenTelemetryGranularity.ALL)

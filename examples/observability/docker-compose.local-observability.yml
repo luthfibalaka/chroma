@@ -28,8 +28,8 @@ services:
     volumes:
       - ${PWD}/:/chroma
       # Be aware that indexed data are located in "/chroma/chroma/"
-      # Default configuration for persist_directory in chromadb/config.py
-    command: uvicorn chromadb.app:app --reload --workers 1 --host 0.0.0.0 --port 8000 --log-config chromadb/log_config.yml
+      # Default configuration for persist_directory in chromadb_deterministic/config.py
+    command: uvicorn chromadb_deterministic.app:app --reload --workers 1 --host 0.0.0.0 --port 8000chromadb_deterministiconfig chromadb_deterministic/log_config.yml
     environment:
       - IS_PERSISTENT=TRUE
       - CHROMA_SERVER_AUTHN_PROVIDER=${CHROMA_SERVER_AUTHN_PROVIDER}

@@ -1,4 +1,4 @@
-from chromadb.proto import chroma_pb2 as _chroma_pb2
+from chromadb_deterministic.proto import chroma_pb2 as _chroma_pb2
 from google.protobuf import empty_pb2 as _empty_pb2
 from google.protobuf.internal import containers as _containers
 from google.protobuf import descriptor as _descriptor

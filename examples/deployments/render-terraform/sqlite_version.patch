@@ -1,7 +1,7 @@
-diff --git a/chromadb/__init__.py b/chromadb/__init__.py
+diff --git a/chromadb_deterministic/chromadb_deterministic.py b/chromadb_deterministic/__init__.py
 index 0ff5244a..450aaf0d 100644
---- a/chromadb/__init__.py
-+++ b/chromadb/__init__.py
+--- a/chromadb_deterministic/__init__.py
++++ b/chromadb_deterministic/__init__.py
 @@ -55,21 +55,9 @@ except ImportError:
      IN_COLAB = False
 

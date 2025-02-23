@@ -15,7 +15,7 @@ Chroma provides a convenient wrapper around JinaAI's embedding API. This embeddi
 {% tab label="Python" %}
 
 ```python
-import chromadb.utils.embedding_functions as embedding_functions
+import chromadb_deterministic.utils.embedding_functions as embedding_functions
 jinaai_ef = embedding_functions.JinaEmbeddingFunction(
                 api_key="YOUR_API_KEY",
                 model_name="jina-embeddings-v2-base-en"
@@ -29,7 +29,7 @@ You can pass in an optional `model_name` argument, which lets you choose which J
 {% tab label="Javascript" %}
 
 ```javascript
-const {JinaEmbeddingFunction} = require('chromadb');
+const {JinaEmbeddingFunction} = require('chromadb_deterministic');
 const embedder = new JinaEmbeddingFunction({
   jinaai_api_key: 'jina_****',
   model_name: 'jina-embeddings-v2-base-en',

@@ -1,24 +1,24 @@
 import gc
 import math
-from chromadb.config import System
-from chromadb.db.base import get_sql
-from chromadb.db.impl.sqlite import SqliteDB
+from chromadb_deterministic.config import System
+from chromadb_deterministic.db.base import get_sql
+from chromadb_deterministic.db.impl.sqlite import SqliteDB
 from time import sleep
 
 import psutil
 
-from chromadb.test.property.strategies import NormalizedRecordSet, RecordSet
+from chromadb_deterministic.test.property.strategies import NormalizedRecordSet, RecordSet
 from typing import Callable, Optional, Tuple, Union, List, TypeVar, cast
 from typing_extensions import Literal
 import numpy as np
 import numpy.typing as npt
-from chromadb.api import types
-from chromadb.api.models.Collection import Collection
+from chromadb_deterministic.api import types
+from chromadb_deterministic.api.models.Collection import Collection
 from hypothesis import note
 from hypothesis.errors import InvalidArgument
 from pypika import Table, functions
 
-from chromadb.utils import distance_functions
+from chromadb_deterministic.utils import distance_functions
 
 T = TypeVar("T")
 

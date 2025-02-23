@@ -3,13 +3,13 @@
 # test working and then enable
 import random
 import time
-from chromadb.api import ClientAPI
-from chromadb.test.conftest import (
+from chromadb_deterministic.api import ClientAPI
+from chromadb_deterministic.test.conftest import (
     COMPACTION_SLEEP,
     reset,
     skip_if_not_cluster,
 )
-from chromadb.test.property import invariants
+from chromadb_deterministic.test.property import invariants
 
 
 @skip_if_not_cluster()

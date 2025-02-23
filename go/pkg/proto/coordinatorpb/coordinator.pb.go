@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.34.2
 // 	protoc        v5.26.1
-// source: chromadb/proto/coordinator.proto
+// source: chromadb_deterministic/proto/coordinator.proto
 
 package coordinatorpb
 

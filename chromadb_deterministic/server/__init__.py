@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from chromadb.config import Settings
+from chromadb_deterministic.config import Settings
 
 
 class Server(ABC):

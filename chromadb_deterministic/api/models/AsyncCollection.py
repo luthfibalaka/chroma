@@ -5,7 +5,7 @@ from typing import (
 )
 import numpy as np
 
-from chromadb.api.types import (
+from chromadb_deterministic.api.types import (
     URI,
     CollectionMetadata,
     Embedding,
@@ -22,10 +22,10 @@ from chromadb.api.types import (
     WhereDocument,
 )
 
-from chromadb.api.models.CollectionCommon import CollectionCommon
+from chromadb_deterministic.api.models.CollectionCommon import CollectionCommon
 
 if TYPE_CHECKING:
-    from chromadb.api import AsyncServerAPI  # noqa: F401
+    from chromadb_deterministic.api import AsyncServerAPI  # noqa: F401
 
 
 class AsyncCollection(CollectionCommon["AsyncServerAPI"]):

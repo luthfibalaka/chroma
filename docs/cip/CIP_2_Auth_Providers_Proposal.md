@@ -69,7 +69,7 @@ restrictions we impose to make the design simpler and more robust.
 We suggest multiple abstractions on the server-side to allow for easy integration with different auth providers.
 We suggest the following abstractions:
 
-> Note: All abstractions are defined under `chromadb.auth` package
+> Note: All abstractions are defined under `chromadb_deterministic.auth` package
 
 - `ServerAuthenticationProvider` - this is the base server auth provider abstraction that allows any server implementation of
   Chroma to support variety of auth providers. The main responsibility of the auth provider is to orchestrate the auth

@@ -1,6 +1,6 @@
 import uuid
 from typing import Any, Callable
-from chromadb.types import Segment
+from chromadb_deterministic.types import Segment
 from overrides import override
 from typing import Dict, Optional
 from abc import ABC, abstractmethod

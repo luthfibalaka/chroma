@@ -1,10 +1,10 @@
 # Tests the CustomResourceMemberlist provider
 import threading
-from chromadb.test.conftest import skip_if_not_cluster
+from chromadb_deterministic.test.conftest import skip_if_not_cluster
 from kubernetes import client, config
-from chromadb.config import System, Settings
-from chromadb.segment.distributed import Memberlist
-from chromadb.segment.impl.distributed.segment_directory import (
+from chromadb_deterministic.config import System, Settings
+from chromadb_deterministic.segment.distributed import Memberlist
+from chromadb_deterministic.segment.impl.distributed.segment_directory import (
     CustomResourceMemberlistProvider,
     KUBERNETES_GROUP,
     KUBERNETES_NAMESPACE,

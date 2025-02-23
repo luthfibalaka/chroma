@@ -150,13 +150,13 @@ Additionally, the baseline latency of `collection.add()` on calls that trigger a
 <summary>Source code for baseline latency measurement</summary>
 
 ```python
-import chromadb
+import chromadb_deterministic
 import numpy as np
 import time
 
 SYNC_THRESHOLD = 1000
 
-client = chromadb.PersistentClient("./bench-baseline")
+client = chromadb_deterministic.PersistentClient("./bench-baseline")
 collection = client.create_collection("test")
 
 timings = []

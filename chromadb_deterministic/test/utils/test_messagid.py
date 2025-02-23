@@ -1,4 +1,4 @@
-import chromadb.utils.messageid as mid
+import chromadb_deterministic.utils.messageid as mid
 import hypothesis.strategies as st
 from hypothesis import given, settings
 

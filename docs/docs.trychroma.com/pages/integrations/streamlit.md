@@ -20,14 +20,14 @@ Streamlit is an open-source Python library that makes it easy to create and shar
 Install Streamlit: {% br %}{% /br %}
 `pip install streamlit`
 
-Install `streamlit-chromadb-connection`, which connects your Streamlit app to Chroma through [`st.connection`](https://docs.streamlit.io/1.11.0/library/api-reference/connections/st.connection): {% br %}{% /br %}
-`pip install streamlit-chromadb-connection`
+Install `streamlit-chromadb_deterministic-connection`, which connects your Streamlit app to Chroma through [`st.connection`](https://docs.streamlit.io/1.11.0/library/api-reference/connections/st.connection): {% br %}{% /br %}
+`pip install streamlit-chromadb_deterministic-connection`
 
 ### Main Benefits
 
 - Easy to get started with Streamlit's straightforward syntax
 - Built-in [chatbot functionality](https://docs.streamlit.io/library/api-reference/chat)
-- Pre-built integration with Chroma via `streamlit-chromadb-connection`
+- Pre-built integration with Chroma via `streamlit-chromadb_deterministic-connection`
 - Deploy apps for free on [Streamlit Community Cloud](https://share.streamlit.io/)
 
 ### Simple Example
@@ -45,7 +45,7 @@ configuration = {
 
 collection_name = "documents_collection"
 
-conn = st.connection("chromadb",
+conn = st.connection("chromadb_deterministic",
                      type=ChromaDBConnection,
                      **configuration)
 documents_collection_df = conn.get_collection_data(collection_name)
@@ -54,8 +54,8 @@ st.dataframe(documents_collection_df)
 
 ### Resources
 
-- [Instructions for using `streamlit-chromadb-connection` to connect your Streamlit app to Chroma](https://github.com/Dev317/streamlit_chromadb_connection/blob/main/README.md)
-- [Demo app for `streamlit-chromadb-connection`](https://app-chromadbconnection-mfzxl3nzozmaxh3mrkd6zm.streamlit.app/)
+- [Instructions for using `streamlit-chromadb_deterministic-connection` to connect your Streamlit app to Chroma](https://github.com/Dev317/streamlit_chromadb_connection/blob/main/README.md)
+- [Demo app for `streamlit-chromadb_deterministic-connection`](https://app-chromadbconnection-mfzxl3nzozmaxh3mrkd6zm.streamlit.app/)
 - [Streamlit's `st.connection` documentation](https://docs.streamlit.io/library/api-reference/connections/st.connection)
 - [Guide to using vector databases with Streamlit](https://pub.towardsai.net/vector-databases-for-your-streamlit-ai-apps-56cd0af7bbba)
 
@@ -65,4 +65,4 @@ st.dataframe(documents_collection_df)
 - [Summarize documents with Chroma, Streamlit, and LangChain](https://alphasec.io/summarize-documents-with-langchain-and-chroma/)
 - [Build a custom chatbot with Chroma, Streamlit, and LangChain](https://blog.streamlit.io/how-in-app-feedback-can-increase-your-chatbots-performance/)
 - [Build a RAG bot using Chroma, Streamlit, and LangChain](https://levelup.gitconnected.com/building-a-generative-ai-app-with-streamlit-and-openai-95ec31fe8efd)
-- [Build a PDF QA chatbot with Chroma, Streamlit, and OpenAI](https://www.confident-ai.com/blog/how-to-build-a-pdf-qa-chatbot-using-openai-and-chromadb)
+- [Build a PDF QA chatbot with Chroma, Streamlit, and OpenAI](https://www.confident-ai.com/blog/how-to-build-a-pdf-qa-chatbot-using-openai-and-chromadb_deterministic)

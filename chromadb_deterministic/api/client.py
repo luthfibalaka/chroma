@@ -3,10 +3,10 @@ from uuid import UUID
 
 from overrides import override
 import httpx
-from chromadb.api import AdminAPI, ClientAPI, ServerAPI
-from chromadb.api.configuration import CollectionConfiguration
-from chromadb.api.shared_system_client import SharedSystemClient
-from chromadb.api.types import (
+from chromadb_deterministic.api import AdminAPI, ClientAPI, ServerAPI
+from chromadb_deterministic.api.configuration import CollectionConfiguration
+from chromadb_deterministic.api.shared_system_client import SharedSystemClient
+from chromadb_deterministic.api.types import (
     CollectionMetadata,
     DataLoader,
     Documents,
@@ -21,12 +21,12 @@ from chromadb.api.types import (
     QueryResult,
     URIs,
 )
-from chromadb.config import Settings, System
-from chromadb.config import DEFAULT_TENANT, DEFAULT_DATABASE
-from chromadb.api.models.Collection import Collection
-from chromadb.errors import ChromaError
-from chromadb.types import Database, Tenant, Where, WhereDocument
-import chromadb.utils.embedding_functions as ef
+from chromadb_deterministic.config import Settings, System
+from chromadb_deterministic.config import DEFAULT_TENANT, DEFAULT_DATABASE
+from chromadb_deterministic.api.models.Collection import Collection
+from chromadb_deterministic.errors import ChromaError
+from chromadb_deterministic.types import Database, Tenant, Where, WhereDocument
+import chromadb_deterministic.utils.embedding_functions as ef
 
 
 class Client(SharedSystemClient, ClientAPI):

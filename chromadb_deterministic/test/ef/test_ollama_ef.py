@@ -4,7 +4,7 @@ import pytest
 import httpx
 from httpx import HTTPError, ConnectError
 
-from chromadb.utils.embedding_functions import OllamaEmbeddingFunction
+from chromadb_deterministic.utils.embedding_functions import OllamaEmbeddingFunction
 
 
 def test_ollama() -> None:

@@ -1,11 +1,11 @@
 import logging
 from typing import Dict, Optional, Tuple
 import pytest
-from chromadb.api import AdminAPI
-import chromadb.api.types as types
-from chromadb.config import DEFAULT_DATABASE, DEFAULT_TENANT
-from chromadb.test.conftest import ClientFactories
-from chromadb.test.property.test_collections import CollectionStateMachine
+from chromadb_deterministic.api import AdminAPI
+import chromadb_deterministic.api.types as types
+from chromadb_deterministic.config import DEFAULT_DATABASE, DEFAULT_TENANT
+from chromadb_deterministic.test.conftest import ClientFactories
+from chromadb_deterministic.test.property.test_collections import CollectionStateMachine
 from hypothesis.stateful import (
     Bundle,
     rule,
@@ -14,7 +14,7 @@ from hypothesis.stateful import (
     run_state_machine_as_test,
     MultipleResults,
 )
-import chromadb.test.property.strategies as strategies
+import chromadb_deterministic.test.property.strategies as strategies
 
 
 class TenantDatabaseCollectionStateMachine(CollectionStateMachine):

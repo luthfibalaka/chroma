@@ -1,4 +1,4 @@
-from chromadb.config import Component, System, Settings
+from chromadb_deterministic.config import Component, System, Settings
 from overrides import overrides
 from threading import local
 import random

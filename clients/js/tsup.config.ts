@@ -4,7 +4,7 @@ import fs from "fs";
 export default defineConfig((options: Options) => {
   const commonOptions: Partial<Options> = {
     entry: {
-      chromadb: "src/index.ts",
+      chromadb_deterministic: "src/index.ts",
     },
     sourcemap: true,
     dts: true,
@@ -19,7 +19,7 @@ export default defineConfig((options: Options) => {
       clean: true,
       async onSuccess() {
         // Support Webpack 4 by pointing `"module"` to a file with a `.js` extension
-        fs.copyFileSync("dist/chromadb.mjs", "dist/chromadb.legacy-esm.js");
+        fs.copyFileSync("dist/chromadb_deterministic_deterministichromadb_deterministic"dist/chromadb_deterministic.legacy-esm.js");
       },
     },
     {

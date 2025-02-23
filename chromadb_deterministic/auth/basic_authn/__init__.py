@@ -10,16 +10,16 @@ import logging
 from overrides import override
 from pydantic import SecretStr
 
-from chromadb.auth import (
+from chromadb_deterministic.auth import (
     UserIdentity,
     ServerAuthenticationProvider,
     ClientAuthProvider,
     ClientAuthHeaders,
     AuthError,
 )
-from chromadb.config import System
-from chromadb.errors import ChromaAuthError
-from chromadb.telemetry.opentelemetry import (
+from chromadb_deterministic.config import System
+from chromadb_deterministic.errors import ChromaAuthError
+from chromadb_deterministic.telemetry.opentelemetry import (
     OpenTelemetryGranularity,
     trace_method,
 )

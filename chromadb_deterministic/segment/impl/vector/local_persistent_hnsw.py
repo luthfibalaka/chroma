@@ -3,22 +3,22 @@ import shutil
 from overrides import override
 import pickle
 from typing import Dict, List, Optional, Sequence, Set, cast
-from chromadb.config import System
-from chromadb.db.base import ParameterValue, get_sql
-from chromadb.db.impl.sqlite import SqliteDB
-from chromadb.segment.impl.vector.batch import Batch
-from chromadb.segment.impl.vector.hnsw_params import PersistentHnswParams
-from chromadb.segment.impl.vector.local_hnsw import (
+from chromadb_deterministic.config import System
+from chromadb_deterministic.db.base import ParameterValue, get_sql
+from chromadb_deterministic.db.impl.sqlite import SqliteDB
+from chromadb_deterministic.segment.impl.vector.batch import Batch
+from chromadb_deterministic.segment.impl.vector.hnsw_params import PersistentHnswParams
+from chromadb_deterministic.segment.impl.vector.local_hnsw import (
     DEFAULT_CAPACITY,
     LocalHnswSegment,
 )
-from chromadb.segment.impl.vector.brute_force_index import BruteForceIndex
-from chromadb.telemetry.opentelemetry import (
+from chromadb_deterministic.segment.impl.vector.brute_force_index import BruteForceIndex
+from chromadb_deterministic.telemetry.opentelemetry import (
     OpenTelemetryClient,
     OpenTelemetryGranularity,
     trace_method,
 )
-from chromadb.types import (
+from chromadb_deterministic.types import (
     LogRecord,
     Metadata,
     Operation,
@@ -33,7 +33,7 @@ import hnswlib
 import logging
 from pypika import Table
 
-from chromadb.utils.read_write_lock import ReadRWLock, WriteRWLock
+from chromadb_deterministic.utils.read_write_lock import ReadRWLock, WriteRWLock
 
 
 logger = logging.getLogger(__name__)

@@ -3,8 +3,8 @@ import argparse
 
 from tqdm import tqdm
 
-import chromadb
-from chromadb.utils import embedding_functions
+import chromadb_deterministic
+from chromadb_deterministic.utils import embedding_functions
 import google.generativeai as genai
 
 
@@ -32,7 +32,7 @@ def main(
 
     # Instantiate a persistent chroma client in the persist_directory.
     # Learn more at docs.trychroma.com
-    client = chromadb.PersistentClient(path=persist_directory)
+    client = chromadb_deterministic.PersistentClient(path=persist_directory)
 
     google_api_key = None
     if "GOOGLE_API_KEY" not in os.environ:

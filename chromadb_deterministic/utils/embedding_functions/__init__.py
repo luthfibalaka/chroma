@@ -4,10 +4,10 @@ import pkgutil
 from types import ModuleType
 from typing import Optional, Set, cast
 
-from chromadb.api.types import Documents, EmbeddingFunction
+from chromadb_deterministic.api.types import Documents, EmbeddingFunction
 
 # Langchain embedding function is a special snowflake
-from chromadb.utils.embedding_functions.chroma_langchain_embedding_function import (  # noqa: F401
+from chromadb_deterministic.utils.embedding_functions.chroma_langchain_embedding_function import (  # noqa: F401
     create_langchain_embedding,
 )
 
@@ -15,7 +15,7 @@ _all_classes: Set[str] = set()
 _all_classes.add("ChromaLangchainEmbeddingFunction")
 
 try:
-    from chromadb.is_thin_client import is_thin_client
+    from chromadb_deterministic.is_thin_client import is_thin_client
 except ImportError:
     is_thin_client = False
 

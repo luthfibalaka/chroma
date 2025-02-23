@@ -1,7 +1,7 @@
 // This implementation mirrors the rendezvous hash implementation
 // in the go and python services.
 // The go implementation is located go/internal/utils/rendezvous_hash.go
-// The python implementation is located chromadb/utils/rendezvous_hash.py
+// The python implementation is located chromadb_deterministic/utils/rendezvous_hash.py
 
 use chroma_error::{ChromaError, ErrorCodes};
 use std::io::Cursor;

@@ -17,10 +17,10 @@ If you prefer to opt out of telemetry, you can do this in two ways.
 Set `anonymized_telemetry` to `False` in your client's settings:
 
 ```python
-from chromadb.config import Settings
-client = chromadb.Client(Settings(anonymized_telemetry=False))
+from chromadb_deterministic.config import Settings
+client = chromadb_deterministic.Client(Settings(anonymized_telemetry=False))
 # or if using PersistentClient
-client = chromadb.PersistentClient(path="/path/to/save/to", settings=Settings(anonymized_telemetry=False))
+client = chromadb_deterministic.PersistentClient(path="/path/to/save/to", settings=Settings(anonymized_telemetry=False))
 ```
 
 ###### In Chroma's Backend Using Environment Variables
@@ -48,7 +48,7 @@ We will only track usage details that help us make product decisions, specifical
 
 We **do not** collect personally-identifiable or sensitive information, such as: usernames, hostnames, file names, environment variables, or hostnames of systems being tested.
 
-To view the list of events we track, you may reference the **[code](https://github.com/chroma-core/chroma/blob/main/chromadb/telemetry/product/events.py)**
+To view the list of events we track, you may reference the **[code](https://github.com/chroma-core/chroma/blob/main/chromadb_deterministic/telemetry/product/events.py)**
 
 ## Where is telemetry information stored?
 

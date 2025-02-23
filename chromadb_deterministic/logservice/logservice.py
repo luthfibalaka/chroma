@@ -1,23 +1,23 @@
 import sys
 
-from chromadb.proto.utils import RetryOnRpcErrorClientInterceptor
+from chromadb_deterministic.proto.utils import RetryOnRpcErrorClientInterceptor
 import grpc
 import time
-from chromadb.ingest import (
+from chromadb_deterministic.ingest import (
     Producer,
     Consumer,
     ConsumerCallbackFn,
 )
-from chromadb.proto.convert import to_proto_submit
-from chromadb.proto.logservice_pb2 import PushLogsRequest, PullLogsRequest, LogRecord
-from chromadb.proto.logservice_pb2_grpc import LogServiceStub
-from chromadb.telemetry.opentelemetry.grpc import OtelInterceptor
-from chromadb.types import (
+from chromadb_deterministic.proto.convert import to_proto_submit
+from chromadb_deterministic.proto.logservice_pb2 import PushLogsRequest, PullLogsRequest, LogRecord
+from chromadb_deterministic.proto.logservice_pb2_grpc import LogServiceStub
+from chromadb_deterministic.telemetry.opentelemetry.grpc import OtelInterceptor
+from chromadb_deterministic.types import (
     OperationRecord,
     SeqId,
 )
-from chromadb.config import System
-from chromadb.telemetry.opentelemetry import (
+from chromadb_deterministic.config import System
+from chromadb_deterministic.telemetry.opentelemetry import (
     OpenTelemetryClient,
     OpenTelemetryGranularity,
     add_attributes_to_current_span,

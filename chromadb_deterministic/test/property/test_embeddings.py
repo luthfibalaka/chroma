@@ -8,12 +8,12 @@ import hypothesis.strategies as st
 from hypothesis import given, settings, HealthCheck
 from typing import Dict, Set, cast, Union, DefaultDict, Any, List
 from dataclasses import dataclass
-from chromadb.api.types import ID, Embeddings, Include, IDs, validate_embeddings
-from chromadb.config import System
-import chromadb.errors as errors
-from chromadb.api import ClientAPI
-from chromadb.api.models.Collection import Collection
-import chromadb.test.property.strategies as strategies
+from chromadb_deterministic.api.types import ID, Embeddings, Include, IDs, validate_embeddings
+from chromadb_deterministic.config import System
+import chromadb_deterministic.errors as errors
+from chromadb_deterministic.api import ClientAPI
+from chromadb_deterministic.api.models.Collection import Collection
+import chromadb_deterministic.test.property.strategies as strategies
 from hypothesis.stateful import (
     Bundle,
     RuleBasedStateMachine,
@@ -27,11 +27,11 @@ from hypothesis.stateful import (
     invariant,
 )
 from collections import defaultdict
-import chromadb.test.property.invariants as invariants
-from chromadb.test.conftest import is_client_in_process, reset, NOT_CLUSTER_ONLY
+import chromadb_deterministic.test.property.invariants as invariants
+from chromadb_deterministic.test.conftest import is_client_in_process, reset, NOT_CLUSTER_ONLY
 import numpy as np
 import uuid
-from chromadb.test.utils.wait_for_version_increase import (
+from chromadb_deterministic.test.utils.wait_for_version_increase import (
     wait_for_version_increase,
     get_collection_version,
 )

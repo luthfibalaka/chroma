@@ -2,8 +2,8 @@ import posthog
 import logging
 import sys
 from typing import Any, Dict, Set
-from chromadb.config import System
-from chromadb.telemetry.product import (
+from chromadb_deterministic.config import System
+from chromadb_deterministic.telemetry.product import (
     ProductTelemetryClient,
     ProductTelemetryEvent,
 )

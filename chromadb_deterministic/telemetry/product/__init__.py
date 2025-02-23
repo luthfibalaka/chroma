@@ -2,8 +2,8 @@ from abc import abstractmethod
 import os
 from typing import ClassVar, Dict, Any
 import uuid
-import chromadb
-from chromadb.config import Component
+import chromadb_deterministic
+from chromadb_deterministic.config import Component
 from pathlib import Path
 from enum import Enum
 
@@ -58,8 +58,8 @@ class ProductTelemetryClient(Component):
 
     @property
     def context(self) -> Dict[str, Any]:
-        chroma_version = chromadb.__version__
-        settings = chromadb.get_settings()
+        chroma_version = chromadb_deterministic.__version__
+        settings = chromadb_deterministic.get_settings()
         telemetry_settings = {}
         for whitelisted in TELEMETRY_WHITELISTED_SETTINGS:
             telemetry_settings[whitelisted] = settings[whitelisted]

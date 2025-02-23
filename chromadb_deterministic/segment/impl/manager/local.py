@@ -1,5 +1,5 @@
 from threading import Lock
-from chromadb.segment import (
+from chromadb_deterministic.segment import (
     SegmentImplementation,
     SegmentManager,
     MetadataReader,
@@ -8,31 +8,31 @@ from chromadb.segment import (
     S,
 )
 import logging
-from chromadb.segment.impl.manager.cache.cache import (
+from chromadb_deterministic.segment.impl.manager.cache.cache import (
     SegmentLRUCache,
     BasicCache,
     SegmentCache,
 )
 import os
 
-from chromadb.config import System, get_class
-from chromadb.db.system import SysDB
+from chromadb_deterministic.config import System, get_class
+from chromadb_deterministic.db.system import SysDB
 from overrides import override
-from chromadb.segment.impl.vector.local_persistent_hnsw import (
+from chromadb_deterministic.segment.impl.vector.local_persistent_hnsw import (
     PersistentLocalHnswSegment,
 )
-from chromadb.telemetry.opentelemetry import (
+from chromadb_deterministic.telemetry.opentelemetry import (
     OpenTelemetryClient,
     OpenTelemetryGranularity,
     trace_method,
 )
-from chromadb.types import Collection, Operation, Segment, SegmentScope, Metadata
+from chromadb_deterministic.types import Collection, Operation, Segment, SegmentScope, Metadata
 from typing import Dict, Type, Sequence, Optional, cast
 from uuid import UUID, uuid4
 import platform
 
-from chromadb.utils.lru_cache import LRUCache
-from chromadb.utils.directory import get_directory_size
+from chromadb_deterministic.utils.lru_cache import LRUCache
+from chromadb_deterministic.utils.directory import get_directory_size
 
 
 if platform.system() != "Windows":
@@ -41,9 +41,9 @@ elif platform.system() == "Windows":
     import ctypes
 
 SEGMENT_TYPE_IMPLS = {
-    SegmentType.SQLITE: "chromadb.segment.impl.metadata.sqlite.SqliteMetadataSegment",
-    SegmentType.HNSW_LOCAL_MEMORY: "chromadb.segment.impl.vector.local_hnsw.LocalHnswSegment",
-    SegmentType.HNSW_LOCAL_PERSISTED: "chromadb.segment.impl.vector.local_persistent_hnsw.PersistentLocalHnswSegment",
+    SegmentType.SQLITE: "chromadb_deterministic.segment.impl.metadata.sqlite.SqliteMetadataSegment",
+    SegmentType.HNSW_LOCAL_MEMORY: "chromadb_deterministic.segment.impl.vector.local_hnsw.LocalHnswSegment",
+    SegmentType.HNSW_LOCAL_PERSISTED: "chromadb_deterministic.segment.impl.vector.local_persistent_hnsw.PersistentLocalHnswSegment",
 }
 
 

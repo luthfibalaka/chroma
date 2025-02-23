@@ -6,19 +6,19 @@ from typing_extensions import TypedDict
 import uuid
 import numpy as np
 import numpy.typing as npt
-import chromadb.api.types as types
+import chromadb_deterministic.api.types as types
 import re
 from hypothesis.strategies._internal.strategies import SearchStrategy
-from chromadb.test.conftest import NOT_CLUSTER_ONLY
+from chromadb_deterministic.test.conftest import NOT_CLUSTER_ONLY
 from dataclasses import dataclass
-from chromadb.api.types import (
+from chromadb_deterministic.api.types import (
     Documents,
     Embeddable,
     EmbeddingFunction,
     Embeddings,
     Metadata,
 )
-from chromadb.types import LiteralValue, WhereOperator, LogicalOperator
+from chromadb_deterministic.types import LiteralValue, WhereOperator, LogicalOperator
 
 # Set the random seed for reproducibility
 np.random.seed(0)  # unnecessary, hypothesis does this for us

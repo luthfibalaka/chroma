@@ -1,13 +1,13 @@
 import os
 from typing import cast, ClassVar
-from chromadb.telemetry.product import ProductTelemetryEvent
+from chromadb_deterministic.telemetry.product import ProductTelemetryEvent
 
 
 class ClientStartEvent(ProductTelemetryEvent):
     def __init__(self) -> None:
         super().__init__()
         # Lazy import to avoid circular imports
-        from chromadb import is_in_colab
+        from chromadb_deterministic import is_in_colab
 
         self.in_colab = is_in_colab()
 

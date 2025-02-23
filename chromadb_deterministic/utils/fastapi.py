@@ -1,7 +1,7 @@
 from uuid import UUID
 from starlette.responses import JSONResponse
 
-from chromadb.errors import ChromaError, InvalidUUIDError
+from chromadb_deterministic.errors import ChromaError, InvalidUUIDError
 
 
 def fastapi_json_response(error: ChromaError) -> JSONResponse:

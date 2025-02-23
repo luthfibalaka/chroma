@@ -2,7 +2,7 @@ import importlib
 import multiprocessing
 from typing import Optional, Sequence, List, Tuple
 import numpy as np
-from chromadb.api.types import URI, DataLoader, Image, URIs
+from chromadb_deterministic.api.types import URI, DataLoader, Image, URIs
 from concurrent.futures import ThreadPoolExecutor
 
 

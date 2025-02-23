@@ -65,7 +65,7 @@ resource "render_service" "chroma" {
       size_gb    = var.chroma_data_volume_size
     }
     docker = {
-      command = "uvicorn chromadb.app:app --reload --workers 1 --host 0.0.0.0 --port 80 --log-config chromadb/log_config.yml --timeout-keep-alive 30"
+      command = "uvicorn chromadb_deterministic.app:app --reload --workers 1 --host 0.0.0.0 --port 80chromadb_deterministiconfig chromadb_deterministic/log_config.yml --timeout-keep-alive 30"
       path    = "./Dockerfile"
     }
   }

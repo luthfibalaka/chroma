@@ -76,7 +76,7 @@ export class DefaultEmbeddingFunction implements IEmbeddingFunction {
       // @ts-ignore
       if (_a.code === "MODULE_NOT_FOUND") {
         throw new Error(
-          "Please install the chromadb-default-embed package to use the DefaultEmbeddingFunction, `npm install chromadb-default-embed`",
+          "Please install the chromadb_deterministic-default-embed package to use the DefaultEmbeddingFunction,chromadb_deterministicstall chromadb_deterministic-default-embed`",
         );
       }
       throw _a; // Re-throw other errors
@@ -87,19 +87,19 @@ export class DefaultEmbeddingFunction implements IEmbeddingFunction {
   /** @ignore */
   static async import(): Promise<{
     // @ts-expect-error
-    pipeline: typeof import("chromadb-default-embed");
+    pipeline: typeof import("chromadb_deterministic-default-embed");
   }> {
     try {
       let importResult;
       if (isBrowser()) {
         importResult = await import(
-          // todo: we can't import chromadb-default-embed here yet because the `build` script was not run before publishing our fork to NPM, so the entrypoint in our forked package points to a non-existent file.
+          // todo: we can't import chromadb_deterministic-default-embed here yet because the `build` script was not run before publishing our fork to NPM, so the entrypoint in our forked package points to a non-existent file.
           // @ts-expect-error
           "https://unpkg.com/@xenova/transformers@2.13.2"
         );
       } else {
         // @ts-expect-error
-        importResult = await import("chromadb-default-embed");
+        importResult = await import("chromadb_deterministic-default-embed");
       }
       const { pipeline, env } = importResult;
 
@@ -111,7 +111,7 @@ export class DefaultEmbeddingFunction implements IEmbeddingFunction {
       return { pipeline };
     } catch (e) {
       throw new Error(
-        "Please install chromadb-default-embed as a dependency with, e.g. `npm install chromadb-default-embed`",
+        "Please install chromadb_deterministic-default-embed as a dependency with, e.g.chromadb_deterministicstall chromadb_deterministic-default-embed`",
       );
     }
   }

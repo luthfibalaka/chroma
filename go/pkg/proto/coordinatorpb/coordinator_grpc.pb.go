@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.4.0
 // - protoc             v5.26.1
-// source: chromadb/proto/coordinator.proto
+// source: chromadb_deterministic/proto/coordinator.proto
 
 package coordinatorpb
 
@@ -677,5 +677,5 @@ var SysDB_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "chromadb/proto/coordinator.proto",
+	Metadata: "chromadb_deterministic/proto/coordinator.proto",
 }

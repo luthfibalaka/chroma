@@ -1,9 +1,9 @@
 import pytest
 from importlib_resources import files
 from typing import Generator, List, Callable
-import chromadb.db.migrations as migrations
-from chromadb.db.impl.sqlite import SqliteDB
-from chromadb.config import System, Settings
+import chromadb_deterministic.db.migrations as migrations
+from chromadb_deterministic.db.impl.sqlite import SqliteDB
+from chromadb_deterministic.config import System, Settings
 from pytest import FixtureRequest
 import copy
 
@@ -51,7 +51,7 @@ def test_setup_migrations(db: migrations.MigratableDB) -> None:
 def test_migrations(db: migrations.MigratableDB) -> None:
     db.initialize_migrations()
 
-    dir = files("chromadb.test.db.migrations")
+    dir = files("chromadb_deterministic.test.db.migrations")
     db_migrations = db.db_migrations(dir)
     source_migrations = migrations.find_migrations(dir, db.migration_scope())
 
@@ -105,7 +105,7 @@ def test_tampered_migration(db: migrations.MigratableDB) -> None:
 
     db.setup_migrations()
 
-    dir = files("chromadb.test.db.migrations")
+    dir = files("chromadb_deterministic.test.db.migrations")
     source_migrations = migrations.find_migrations(dir, db.migration_scope())
 
     db_migrations = db.db_migrations(dir)
@@ -145,7 +145,7 @@ def test_initialization(
     monkeypatch: pytest.MonkeyPatch, db: migrations.MigratableDB
 ) -> None:
     db.reset_state()
-    dir = files("chromadb.test.db.migrations")
+    dir = files("chromadb_deterministic.test.db.migrations")
     monkeypatch.setattr(db, "migration_dirs", lambda: [dir])
 
     assert not db.migrations_initialized()

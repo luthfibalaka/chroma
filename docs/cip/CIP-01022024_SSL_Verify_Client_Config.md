@@ -38,11 +38,11 @@ more details.
 Example Usage:
 
 ```python
-import chromadb
-from chromadb import Settings
-client = chromadb.HttpClient(host="localhost",port="8443",ssl=True, settings=Settings(chroma_server_ssl_verify='./servercert.pem'))
+import chromadb_deterministic
+from chromadb_deterministic import Settings
+client = chromadb_deterministic.HttpClient(host="localhost",port="8443",ssl=True, settings=Settings(chroma_server_ssl_verify='./servercert.pem'))
 # or with boolean
-client = chromadb.HttpClient(host="localhost",port="8443",ssl=True, settings=Settings(chroma_server_ssl_verify=False))
+client = chromadb_deterministic.HttpClient(host="localhost",port="8443",ssl=True, settings=Settings(chroma_server_ssl_verify=False))
 ```
 
 ### Resources

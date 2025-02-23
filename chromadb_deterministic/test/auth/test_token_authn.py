@@ -4,10 +4,10 @@ from typing import Any, Dict
 import hypothesis.strategies as st
 import pytest
 
-from chromadb.api import ServerAPI
-from chromadb.config import System
-from chromadb.test.conftest import _fastapi_fixture
-from chromadb.test.auth.strategies import (
+from chromadb_deterministic.api import ServerAPI
+from chromadb_deterministic.config import System
+from chromadb_deterministic.test.conftest import _fastapi_fixture
+from chromadb_deterministic.test.auth.strategies import (
     random_token,
     random_token_transport_header,
     token_test_conf,
@@ -24,9 +24,9 @@ def test_fastapi_server_token_authn_allows_when_it_should_allow(
             api = _fastapi_fixture(
                 is_persistent=persistence,
                 chroma_auth_token_transport_header=transport_header,
-                chroma_server_authn_provider="chromadb.auth.token_authn.TokenAuthenticationServerProvider",
+                chroma_server_authn_provider="chromadb_deterministic.auth.token_authn.TokenAuthenticationServerProvider",
                 chroma_server_authn_credentials_file=tconf["filename"],
-                chroma_client_auth_provider="chromadb.auth.token_authn.TokenAuthClientProvider",
+                chroma_client_auth_provider="chromadb_deterministic.auth.token_authn.TokenAuthClientProvider",
                 chroma_client_auth_credentials=token,
             )
             _sys: System = next(api)
@@ -57,9 +57,9 @@ def test_fastapi_server_token_authn_rejects_when_it_should_reject(
             _api = _fastapi_fixture(
                 is_persistent=persistence,
                 chroma_auth_token_transport_header=transport_header,
-                chroma_server_authn_provider="chromadb.auth.token_authn.TokenAuthenticationServerProvider",
+                chroma_server_authn_provider="chromadb_deterministic.auth.token_authn.TokenAuthenticationServerProvider",
                 chroma_server_authn_credentials_file=tconf["filename"],
-                chroma_client_auth_provider="chromadb.auth.token_authn.TokenAuthClientProvider",
+                chroma_client_auth_provider="chromadb_deterministic.auth.token_authn.TokenAuthClientProvider",
                 chroma_client_auth_credentials=unauthorized_token,
             )
             _sys: System = next(_api)

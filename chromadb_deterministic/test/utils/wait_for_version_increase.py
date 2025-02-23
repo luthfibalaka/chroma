@@ -1,6 +1,6 @@
 import time
-from chromadb.api import ClientAPI
-from chromadb.test.conftest import COMPACTION_SLEEP
+from chromadb_deterministic.api import ClientAPI
+from chromadb_deterministic.test.conftest import COMPACTION_SLEEP
 
 TIMEOUT_INTERVAL = 1
 

@@ -1,7 +1,7 @@
-import chromadb
-import chromadb.config
-from chromadb.server.fastapi import FastAPI
+import chromadb_deterministic
+import chromadb_deterministic.config
+from chromadb_deterministic.server.fastapi import FastAPI
 
-settings = chromadb.config.Settings()
+settings = chromadb_deterministic.config.Settings()
 server = FastAPI(settings)
 app = server.app()

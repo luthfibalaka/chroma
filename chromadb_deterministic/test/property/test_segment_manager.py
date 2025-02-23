@@ -1,7 +1,7 @@
 import uuid
 
 import pytest
-import chromadb.test.property.strategies as strategies
+import chromadb_deterministic.test.property.strategies as strategies
 from unittest.mock import patch
 import random
 from hypothesis.stateful import (
@@ -16,12 +16,12 @@ from hypothesis.stateful import (
     MultipleResults,
 )
 from typing import Dict, List
-from chromadb.segment import VectorReader
-from chromadb.segment import SegmentManager
+from chromadb_deterministic.segment import VectorReader
+from chromadb_deterministic.segment import SegmentManager
 
-from chromadb.types import SegmentScope
-from chromadb.db.system import SysDB
-from chromadb.config import System
+from chromadb_deterministic.types import SegmentScope
+from chromadb_deterministic.db.system import SysDB
+from chromadb_deterministic.config import System
 
 # Memory limit use for testing
 memory_limit = 100
@@ -127,7 +127,7 @@ class SegmentManagerStateMachine(RuleBasedStateMachine):
 
 
 @patch(
-    "chromadb.segment.impl.manager.local.get_directory_size",
+    "chromadb_deterministic.segment.impl.manager.local.get_directory_size",
     SegmentManagerStateMachine.mock_directory_size,
 )
 def test_segment_manager(caplog: pytest.LogCaptureFixture, system: System) -> None:

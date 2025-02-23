@@ -1,4 +1,4 @@
-from chromadb.db.base import ParameterValue, get_sql
+from chromadb_deterministic.db.base import ParameterValue, get_sql
 import pypika
 
 

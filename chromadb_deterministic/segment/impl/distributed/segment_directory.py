@@ -1,23 +1,23 @@
 from typing import Any, Callable, Dict, Optional, cast
 from overrides import EnforceOverrides, override
-from chromadb.config import System
-from chromadb.segment.distributed import (
+from chromadb_deterministic.config import System
+from chromadb_deterministic.segment.distributed import (
     Memberlist,
     MemberlistProvider,
     SegmentDirectory,
 )
-from chromadb.types import Segment
+from chromadb_deterministic.types import Segment
 from kubernetes import client, config, watch
 from kubernetes.client.rest import ApiException
 import threading
-from chromadb.telemetry.opentelemetry import (
+from chromadb_deterministic.telemetry.opentelemetry import (
     OpenTelemetryGranularity,
     add_attributes_to_current_span,
     trace_method,
 )
 import time
 
-from chromadb.utils.rendezvous_hash import assign, murmur3hasher
+from chromadb_deterministic.utils.rendezvous_hash import assign, murmur3hasher
 
 # These could go in config but given that they will rarely change, they are here for now to avoid
 # polluting the config file further.

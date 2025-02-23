@@ -1,4 +1,4 @@
-from chromadb.utils.rendezvous_hash import assign, murmur3hasher
+from chromadb_deterministic.utils.rendezvous_hash import assign, murmur3hasher
 
 
 def test_rendezvous_hash() -> None:

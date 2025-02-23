@@ -3,18 +3,18 @@
 #
 # See https://github.com/chroma-core/chroma/issues/1554
 
-import chromadb
-from chromadb.config import Settings
+import chromadb_deterministic
+from chromadb_deterministic.config import Settings
 import sys
 
 
 def main() -> None:
     try:
-        chromadb.HttpClient(
+        chromadb_deterministic.HttpClient(
             host="localhost",
             port=8000,
             settings=Settings(
-                chroma_client_auth_provider="chromadb.auth.basic_authn.BasicAuthClientProvider",
+                chroma_client_auth_provider="chromadb_deterministic.auth.basic_authn.BasicAuthClientProvider",
                 chroma_client_auth_credentials="admin:testDb@home2",
             ),
         )

@@ -14,7 +14,7 @@ from community members.
 The changes will affect the following public interfaces:
 
 - `Where` and `OperatorExpression`
-  classes - https://github.com/chroma-core/chroma/blob/48700dd07f14bcfd8b206dc3b2e2795d5531094d/chromadb/types.py#L125-L129
+  classes - https://github.com/chroma-core/chroma/blob/48700dd07f14bcfd8b206dc3b2e2795d5531094d/chromadb_deterministic/types.py#L125-L129
 - `collection.get()`
 - `collection.query()`
 

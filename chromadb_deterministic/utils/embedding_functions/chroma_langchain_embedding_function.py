@@ -1,7 +1,7 @@
 import logging
 from typing import Any, List, Union
 
-from chromadb.api.types import Documents, EmbeddingFunction, Embeddings, Images
+from chromadb_deterministic.api.types import Documents, EmbeddingFunction, Embeddings, Images
 
 logger = logging.getLogger(__name__)
 

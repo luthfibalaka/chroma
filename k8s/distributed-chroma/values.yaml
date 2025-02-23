@@ -13,18 +13,18 @@ frontendService:
   # TODO we could maybe have mutually exclusive pieces of config, e.g. isPersistentValue
   # and isPersistentFromConfigMap or something.
   isPersistent: 'value: "TRUE"'
-  producerImpl: 'value: "chromadb.logservice.logservice.LogService"'
-  consumerImpl: 'value: "chromadb.logservice.logservice.LogService"'
-  segmentManagerImpl: 'value: "chromadb.segment.impl.manager.distributed.DistributedSegmentManager"'
+  producerImpl: 'value: "chromadb_deterministic.logservice.logservice.LogService"'
+  consumerImpl: 'value: "chromadb_deterministic.logservice.logservice.LogService"'
+  segmentManagerImpl: 'value: "chromadb_deterministic.segment.impl.manager.distributed.DistributedSegmentManager"'
   allowReset: 'value: "TRUE"'
-  sysdbImpl: 'value: "chromadb.db.impl.grpc.client.GrpcSysDB"'
+  sysdbImpl: 'value: "chromadb_deterministic.db.impl.grpc.client.GrpcSysDB"'
   serverGrpcPort: 'value: "50051"'
   coordinatorHost: 'value: "sysdb.chroma"'
   authProvider: 'value: ""'
   authCredentialsProvider: 'value: ""'
   authzProvider: 'value: ""'
   authzConfigProvider: 'value: ""'
-  memberlistProviderImpl: 'value: "chromadb.segment.impl.distributed.segment_directory.CustomResourceMemberlistProvider"'
+  memberlistProviderImpl: 'value: "chromadb_deterministic.segment.impl.distributed.segment_directory.CustomResourceMemberlistProvider"'
   logServiceHost: 'value: "logservice.chroma"'
   logServicePort: 'value: "50051"'
   otherEnvConfig: |

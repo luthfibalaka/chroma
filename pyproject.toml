@@ -1,6 +1,6 @@
 [project]
 name = "chromadb_deterministic"
-version = "0.5.5.post4"
+version = "0.5.5.post6"
 
 authors = [
   { name = "Jeff Huber", email = "jeff@trychroma.com" },

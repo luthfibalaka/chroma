@@ -3,8 +3,8 @@ import string
 from typing import Optional, List, Tuple, Any
 from unittest.mock import patch
 
-from chromadb.config import System, Settings
-from chromadb.quota import QuotaEnforcer, Resource
+from chromadb_deterministic.config import System, Settings
+from chromadb_deterministic.quota import QuotaEnforcer, Resource
 import pytest
 
 
@@ -72,14 +72,14 @@ def run_static_checks(
 @pytest.fixture(scope="module")
 def enforcer() -> QuotaEnforcer:
     settings = Settings(
-        chroma_quota_provider_impl="chromadb.quota.test_provider.QuotaProviderForTest"
+        chroma_quota_provider_impl="chromadb_deterministic.quota.test_provider.QuotaProviderForTest"
     )
     system = System(settings)
     return system.require(QuotaEnforcer)
 
 
 @patch(
-    "chromadb.quota.test_provider.QuotaProviderForTest.get_for_subject",
+    "chromadb_deterministic.quota.test_provider.QuotaProviderForTest.get_for_subject",
     mock_get_for_subject,
 )
 def test_static_enforcer_metadata(enforcer):
@@ -99,7 +99,7 @@ def test_static_enforcer_metadata(enforcer):
 
 
 @patch(
-    "chromadb.quota.test_provider.QuotaProviderForTest.get_for_subject",
+    "chromadb_deterministic.quota.test_provider.QuotaProviderForTest.get_for_subject",
     mock_get_for_subject_none_key_length,
 )
 def test_static_enforcer_metadata_none_key_length(enforcer):
@@ -116,7 +116,7 @@ def test_static_enforcer_metadata_none_key_length(enforcer):
 
 
 @patch(
-    "chromadb.quota.test_provider.QuotaProviderForTest.get_for_subject",
+    "chromadb_deterministic.quota.test_provider.QuotaProviderForTest.get_for_subject",
     mock_get_for_subject_none_value_length,
 )
 def test_static_enforcer_metadata_none_value_length(enforcer):
@@ -133,7 +133,7 @@ def test_static_enforcer_metadata_none_value_length(enforcer):
 
 
 @patch(
-    "chromadb.quota.test_provider.QuotaProviderForTest.get_for_subject",
+    "chromadb_deterministic.quota.test_provider.QuotaProviderForTest.get_for_subject",
     mock_get_for_subject_none_key_value_length,
 )
 def test_static_enforcer_metadata_none_key_value_length(enforcer):
@@ -147,7 +147,7 @@ def test_static_enforcer_metadata_none_key_value_length(enforcer):
 
 
 @patch(
-    "chromadb.quota.test_provider.QuotaProviderForTest.get_for_subject",
+    "chromadb_deterministic.quota.test_provider.QuotaProviderForTest.get_for_subject",
     mock_get_for_subject,
 )
 def test_static_enforcer_documents(enforcer):
@@ -159,7 +159,7 @@ def test_static_enforcer_documents(enforcer):
 
 
 @patch(
-    "chromadb.quota.test_provider.QuotaProviderForTest.get_for_subject",
+    "chromadb_deterministic.quota.test_provider.QuotaProviderForTest.get_for_subject",
     mock_get_for_subject,
 )
 def test_static_enforcer_embeddings(enforcer):

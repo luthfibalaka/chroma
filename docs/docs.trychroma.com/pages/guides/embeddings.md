@@ -28,7 +28,7 @@ We welcome pull requests to add new Embedding Functions to the community.
 By default, Chroma uses the [Sentence Transformers](https://www.sbert.net/) `all-MiniLM-L6-v2` model to create embeddings. This embedding model can create sentence and document embeddings that can be used for a wide variety of tasks. This embedding function runs locally on your machine, and may require you download the model files (this will happen automatically).
 
 ```python
-from chromadb.utils import embedding_functions
+from chromadb_deterministic.utils import embedding_functions
 default_ef = embedding_functions.DefaultEmbeddingFunction()
 ```
 
@@ -47,9 +47,9 @@ val = default_ef(["foo"])
 Chroma can use [Transformers.js](https://github.com/xenova/transformers.js) to create embeddings locally on the machine. Transformers uses the 'Xenova/all-MiniLM-L6-v2' model. Make sure you have installed Transformers.js by running ```npm install @xenova/transformers``` from the commandline.
 
 ```javascript
-const {ChromaClient} = require('chromadb');
+const {ChromaClient} = require('chromadb_deterministic');
 const client = new ChromaClient({path: "http://localhost:8000"});
-const {TransformersEmbeddingFunction} = require('chromadb');
+const {TransformersEmbeddingFunction} = require('chromadb_deterministic');
 const embedder = new TransformersEmbeddingFunction();
 
 (async () => {
@@ -112,7 +112,7 @@ You can pass in an optional `model_name` argument, which lets you choose which S
 You can create your own embedding function to use with Chroma, it just needs to implement the `EmbeddingFunction` protocol.
 
 ```python
-from chromadb import Documents, EmbeddingFunction, Embeddings
+from chromadb_deterministic import Documents, EmbeddingFunction, Embeddings
 
 class MyEmbeddingFunction(EmbeddingFunction):
     def __call__(self, input: Documents) -> Embeddings:

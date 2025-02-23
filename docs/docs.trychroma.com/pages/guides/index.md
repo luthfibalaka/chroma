@@ -20,13 +20,13 @@ title: "🧪 Usage Guide"
 {% tab label="Python" %}
 
 ```python
-import chromadb
+import chromadb_deterministic
 ```
 
 You can configure Chroma to save and load the database from your local machine. Data will be persisted automatically and loaded on start (if it exists).
 
 ```python
-client = chromadb.PersistentClient(path="/path/to/save/to")
+client = chromadb_deterministic.PersistentClient(path="/path/to/save/to")
 ```
 
 The `path` is where Chroma will store its database files on disk, and load them on start.
@@ -36,10 +36,10 @@ The `path` is where Chroma will store its database files on disk, and load them 
 
 ```js
 // CJS
-const { ChromaClient } = require("chromadb");
+const { ChromaClient } = require("chromadb_deterministic");
 
 // ESM
-import { ChromaClient } from "chromadb";
+import { ChromaClient } from "chromadb_deterministic";
 ```
 
 {% note type="note" title="Connecting to the backend" %}
@@ -93,8 +93,8 @@ chroma run --path /db_path
 Then use the Chroma HTTP client to connect to the server:
 
 ```python
-import chromadb
-chroma_client = chromadb.HttpClient(host='localhost', port=8000)
+import chromadb_deterministic
+chroma_client = chromadb_deterministic.HttpClient(host='localhost', port=8000)
 ```
 
 That's it! Chroma's API will run in `client-server` mode with just this change.
@@ -105,10 +105,10 @@ Chroma also provides an async HTTP client. The behaviors and method signatures a
 
 ```python
 import asyncio
-import chromadb
+import chromadb_deterministic
 
 async def main():
-    client = await chromadb.AsyncHttpClient()
+    client = await chromadb_deterministic.AsyncHttpClient()
     collection = await client.create_collection(name="my_collection")
 
     await collection.add(
@@ -137,23 +137,23 @@ This is distructive command. With this command volumes created earlier will be d
 #### Using the Python HTTP-only client
 
 If you are running Chroma in client-server mode, you may not need the full Chroma library. Instead, you can use the lightweight client-only library.
-In this case, you can install the `chromadb-client` package. This package is a lightweight HTTP client for the server with a minimal dependency footprint.
+In this case, you can install the `chromadb_deterministic-client` package. This package is a lightweight HTTP client for the server with a minimal dependency footprint.
 
 ```python
-pip install chromadb-client
+pip install chromadb_deterministic-client
 ```
 
 ```python
-import chromadb
+import chromadb_deterministic
 # Example setup of the client to connect to your chroma server
-client = chromadb.HttpClient(host='localhost', port=8000)
+client = chromadb_deterministic.HttpClient(host='localhost', port=8000)
 
 # Or for async usage:
 async def main():
-    client = await chromadb.AsyncHttpClient(host='localhost', port=8000)
+    client = await chromadb_deterministic.AsyncHttpClient(host='localhost', port=8000)
 ```
 
-Note that the `chromadb-client` package is a subset of the full Chroma library and does not include all the dependencies. If you want to use the full Chroma library, you can install the `chromadb` package instead.
+Note that the `chromadb_deterministic-client` package is a subset of the full Chroma library and does not include all the dependencies. If you want to use the full Chroma library, you canchromadb_deterministic the `chromadb_deterministic` package instead.
 Most importantly, there is no default embedding function. If you add() documents without embeddings, you must have manually specified an embedding function and installed the dependencies for it.
 
 {% /tab %}
@@ -162,7 +162,7 @@ Most importantly, there is no default embedding function. If you add() documents
 To run Chroma in client server mode, first install the chroma library and CLI via pypi:
 
 ```bash
-pip install chromadb
+pip install chromadb_deterministic
 ```
 
 Then start the Chroma server:
@@ -175,10 +175,10 @@ The JS client then talks to the chroma server backend.
 
 ```js
 // CJS
-const { ChromaClient } = require("chromadb");
+const { ChromaClient } = require("chromadb_deterministic");
 
 // ESM
-import { ChromaClient } from "chromadb";
+import { ChromaClient } from "chromadb_deterministic";
 
 const client = new ChromaClient();
 ```
@@ -223,10 +223,10 @@ The embedding function takes text as input, and performs tokenization and embedd
 
 ```js
 // CJS
-const { ChromaClient } = require("chromadb");
+const { ChromaClient } = require("chromadb_deterministic");
 
 // ESM
-import { ChromaClient } from "chromadb";
+import { ChromaClient } from "chromadb_deterministic";
 ```
 
 The JS client talks to a chroma server backend. This can run on your local computer or be easily deployed to AWS.

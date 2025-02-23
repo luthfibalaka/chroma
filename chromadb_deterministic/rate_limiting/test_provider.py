@@ -2,8 +2,8 @@ from typing import Optional
 
 from overrides import overrides
 
-from chromadb.config import System
-from chromadb.rate_limiting import RateLimitingProvider
+from chromadb_deterministic.config import System
+from chromadb_deterministic.rate_limiting import RateLimitingProvider
 
 
 class RateLimitingTestProvider(RateLimitingProvider):

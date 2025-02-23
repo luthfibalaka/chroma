@@ -1,11 +1,11 @@
 from typing import Optional
 from unittest.mock import patch
 
-from chromadb.config import System, Settings, Component
-from chromadb.quota import QuotaEnforcer, Resource
+from chromadb_deterministic.config import System, Settings, Component
+from chromadb_deterministic.quota import QuotaEnforcer, Resource
 import pytest
 
-from chromadb.rate_limiting import rate_limit
+from chromadb_deterministic.rate_limiting import rate_limit
 
 
 class RateLimitingGym(Component):
@@ -28,19 +28,19 @@ def mock_get_for_subject(
 @pytest.fixture(scope="module")
 def rate_limiting_gym() -> QuotaEnforcer:
     settings = Settings(
-        chroma_quota_provider_impl="chromadb.quota.test_provider.QuotaProviderForTest",
-        chroma_rate_limiting_provider_impl="chromadb.rate_limiting.test_provider.RateLimitingTestProvider",
+        chroma_quota_provider_impl="chromadb_deterministic.quota.test_provider.QuotaProviderForTest",
+        chroma_rate_limiting_provider_impl="chromadb_deterministic.rate_limiting.test_provider.RateLimitingTestProvider",
     )
     system = System(settings)
     return RateLimitingGym(system)
 
 
 @patch(
-    "chromadb.quota.test_provider.QuotaProviderForTest.get_for_subject",
+    "chromadb_deterministic.quota.test_provider.QuotaProviderForTest.get_for_subject",
     mock_get_for_subject,
 )
 @patch(
-    "chromadb.rate_limiting.test_provider.RateLimitingTestProvider.is_allowed",
+    "chromadb_deterministic.rate_limiting.test_provider.RateLimitingTestProvider.is_allowed",
     lambda self, key, quota, point=1: False,
 )
 def test_rate_limiting_should_raise(rate_limiting_gym: RateLimitingGym):
@@ -50,11 +50,11 @@ def test_rate_limiting_should_raise(rate_limiting_gym: RateLimitingGym):
 
 
 @patch(
-    "chromadb.quota.test_provider.QuotaProviderForTest.get_for_subject",
+    "chromadb_deterministic.quota.test_provider.QuotaProviderForTest.get_for_subject",
     mock_get_for_subject,
 )
 @patch(
-    "chromadb.rate_limiting.test_provider.RateLimitingTestProvider.is_allowed",
+    "chromadb_deterministic.rate_limiting.test_provider.RateLimitingTestProvider.is_allowed",
     lambda self, key, quota, point=1: True,
 )
 def test_rate_limiting_should_not_raise(rate_limiting_gym: RateLimitingGym):

@@ -1,16 +1,16 @@
 from typing import Generator, cast
 import numpy as np
 import pytest
-import chromadb
-from chromadb.api.types import (
+import chromadb_deterministic
+from chromadb_deterministic.api.types import (
     Embeddable,
     EmbeddingFunction,
     Embeddings,
     Image,
     Document,
 )
-from chromadb.test.property.strategies import hashing_embedding_function
-from chromadb.test.property.invariants import _exact_distances
+from chromadb_deterministic.test.property.strategies import hashing_embedding_function
+from chromadb_deterministic.test.property.invariants import _exact_distances
 
 
 # A 'standard' multimodal embedding function, which converts inputs to strings
@@ -39,8 +39,8 @@ def random_document() -> Document:
 @pytest.fixture
 def multimodal_collection(
     default_ef: EmbeddingFunction[Embeddable] = hashing_multimodal_ef(),
-) -> Generator[chromadb.Collection, None, None]:
-    client = chromadb.Client()
+) -> Generator[chromadb_deterministic.Collection, None, None]:
+    client = chromadb_deterministic.Client()
     collection = client.create_collection(
         name="multimodal_collection", embedding_function=default_ef
     )
@@ -50,7 +50,7 @@ def multimodal_collection(
 
 # Test adding and querying of a multimodal collection consisting of images and documents
 def test_multimodal(
-    multimodal_collection: chromadb.Collection,
+    multimodal_collection: chromadb_deterministic.Collection,
     default_ef: EmbeddingFunction[Embeddable] = hashing_multimodal_ef(),
     n_examples: int = 10,
     n_query_results: int = 3,
@@ -140,7 +140,7 @@ def test_multimodal(
 
 @pytest.mark.xfail
 def test_multimodal_update_with_image(
-    multimodal_collection: chromadb.Collection,
+    multimodal_collection: chromadb_deterministic.Collection,
 ) -> None:
     # Updating an entry with an existing document should remove the documentß
 

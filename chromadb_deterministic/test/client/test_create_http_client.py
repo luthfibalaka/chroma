@@ -1,7 +1,7 @@
 import subprocess
 
 # Needs to be a module, not a file, so that local imports work.
-TEST_MODULE = "chromadb.test.client.create_http_client_with_basic_auth"
+TEST_MODULE = "chromadb_deterministic.test.client.create_http_client_with_basic_auth"
 
 
 def test_main() -> None:

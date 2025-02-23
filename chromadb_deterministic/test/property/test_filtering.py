@@ -1,9 +1,9 @@
 from typing import Any, Dict, List, Optional, cast
 from hypothesis import given, settings, HealthCheck
 import pytest
-from chromadb.api import ClientAPI
-from chromadb.test.property import invariants
-from chromadb.api.types import (
+from chromadb_deterministic.api import ClientAPI
+from chromadb_deterministic.test.property import invariants
+from chromadb_deterministic.api.types import (
     Document,
     Embedding,
     Embeddings,
@@ -14,13 +14,13 @@ from chromadb.api.types import (
     Where,
     WhereDocument,
 )
-from chromadb.test.conftest import reset, NOT_CLUSTER_ONLY
-import chromadb.test.property.strategies as strategies
+from chromadb_deterministic.test.conftest import reset, NOT_CLUSTER_ONLY
+import chromadb_deterministic.test.property.strategies as strategies
 import hypothesis.strategies as st
 import logging
 import random
 import re
-from chromadb.test.utils.wait_for_version_increase import wait_for_version_increase
+from chromadb_deterministic.test.utils.wait_for_version_increase import wait_for_version_increase
 
 
 def _filter_where_clause(clause: Where, metadata: Optional[Metadata]) -> bool:

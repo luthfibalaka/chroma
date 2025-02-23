@@ -3,7 +3,7 @@ import os
 from typing import List
 from openai.types.chat import ChatCompletionMessageParam
 import openai
-import chromadb
+import chromadb_deterministic
 
 
 def build_prompt(query: str, context: List[str]) -> List[ChatCompletionMessageParam]:
@@ -78,7 +78,7 @@ def main(
     # Instantiate a persistent chroma client in the persist_directory.
     # This will automatically load any previously saved collections.
     # Learn more at docs.trychroma.com
-    client = chromadb.PersistentClient(path=persist_directory)
+    client = chromadb_deterministic.PersistentClient(path=persist_directory)
 
     # Get the collection.
     collection = client.get_collection(name=collection_name)

@@ -27,7 +27,7 @@ We may change `None` to something else to more clearly communicate why they were
 {% /note %}
 
 
-## Build error when running `pip install chromadb`
+## Build error when running `pip install chromadb_deterministic`
 
 If you encounter an error like this during setup
 

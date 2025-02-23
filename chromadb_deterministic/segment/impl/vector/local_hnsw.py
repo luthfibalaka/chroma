@@ -1,17 +1,17 @@
 from overrides import override
 from typing import Optional, Sequence, Dict, Set, List, cast
 from uuid import UUID
-from chromadb.segment import VectorReader
-from chromadb.ingest import Consumer
-from chromadb.config import System, Settings
-from chromadb.segment.impl.vector.batch import Batch
-from chromadb.segment.impl.vector.hnsw_params import HnswParams
-from chromadb.telemetry.opentelemetry import (
+from chromadb_deterministic.segment import VectorReader
+from chromadb_deterministic.ingest import Consumer
+from chromadb_deterministic.config import System, Settings
+from chromadb_deterministic.segment.impl.vector.batch import Batch
+from chromadb_deterministic.segment.impl.vector.hnsw_params import HnswParams
+from chromadb_deterministic.telemetry.opentelemetry import (
     OpenTelemetryClient,
     OpenTelemetryGranularity,
     trace_method,
 )
-from chromadb.types import (
+from chromadb_deterministic.types import (
     LogRecord,
     VectorEmbeddingRecord,
     VectorQuery,
@@ -22,9 +22,9 @@ from chromadb.types import (
     Operation,
     Vector,
 )
-from chromadb.errors import InvalidDimensionException
+from chromadb_deterministic.errors import InvalidDimensionException
 import hnswlib
-from chromadb.utils.read_write_lock import ReadWriteLock, ReadRWLock, WriteRWLock
+from chromadb_deterministic.utils.read_write_lock import ReadWriteLock, ReadRWLock, WriteRWLock
 import logging
 
 logger = logging.getLogger(__name__)

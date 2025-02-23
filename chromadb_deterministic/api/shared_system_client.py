@@ -1,10 +1,10 @@
 from typing import ClassVar, Dict
 import uuid
 
-from chromadb.api import ServerAPI
-from chromadb.config import Settings, System
-from chromadb.telemetry.product import ProductTelemetryClient
-from chromadb.telemetry.product.events import ClientStartEvent
+from chromadb_deterministic.api import ServerAPI
+from chromadb_deterministic.config import Settings, System
+from chromadb_deterministic.telemetry.product import ProductTelemetryClient
+from chromadb_deterministic.telemetry.product.events import ClientStartEvent
 
 
 class SharedSystemClient:
@@ -48,7 +48,7 @@ class SharedSystemClient:
 
         if api_impl is None:
             raise ValueError("Chroma API implementation must be set in settings")
-        elif api_impl == "chromadb.api.segment.SegmentAPI":
+        elif api_impl == "chromadb_deterministic.api.segment.SegmentAPI":
             if settings.is_persistent:
                 identifier = settings.persist_directory
             else:
@@ -56,8 +56,8 @@ class SharedSystemClient:
                     "ephemeral"  # TODO: support pathing and  multiple ephemeral clients
                 )
         elif api_impl in [
-            "chromadb.api.fastapi.FastAPI",
-            "chromadb.api.async_fastapi.AsyncFastAPI",
+            "chromadb_deterministic.api.fastapi.FastAPI",
+            "chromadb_deterministic.api.async_fastapi.AsyncFastAPI",
         ]:
             # FastAPI clients can all use unique system identifiers since their configurations can be independent, e.g. different auth tokens
             identifier = str(uuid.uuid4())

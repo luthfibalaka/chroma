@@ -1,10 +1,10 @@
 import array
 from uuid import UUID
 from typing import Dict, Optional, Tuple, Union, cast
-from chromadb.api.configuration import CollectionConfigurationInternal
-from chromadb.api.types import Embedding
-import chromadb.proto.chroma_pb2 as proto
-from chromadb.types import (
+from chromadb_deterministic.api.configuration import CollectionConfigurationInternal
+from chromadb_deterministic.api.types import Embedding
+import chromadb_deterministic.proto.chroma_pb2 as proto
+from chromadb_deterministic.types import (
     Collection,
     LogRecord,
     Metadata,

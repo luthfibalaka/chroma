@@ -4,17 +4,17 @@ from multiprocessing.synchronize import Event
 
 from typer.testing import CliRunner
 
-from chromadb.api.client import Client
-from chromadb.api.models.Collection import Collection
-from chromadb.cli.cli import app
-from chromadb.cli.utils import set_log_file_path
-from chromadb.config import Settings, System
-from chromadb.db.base import get_sql
-from chromadb.db.impl.sqlite import SqliteDB
+from chromadb_deterministic.api.client import Client
+from chromadb_deterministic.api.models.Collection import Collection
+from chromadb_deterministic.cli.cli import app
+from chromadb_deterministic.cli.utils import set_log_file_path
+from chromadb_deterministic.config import Settings, System
+from chromadb_deterministic.db.base import get_sql
+from chromadb_deterministic.db.impl.sqlite import SqliteDB
 from pypika import Table
 import numpy as np
 
-from chromadb.test.property import invariants
+from chromadb_deterministic.test.property import invariants
 
 runner = CliRunner()
 
@@ -36,7 +36,7 @@ def test_app() -> None:
 
 
 def test_utils_set_log_file_path() -> None:
-    log_config = set_log_file_path("chromadb/log_config.yml", "test.log")
+    log_config = set_log_file_path("chromadb_deterministic/log_config.yml", "test.log")
     assert log_config["handlers"]["file"]["filename"] == "test.log"
 
 

@@ -2,7 +2,7 @@ import multiprocessing
 import re
 from typing import Any, Callable, Dict, Union
 
-from chromadb.types import Metadata
+from chromadb_deterministic.types import Metadata
 
 
 Validator = Callable[[Union[str, int, float]], bool]

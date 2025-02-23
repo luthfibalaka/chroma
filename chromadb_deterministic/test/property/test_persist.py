@@ -8,13 +8,13 @@ from uuid import UUID
 from hypothesis import given
 import hypothesis.strategies as st
 import pytest
-import chromadb
-from chromadb.api import ClientAPI, ServerAPI
-from chromadb.config import Settings, System
-from chromadb.segment import SegmentManager, VectorReader
-import chromadb.test.property.strategies as strategies
-import chromadb.test.property.invariants as invariants
-from chromadb.test.property.test_embeddings import (
+import chromadb_deterministic
+from chromadb_deterministic.api import ClientAPI, ServerAPI
+from chromadb_deterministic.config import Settings, System
+from chromadb_deterministic.segment import SegmentManager, VectorReader
+import chromadb_deterministic.test.property.strategies as strategies
+import chromadb_deterministic.test.property.invariants as invariants
+from chromadb_deterministic.test.property.test_embeddings import (
     EmbeddingStateMachineStates,
     trace,
     EmbeddingStateMachineBase,
@@ -28,18 +28,18 @@ from hypothesis.stateful import (
 import os
 import shutil
 import tempfile
-from chromadb.api.client import Client as ClientCreator
-from chromadb.utils.embedding_functions import DefaultEmbeddingFunction
+from chromadb_deterministic.api.client import Client as ClientCreator
+from chromadb_deterministic.utils.embedding_functions import DefaultEmbeddingFunction
 
 CreatePersistAPI = Callable[[], ServerAPI]
 
 configurations = [
     Settings(
-        chroma_api_impl="chromadb.api.segment.SegmentAPI",
-        chroma_sysdb_impl="chromadb.db.impl.sqlite.SqliteDB",
-        chroma_producer_impl="chromadb.db.impl.sqlite.SqliteDB",
-        chroma_consumer_impl="chromadb.db.impl.sqlite.SqliteDB",
-        chroma_segment_manager_impl="chromadb.segment.impl.manager.local.LocalSegmentManager",
+        chroma_api_impl="chromadb_deterministic.api.segment.SegmentAPI",
+        chroma_sysdb_impl="chromadb_deterministic.db.impl.sqlite.SqliteDB",
+        chroma_producer_impl="chromadb_deterministic.db.impl.sqlite.SqliteDB",
+        chroma_consumer_impl="chromadb_deterministic.db.impl.sqlite.SqliteDB",
+        chroma_segment_manager_impl="chromadb_deterministic.segment.impl.manager.local.LocalSegmentManager",
         allow_reset=True,
         is_persistent=True,
         persist_directory=tempfile.mkdtemp(),
@@ -222,9 +222,9 @@ def get_multiprocessing_context():  # type: ignore[no-untyped-def]
         # Run the invariants in a new process to bypass any shared state/caching (which would defeat the purpose of the test)
         # (forkserver is used because it's much faster than spawn—it will spawn a new, minimal singleton process and then fork that singleton)
         ctx = multiprocessing.get_context("forkserver")
-        # This is like running `import chromadb` in the single process that is forked rather than importing it in each forked process.
-        # Gives a ~3x speedup since importing chromadb is fairly expensive.
-        ctx.set_forkserver_preload(["chromadb"])
+        # This is like running `import chromadb_deterministic` in the single process that is forked rather than importing it in each forked process.
+        # Gives a ~3x speedup since importing chromadb_deterministic is fairly expensive.
+        ctx.set_forkserver_preload(["chromadb_deterministic"])
         return ctx
     except Exception:
         # forkserver/fork is not available on Windows
@@ -302,7 +302,7 @@ def test_persist_embeddings_state(
     caplog: pytest.LogCaptureFixture, settings: Settings
 ) -> None:
     caplog.set_level(logging.ERROR)
-    client = chromadb.Client(settings)
+    client = chromadb_deterministic.Client(settings)
     run_state_machine_as_test(
         lambda: PersistEmbeddingsStateMachine(settings=settings, client=client),
     )  # type: ignore
@@ -310,7 +310,7 @@ def test_persist_embeddings_state(
 
 # Ideally this scenario would be exercised by Hypothesis, but most runs don't seem to trigger this particular state.
 def test_delete_add_after_persist(settings: Settings) -> None:
-    client = chromadb.Client(settings)
+    client = chromadb_deterministic.Client(settings)
     state = PersistEmbeddingsStateMachine(settings=settings, client=client)
 
     state.initialize(
